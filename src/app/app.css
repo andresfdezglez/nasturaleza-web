@@ -1,0 +1,94 @@
+/* ------------------ */
+/* BASE */
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden; /* scroll solo en contenido */
+}
+
+/* ------------------ */
+/* CONTENEDOR */
+.sidenav-container {
+  min-height: 100vh;
+}
+
+.sidenav-content {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* ------------------ */
+/* FONDO FIJO */
+.app-background {
+  position: fixed;
+  inset: 0;
+  background-image: url('/images/1765627550958.jpg');
+  background-attachment: fixed;
+  background-size: cover; 
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(0.8);
+  z-index: 0;
+}
+
+
+/* ------------------ */
+/* TOOLBAR FIJA */
+.toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  background-color: rgba(247, 247, 245, 0.95) !important;
+  display: flex;
+  align-items: center;
+}
+
+/* ------------------ */
+/* BOTÓN HAMBURGUESA (solo móvil) */
+.menu-button {
+  display: inline-flex;
+}
+
+@media (min-width: 769px) {
+  .menu-button {
+    display: none;
+  }
+}
+
+/* ------------------ */
+/* LINKS DE LA TOOLBAR (solo tablet/escritorio) */
+.nav-links {
+  display: none;
+  gap: 10px;
+}
+
+@media (min-width: 769px) {
+  .nav-links {
+    display: flex;
+  }
+}
+
+/* ------------------ */
+/* CONTENIDO SCROLLEABLE */
+.app-content {
+  position: relative;
+  z-index: 1;
+  padding: 16px;
+  overflow-y: auto;
+  min-height: 100vh;
+}
+
+/* ------------------ */
+/* SIDENAV */
+.sidenav {
+  width: 250px;
+  background-color: #f7f7f5;
+}
+
+mat-nav-list a {
+  font-size: 18px;
+  font-weight: 500;
+}

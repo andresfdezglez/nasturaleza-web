@@ -1,0 +1,81 @@
+.page-container {
+  padding: 20px 10%;
+  text-align: center;
+}
+
+/* Título grande estilo Home */
+.page-title {
+  color: white;
+  font-size: 3rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.7); /* para que resalte sobre el fondo */
+  margin-bottom: 80px;
+  margin-top: 10%;
+}
+
+/* Ajuste para tablets */
+@media (max-width: 992px) {
+  .page-title {
+    font-size: 2.5rem;
+    margin-bottom: 10%;
+    margin-top: 30%;
+  }
+}
+
+/* Ajuste para móviles */
+/* Ajustes para móviles */
+@media (max-width: 600px) {
+  .page-container {
+    padding: 10px 5%; /* menos padding lateral */
+  }
+
+  .page-title {
+    font-size: 1.8rem; 
+    margin-top: 30%;   /* menos margen superior */
+    margin-bottom: 20%; /* menos margen inferior */
+    padding: 0 10px;
+  }
+
+  .cards-container {
+    grid-template-columns: 1fr; /* 1 columna en móvil */
+    gap: 15px;
+  }
+
+  .item-card {
+    max-width: 100%;
+    padding: 10px;
+  }
+
+  mat-card-image {
+    max-height: 150px; /* menos altura en móvil */
+  }
+}
+
+/* Grid de cards */
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  justify-items: center;
+  text-align: left;
+}
+
+.item-card {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 12px;
+  padding: 15px;
+  max-width: 350px;
+  width: 100%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: transform 0.2s;
+}
+
+.item-card:hover {
+  transform: translateY(-5px);
+}
+
+mat-card-image {
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+}
