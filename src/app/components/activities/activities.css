@@ -1,0 +1,91 @@
+/* Contenedor general que usa Flexbox */
+.container {
+  display: flex;
+  flex-direction: column;  /* Asegura que el panel de eventos esté debajo del calendario */
+  align-items: center;
+  margin-top: 10%; /* Espacio para la barra de navegación, ajusta esto según el tamaño de tu toolbar */
+  padding: 10px;
+  width: 100%;
+}
+
+/* Calendario pequeño (por defecto) */
+.calendar-card {
+  position: fixed;
+  top: 10px; /* Coloca el calendario un poco por debajo de la barra de navegación */
+  left: 10px;
+  width: 100px;  /* El tamaño del calendario cuando está pequeño */
+  height: auto;
+  z-index: 100;
+  cursor: pointer; /* Hace que se vea interactivo */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: width 0.3s ease, height 0.3s ease; /* Transición suave para abrir el calendario */
+}
+
+.calendar-card mat-calendar {
+  width: 100%;  /* El calendario ocupa todo el ancho del contenedor cuando está abierto */
+}
+
+/* Panel de eventos */
+.events-panel {
+  width: 100%;
+  margin-top: 150px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  background-color: #f9f9f9;
+  z-index: 10;
+  max-width: 100%;
+}
+
+/* Imagen de la tarjeta de evento */
+.events-panel img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+/* Responsividad para pantallas más pequeñas */
+@media (max-width: 600px) {
+  .calendar-card {
+    width: 100%; /* Calendario un poco más pequeño en dispositivos móviles */
+    height: auto;
+    top: 0;
+    left: 0;
+  }
+
+  .events-panel {
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 12px;
+    width: 100%;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+
+  .events-panel img {
+    height: 200px;
+  }
+
+  button {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 400px) {
+  .calendar-card {
+    width: 90%;
+    top: 10%; /* Coloca el calendario un poco por debajo de la barra de navegación */
+    left: 0;
+    height: 90%;
+  }
+
+  .events-panel {
+    width: 100%;
+    margin-top: 10%;
+    height: 80%;
+
+  }
+
+  .events-panel img {
+    height: 180px;
+  }
+}
