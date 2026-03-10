@@ -6,7 +6,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import { isPlatformBrowser } from '@angular/common';
 import { Component, ChangeDetectionStrategy, Inject, PLATFORM_ID, ChangeDetectorRef, model, HostListener } from '@angular/core';
-
+// Angular Material
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar'; // Si usas una cabecera superior
 
 // Importar el DatePipe
 import { DatePipe } from '@angular/common';
@@ -19,7 +22,7 @@ import {provideNativeDateAdapter} from '@angular/material/core';
   styleUrls: ['activities.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [provideNativeDateAdapter()],
-  imports: [MatCardModule, MatDatepickerModule, CommonModule, MatNativeDateModule, MatInputModule, MatButtonModule], // Asegúrate de que el módulo esté importado
+  imports: [MatCardModule, MatDatepickerModule, MatTabsModule, MatIconModule,MatToolbarModule,CommonModule, MatNativeDateModule, MatInputModule, MatButtonModule], // Asegúrate de que el módulo esté importado
 })
 export class Activities {    
   isCalendarOpen: boolean = false;  // Para controlar si el calendario está abierto

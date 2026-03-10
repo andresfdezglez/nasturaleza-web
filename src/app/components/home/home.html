@@ -1,8 +1,77 @@
-<div class="home">
+<div class="main-wrapper">
+  <div class="header-about">
+    <header class="title">
+      <div class="hero-content">
+        <h1>EXPERIENCIAS DE NATURALEZA Y FAUNA SALVAJE EN ASTURIAS</h1>
+        <p>Observación, interpretación y fotografía de especies en libertad</p>
+        <button mat-flat-button color="primary" class="cta-button">
+          <mat-icon>event_available</mat-icon> RESERVAR AHORA
+        </button>
+      </div>
+    </header>
 
-  <div class="home-content">
-    <h1>N'ASTURALEZA</h1>
-    <p>EXPERIENCIAS SALVAJES</p>
+    <mat-card class="about-card">
+      <mat-card-content class="about-content">
+        <img src="assets/images/1765626582748.JPG" alt="Perfil Guía" class="profile-avatar">
+        <div class="about-text-area">
+          <h3>SOBRE MÍ</h3>
+          <p>Docente y guía especializado en fauna salvaje. Te ofrezco experiencias adaptadas para descubrir los secretos de Asturias.</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
   </div>
 
+  <section class="section-container">
+    <h2>ACTIVIDADES</h2>
+
+    @if (isMobile()) {
+      <div class="mobile-navigation-area">
+        <button mat-flat-button color="primary" (click)="toActivities()" class="full-width-btn">
+          <mat-icon>explore</mat-icon>
+          EXPLORAR Actividades
+        </button>
+        <p class="helper-text">Pulsa para ver detalles y precios.</p>
+      </div>
+    } @else {
+      <div class="grid-layout">
+        
+        <mat-card class="custom-card">
+          <mat-card-header>
+            <mat-icon mat-card-avatar>visibility</mat-icon>
+            <mat-card-title>Avistamiento de fauna</mat-card-title>
+            <mat-card-subtitle>Oso pardo, lobo ibérico</mat-card-subtitle>
+          </mat-card-header>
+          <div class="card-btn-area">
+            <button mat-stroked-button color="accent">RESERVAR AHORA</button>
+          </div>
+          <img mat-card-image src="assets/images/DSC06517.JPG" alt="Lobo ibérico">
+        </mat-card>
+
+        <mat-card class="custom-card">
+          <mat-card-header>
+            <mat-icon mat-card-avatar>pets</mat-icon>
+            <mat-card-title>Rutas interpretativas</mat-card-title>
+            <mat-card-subtitle>Descubriendo indicios y rastros</mat-card-subtitle>
+          </mat-card-header>
+          <div class="card-btn-area">
+            <button mat-stroked-button color="accent">RESERVAR AHORA</button>
+          </div>
+          <img mat-card-image src="assets/images/DSC08309.JPG" alt="Ruta">
+        </mat-card>
+
+        <mat-card class="custom-card">
+          <mat-card-header>
+            <mat-icon mat-card-avatar>photo_camera</mat-icon>
+            <mat-card-title>Fotografía de naturaleza</mat-card-title>
+            <mat-card-subtitle>Fotografías autóctonas</mat-card-subtitle>
+          </mat-card-header>
+          <div class="card-btn-area">
+            <button mat-stroked-button color="accent">RESERVAR AHORA</button>
+          </div>
+          <img mat-card-image src="assets/images/DSC08277.JPG" alt="Fotografía">
+        </mat-card>
+
+      </div>
+    }
+  </section>
 </div>

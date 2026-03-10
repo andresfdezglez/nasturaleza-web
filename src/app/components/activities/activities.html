@@ -1,28 +1,57 @@
-<div class="container">
-  <!-- Botón para abrir el calendario -->
-  <button *ngIf="!isCalendarOpen" mat-button class="calendar-button" (click)="toggleCalendar()">Abrir Calendario</button>
+<div class="tabs-page-wrapper">
+  <div class="nav-header">
+    <button mat-icon-button routerLink="/" class="back-btn">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <span class="nav-title">Nuestras Experiencias</span>
+  </div>
 
-  <!-- Calendario desplegable -->
-  <mat-card *ngIf="isCalendarOpen" class="calendar-card">
-    <mat-calendar [(selected)]="selected" (selectedChange)="onDateSelected($event)"></mat-calendar>
-  </mat-card>
+  <mat-tab-group mat-stretch-tabs="true" class="custom-tabs">
+    
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="tab-icon">visibility</mat-icon>
+        <span>Avistamiento</span>
+      </ng-template>
+      
+      <div class="tab-content-area" >
+        <div class="text-content">
+          <h2>Avistamiento de Fauna</h2>
+          <p>Observa al oso pardo, al lobo ibérico y otras especies emblemáticas en su hábitat natural de la Cordillera Cantábrica.</p>
+          <button mat-flat-button color="primary" class="book-btn">RESERVAR AHORA</button>
+        </div>
+      </div>
+    </mat-tab>
 
-  <!-- Panel de eventos -->
-  <mat-card class="events-panel">
-    <img mat-card-image src="/assets/images/fondo.jpg" alt="Evento">
-    <mat-card-header>
-      <mat-card-title>Evento</mat-card-title>
-      <mat-card-subtitle>{{ selected() }}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <p>
-        Disfruta de una emocionante jornada de senderismo por paisajes naturales impresionantes, 
-        rodeado de aire puro y vistas panorámicas que te dejarán sin aliento.
-      </p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button>Más Info</button>
-      <button mat-button>Reservar</button>
-    </mat-card-actions>
-  </mat-card>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="tab-icon">pets</mat-icon>
+        <span>Rutas</span>
+      </ng-template>
+      
+      <div class="tab-content-area">
+        <div class="text-content">
+          <h2>Rutas Interpretativas</h2>
+          <p>Aprende a leer el bosque. Descubrimos indicios, rastros y huellas mientras exploramos los rincones más vírgenes de Asturias.</p>
+          <button mat-flat-button color="primary" class="book-btn">RESERVAR AHORA</button>
+        </div>
+      </div>
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="tab-icon">photo_camera</mat-icon>
+        <span>Fotografía</span>
+      </ng-template>
+      
+      <div class="tab-content-area">
+        <div class="text-content">
+          <h2>Fotografía de Naturaleza</h2>
+          <p>Capta la esencia de la vida salvaje. Sesiones técnicas para fotografiar especies autóctonas en libertad absoluta.</p>
+          <button mat-flat-button color="primary" class="book-btn">RESERVAR AHORA</button>
+        </div>
+      </div>
+    </mat-tab>
+
+  </mat-tab-group>
 </div>

@@ -1,63 +1,293 @@
-.home {
-  position: relative;
+/* Contenedor principal con espaciado entre secciones */
+.main-wrapper {
+  padding: 5% 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 140px; /* Espacio masivo entre secciones */
+  min-height: 90%
+}
+.header-about{
+  display: flex;
+  flex-direction: row;
+}
+
+/* Hero Section */
+/* 2. El título original (ajuste leve) */
+.title {
+  text-align: left;
+  color: white;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  width: 55%; /* Le damos un poco más de la mitad al título */
+}
+
+.title h1 {
+  font-size: 3.5rem;
+  max-width: 800px;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+
+/* 1. Ajuste del contenedor superior */
+.header-about {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; /* Separa el título a la izq y la tarjeta a la der */
+  align-items: center; /* Los centra verticalmente para que queden parejos */
+  width: 80%; /* Hacemos que tenga el mismo ancho que el grid de abajo */
+  margin: 0 auto; /* Lo centramos en la pantalla */
+}
+
+
+
+/* 1. Ajustamos el contenedor principal para separar bien los elementos */
+.header-about {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 85%; /* Lo abrimos un poco más (antes 80%) para que quepa todo mejor */
+  margin: 0 auto;
+  gap: 40px; /* Obligamos a que haya un espacio de seguridad entre título y tarjeta */
+}
+
+/* 2. El título cede espacio */
+.title {
+  text-align: left;
+  color: white;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  width: 40%; /* Le dejamos menos de la mitad para dárselo a la tarjeta */
+}
+
+/* 3. La tarjeta EXTRA GRANDE */
+.about-card {
+  width: 60%; /* Ahora la tarjeta domina el espacio derecho */
+  max-width: 800px; /* Aumentamos el límite máximo muchísimo */
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 16px; /* Bordes un poco más redondeados para que se vea moderna */
+  padding: 40px; /* Mucho más espacio interior */
+  box-shadow: 0 12px 40px rgba(0,0,0,0.4); /* Sombra más pronunciada */
+}
+
+/* 4. Separación entre foto y texto */
+.about-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 40px; /* Más aire entre la cara y las letras */
+}
+
+/* 5. Foto de perfil XL */
+.profile-avatar {
+  width: 180px; /* Foto notablemente más grande */
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  flex-shrink: 0; 
+}
+
+/* 6. Textos destacados */
+.about-text-area h3 {
+  margin: 0 0 15px 0;
+  font-size: 1.8rem; /* Título casi como un H2 */
+  color: #333;
+  font-weight: 800; /* Letra más gordita/negrita */
+}
+
+.about-text-area p {
+  margin: 0;
+  font-size: 1.3rem; /* Texto muy fácil de leer */
+  line-height: 1.6;
+  color: #444;
+}
+
+h2{
+  font-size: 2.5rem;
+  color: white;
+}
+
+.title p {
+  font-size: 1.5rem;
+  opacity: 0.9;
+  margin-bottom: 30px;
+}
+
+/* 1. Contenedor principal: Ocupa la pantalla y centra todo */
+.section-container {
+  height: 50%; /* Ocupa el 100% del alto de la ventana */
   width: 100%;
-  height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra el grid horizontalmente */
+  justify-content: center; /* Centra el grid verticalmente */
+  overflow: hidden; /* Previene el scroll */
+}
+
+/* Modificamos solo el Grid para ajustar tamaño y separación */
+.grid-layout {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Seguimos manteniendo las 3 columnas */
+  
+  /* 1. MÁS SEPARACIÓN: Aumentamos el hueco entre tarjetas */
+  gap: 40px; 
+  
+  width: 100%;
+  
+  /* 2. MÁS GRANDES: Permitimos que el contenedor se expanda más */
+  max-width: 80%; 
+}
+
+/* 3. La tarjeta: Estructura normal */
+.custom-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 0;
+}
+
+/* 4. La imagen: Mantiene la proporción siempre */
+.custom-card img[mat-card-image] {
+  width: 100%;
+  /* aspect-ratio mantiene la proporción de la foto. 
+     16/9 es formato panorámico, 4/3 es un poco más cuadrado. */
+  aspect-ratio: 16 / 9; 
+  object-fit: cover;
+  margin: 0;
+}
+
+/* 5. Ajuste de textos y botones para la tarjeta "miniatura" */
+.custom-card mat-card-header {
+  padding: 12px 12px 0 12px;
+}
+
+.custom-card mat-card-title {
+  font-size: 1rem; /* Texto del título un poco más pequeño */
+}
+
+.custom-card mat-card-subtitle {
+  font-size: 0.8rem;
+}
+
+.custom-card .card-btn-area {
+  padding: 12px;
+  text-align: center;
+}
+
+/* Hacemos el botón un poco más pequeño con 'scale' */
+.custom-card .card-btn-area button {
+  transform: scale(0.9); 
+}
+
+/* Footer */
+.main-footer {
+  background-color: #d1d9cf;
+  padding: 30px;
+  text-align: center;
+}
+
+.social-row {
+  margin-top: 20px;
   display: flex;
   justify-content: center;
-  align-items: center;
-  text-align: center; /* centra texto */
-  padding: 0 10px;    /* evita que se toque el borde en móviles */
+  gap: 15px;
 }
 
-.home-content {
-  position: relative;
-  font-family: Agatho, bold;
+.wa-btn { background-color: #4c6a49 !important; color: white !important; }
+.ig-btn { background-color: #b0bab1 !important; }
+
+
+/* =========================================
+   DISEÑO PARA MÓVILES (Responsive Design)
+   Se activa en pantallas de 800px o menos
+   ========================================= */
+@media (max-width: 800px) {
+  
+  /* 1. Apilamos el título y la tarjeta "Sobre mí" */
+  .header-about {
+    flex-direction: column; /* Cambia de fila a columna */
+    width: 95%; /* Ocupa casi todo el ancho del móvil */
+    gap: 30px;
+    margin-top: 20px;
+  }
+
+  /* 2. El título ocupa todo el ancho */
+  .title {
+    width: 100%;
+    text-align: center; /* Centramos el texto en móvil para mejor estética */
+  }
+
+  .title h1 {
+    font-size: 2.2rem; /* Achicamos un poco el título principal */
+  }
+
+  /* 3. La tarjeta "Sobre mí" se adapta al móvil */
+  .about-card {
+    width: 100%;
+    padding: 20px;
+    height: 50%;
+  }
+
+  /* 4. Apilamos la foto de perfil y el texto descriptivo */
+  .about-content {
+    flex-direction: column; /* Foto arriba, texto abajo */
+    text-align: center; /* Todo centradito */
+    gap: 15px;
+  }
+
+  .profile-avatar {
+    width: 120px; /* Reducimos la foto un poco para que no ocupe media pantalla */
+    height: 120px;
+  }
+
+  /* 5. El Grid de actividades pasa a 1 sola columna */
+  .grid-layout {
+    grid-template-columns: 1fr; /* 1 sola columna (ocupa el 100% disponible) */
+    max-width: 95%;
+    gap: 20px;
+  }
+
+  /* 6. Quitamos la altura forzada para permitir el scroll en móvil */
+  .section-container {
+    height: auto; 
+    overflow: visible;
+    padding: 40px 10px;
+  }
+}
+
+/* Estilo para el botón de móvil que sustituye a las cards */
+.mobile-navigation-area {
+  padding: 40px 20px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.full-width-btn {
+  width: 100%;
+  height: 60px !important;
+  font-size: 1.2rem !important;
+  border-radius: 15px !important;
+  margin-bottom: 15px;
+}
+
+.helper-text {
   color: white;
-  z-index: 2;
-  max-width: 90%;
-  /* Animación inicial */
-  opacity: 0;
-  transform: translateY(-300px);
-  animation: fadeIn 3s ease-out forwards;
+  font-style: italic;
+  opacity: 0.8;
 }
 
-/* Animación para los elementos internos */
-.home-content h1 {
-  font-size: 3rem;
-  margin: 0 0 10px 0;
-  animation-delay: 0.3s;
-}
-
-.home-content p {
-  font-size: 1.2rem;
-  margin: 0;
-  animation-delay: 0.8s;
-}
-
-/* Keyframes */
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
+/* Aseguramos que header-about se comporte bien en desktop */
+@media (min-width: 900px) {
+  .header-about {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
   }
-}
-
-/* Ajustes para tablets */
-@media (max-width: 992px) {
-  .home-content h1 {
-    font-size: 2.5rem;
-  }
-  .home-content p {
-    font-size: 1.1rem;
-  }
-}
-
-/* Ajustes para móviles */
-@media (max-width: 600px) {
-  .home-content h1 {
-    font-size: 2rem;
-  }
-  .home-content p {
-    font-size: 1rem;
-  }
+  
+  .title { flex: 1.2; }
+  .about-card { flex: 0.8; max-width: 450px; }
 }
