@@ -14,22 +14,28 @@ html, body {
 
 .sidenav-content {
   position: relative;
-  min-height: 100vh;
-  overflow: hidden;
+  height: 100vh;
+  overflow-y: auto;
+  /* Activa el scroll suave en iPhone */
+  -webkit-overflow-scrolling: touch;
 }
 
 /* ------------------ */
 /* FONDO FIJO */
 .app-background {
   position: fixed;
-  inset: 0;
-  background-image: url('/assets/images/1765627550958.jpg');
-  background-attachment: fixed;
-  background-size: cover; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  /* Usa lvh para que el fondo no se estire cuando Chrome esconda su barra */
+  height: 100lvh; 
+  
+  z-index: -1;
+  background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
-  filter: brightness(0.8);
-  z-index: 0;
+  
+  /* Evita que el navegador intente recalcular la imagen */
+  background-attachment: scroll; 
 }
 
 
@@ -77,7 +83,6 @@ html, body {
   position: relative;
   z-index: 1;
   padding: 16px;
-  overflow-y: auto;
   min-height: 100vh;
 }
 

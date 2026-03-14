@@ -3,10 +3,12 @@
   padding: 5% 0 0;
   display: flex;
   flex-direction: column;
-  gap: 140px; /* Espacio masivo entre secciones */
-  min-height: 90%
+  gap: 140px;
+  /* Espacio masivo entre secciones */
+  height: 100%
 }
-.header-about{
+
+.header-about {
   display: flex;
   flex-direction: row;
 }
@@ -16,8 +18,9 @@
 .title {
   text-align: left;
   color: white;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-  width: 55%; /* Le damos un poco más de la mitad al título */
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  width: 55%;
+  /* Le damos un poco más de la mitad al título */
 }
 
 .title h1 {
@@ -27,45 +30,39 @@
   margin-bottom: 20px;
 }
 
-/* 1. Ajuste del contenedor superior */
-.header-about {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between; /* Separa el título a la izq y la tarjeta a la der */
-  align-items: center; /* Los centra verticalmente para que queden parejos */
-  width: 80%; /* Hacemos que tenga el mismo ancho que el grid de abajo */
-  margin: 0 auto; /* Lo centramos en la pantalla */
-}
-
-
-
 /* 1. Ajustamos el contenedor principal para separar bien los elementos */
 .header-about {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  width: 85%; /* Lo abrimos un poco más (antes 80%) para que quepa todo mejor */
+  width: 100%;
+  /* Lo abrimos un poco más (antes 80%) para que quepa todo mejor */
   margin: 0 auto;
-  gap: 40px; /* Obligamos a que haya un espacio de seguridad entre título y tarjeta */
 }
 
 /* 2. El título cede espacio */
 .title {
-  text-align: left;
+  text-align: center;
   color: white;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-  width: 40%; /* Le dejamos menos de la mitad para dárselo a la tarjeta */
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  width: 40%;
+  /* Le dejamos menos de la mitad para dárselo a la tarjeta */
 }
 
 /* 3. La tarjeta EXTRA GRANDE */
 .about-card {
-  width: 60%; /* Ahora la tarjeta domina el espacio derecho */
-  max-width: 800px; /* Aumentamos el límite máximo muchísimo */
+  width: 60%;
+  /* Ahora la tarjeta domina el espacio derecho */
+  max-width: 800px;
+  /* Aumentamos el límite máximo muchísimo */
   background-color: rgba(255, 255, 255, 0.95);
-  border-radius: 16px; /* Bordes un poco más redondeados para que se vea moderna */
-  padding: 40px; /* Mucho más espacio interior */
-  box-shadow: 0 12px 40px rgba(0,0,0,0.4); /* Sombra más pronunciada */
+  border-radius: 16px;
+  /* Bordes un poco más redondeados para que se vea moderna */
+  padding: 40px;
+  /* Mucho más espacio interior */
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  /* Sombra más pronunciada */
 }
 
 /* 4. Separación entre foto y texto */
@@ -73,35 +70,40 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 40px; /* Más aire entre la cara y las letras */
+  gap: 40px;
+  /* Más aire entre la cara y las letras */
 }
 
 /* 5. Foto de perfil XL */
 .profile-avatar {
-  width: 180px; /* Foto notablemente más grande */
+  width: 180px;
+  /* Foto notablemente más grande */
   height: 180px;
   border-radius: 50%;
   object-fit: cover;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-  flex-shrink: 0; 
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
 }
 
 /* 6. Textos destacados */
 .about-text-area h3 {
   margin: 0 0 15px 0;
-  font-size: 1.8rem; /* Título casi como un H2 */
+  font-size: 1.8rem;
+  /* Título casi como un H2 */
   color: #333;
-  font-weight: 800; /* Letra más gordita/negrita */
+  font-weight: 800;
+  /* Letra más gordita/negrita */
 }
 
 .about-text-area p {
   margin: 0;
-  font-size: 1.3rem; /* Texto muy fácil de leer */
+  font-size: 1.3rem;
+  /* Texto muy fácil de leer */
   line-height: 1.6;
   color: #444;
 }
 
-h2{
+h2 {
   font-size: 2.5rem;
   color: white;
 }
@@ -113,29 +115,32 @@ h2{
 }
 
 /* 1. Contenedor principal: Ocupa la pantalla y centra todo */
-.section-container {
-  height: 50%; /* Ocupa el 100% del alto de la ventana */
+.about-me-section {
+  height: 50%;
+  /* Ocupa el 100% del alto de la ventana */
   width: 100%;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centra el grid horizontalmente */
-  justify-content: center; /* Centra el grid verticalmente */
-  overflow: hidden; /* Previene el scroll */
+  align-items: center;
+  /* Centra el grid horizontalmente */
+  justify-content: center;
+  /* Centra el grid verticalmente */
+}
+
+.activities{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 /* Modificamos solo el Grid para ajustar tamaño y separación */
 .grid-layout {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Seguimos manteniendo las 3 columnas */
-  
+  grid-template-columns: repeat(3, 1fr);
   /* 1. MÁS SEPARACIÓN: Aumentamos el hueco entre tarjetas */
-  gap: 40px; 
-  
+  gap: 40px;
   width: 100%;
-  
-  /* 2. MÁS GRANDES: Permitimos que el contenedor se expanda más */
-  max-width: 80%; 
 }
 
 /* 3. La tarjeta: Estructura normal */
@@ -143,7 +148,6 @@ h2{
   display: flex;
   flex-direction: column;
   border-radius: 8px;
-  overflow: hidden;
   margin: 0;
 }
 
@@ -152,7 +156,7 @@ h2{
   width: 100%;
   /* aspect-ratio mantiene la proporción de la foto. 
      16/9 es formato panorámico, 4/3 es un poco más cuadrado. */
-  aspect-ratio: 16 / 9; 
+  aspect-ratio: 16 / 9;
   object-fit: cover;
   margin: 0;
 }
@@ -163,7 +167,8 @@ h2{
 }
 
 .custom-card mat-card-title {
-  font-size: 1rem; /* Texto del título un poco más pequeño */
+  font-size: 1rem;
+  /* Texto del título un poco más pequeño */
 }
 
 .custom-card mat-card-subtitle {
@@ -177,117 +182,294 @@ h2{
 
 /* Hacemos el botón un poco más pequeño con 'scale' */
 .custom-card .card-btn-area button {
-  transform: scale(0.9); 
+  transform: scale(0.9);
 }
 
-/* Footer */
-.main-footer {
-  background-color: #d1d9cf;
-  padding: 30px;
-  text-align: center;
-}
 
-.social-row {
-  margin-top: 20px;
+.button-group {
   display: flex;
-  justify-content: center;
-  gap: 15px;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 50%;
+  margin-top: auto;
+  padding: 0 10px;
 }
 
-.wa-btn { background-color: #4c6a49 !important; color: white !important; }
-.ig-btn { background-color: #b0bab1 !important; }
+/* ESTILO BASE PARA AMBOS */
+.full-width-btn {
+  height: 54px !important;
+  border-radius: 16px !important;
+  font-weight: 600 !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase;
+  transition: all 0.3s ease !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  width: 100%;
+}
 
+/* BOTÓN EXPLORAR: Verde Musgo Profundo con Degradado */
+.btn-nature {
+  background: linear-gradient(135deg, #2d5a27 0%, #1b3a1a 100%) !important;
+  color: white !important;
+  box-shadow: 0 4px 15px rgba(27, 58, 26, 0.4) !important;
+}
+
+/* BOTÓN CONTACTAR: Estilo Cristal (Glassmorphism) con borde WhatsApp */
+.btn-contact {
+  background: rgba(255, 255, 255, 0.15) !important;
+  backdrop-filter: blur(10px);
+  color: white !important;
+  border: 1px solid rgba(37, 211, 102, 0.5) !important;
+  /* Color WhatsApp suave */
+}
+
+.contact-link {
+  text-decoration: none !important;
+  /* Quita subrayados */
+  display: contents;
+  /* Hace que el enlace ocupe todo el ancho */
+  width: 100%;
+}
+
+/* Opcional: Cambia el icono a uno de WhatsApp si lo prefieres */
+.btn-contact mat-icon {
+  color: white;
+}
+
+/* Efecto al pulsar (Active) */
+.full-width-btn:active {
+  transform: scale(0.96);
+  filter: brightness(1.2);
+}
+
+/* Ajuste de Iconos */
+mat-icon {
+  margin-right: 8px !important;
+  font-size: 20px !important;
+  width: 20px !important;
+  height: 20px !important;
+}
 
 /* =========================================
    DISEÑO PARA MÓVILES (Responsive Design)
    Se activa en pantallas de 800px o menos
    ========================================= */
+/* Mantenemos tus estilos de escritorio intactos arriba y modificamos el media query */
+
 @media (max-width: 800px) {
-  
-  /* 1. Apilamos el título y la tarjeta "Sobre mí" */
-  .header-about {
-    flex-direction: column; /* Cambia de fila a columna */
-    width: 95%; /* Ocupa casi todo el ancho del móvil */
-    gap: 30px;
-    margin-top: 20px;
+  .main-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* Distribuye arriba, centro y abajo */
+
+    /* El padding-top debe ser igual al alto de tu toolbar (ej: 64px) */
+    padding: 70px 15px 10px 15px !important;
+    box-sizing: border-box;
+    /* Crucial: para que el padding no sume altura extra */
   }
 
-  /* 2. El título ocupa todo el ancho */
+  /* 2. ACHICAR EL CONTENIDO CENTRAL (Donde suele sobrar espacio) */
+
+
+  /* 3. LIMITAR EL TEXTO (El culpable número 1 del scroll) */
+  .about-p {
+    font-size: 0.8rem !important;
+  }
+
   .title {
     width: 100%;
-    text-align: center; /* Centramos el texto en móvil para mejor estética */
+    text-align: center;
+    margin-bottom: 5px;
   }
 
   .title h1 {
-    font-size: 2.2rem; /* Achicamos un poco el título principal */
+    font-size: 2rem !important;
+    /* Título más pequeño */
+    margin-bottom: 5px;
   }
 
-  /* 3. La tarjeta "Sobre mí" se adapta al móvil */
+  /* Ajuste Tarjeta Sobre Mí para que sea compacta */
   .about-card {
     width: 100%;
-    padding: 20px;
-    height: 50%;
+    padding: 12px !important;
+    height: auto !important;
+    /* Quitamos el 50% que tenías */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   }
 
-  /* 4. Apilamos la foto de perfil y el texto descriptivo */
+
   .about-content {
-    flex-direction: column; /* Foto arriba, texto abajo */
-    text-align: center; /* Todo centradito */
-    gap: 15px;
+    flex-direction: column !important;
+    /* Foto al lado del texto para ahorrar altura */
+    text-align: center;
+    gap: 10%;
   }
 
   .profile-avatar {
-    width: 120px; /* Reducimos la foto un poco para que no ocupe media pantalla */
-    height: 120px;
+    width: 140px !important;
+    /* Foto mucho más pequeña en móvil */
+    height: 140px !important;
+    margin-bottom: 10px;
   }
 
-  /* 5. El Grid de actividades pasa a 1 sola columna */
-  .grid-layout {
-    grid-template-columns: 1fr; /* 1 sola columna (ocupa el 100% disponible) */
-    max-width: 95%;
-    gap: 20px;
+  .about-text-area h3 {
+    font-size: 1rem !important;
+    margin-bottom: 2px;
   }
 
-  /* 6. Quitamos la altura forzada para permitir el scroll en móvil */
-  .section-container {
-    height: auto; 
-    overflow: visible;
-    padding: 40px 10px;
+  .about-text-area p.about-description {
+    font-size: 0.75rem !important;
+    /* Letra pequeña para que entre todo */
+    text-align: start;
   }
-}
 
-/* Estilo para el botón de móvil que sustituye a las cards */
-.mobile-navigation-area {
-  padding: 40px 20px;
-  text-align: center;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
-  backdrop-filter: blur(10px);
-}
-
-.full-width-btn {
-  width: 100%;
-  height: 60px !important;
-  font-size: 1.2rem !important;
-  border-radius: 15px !important;
-  margin-bottom: 15px;
-}
-
-.helper-text {
-  color: white;
-  font-style: italic;
-  opacity: 0.8;
-}
-
-/* Aseguramos que header-about se comporte bien en desktop */
-@media (min-width: 900px) {
-  .header-about {
+  .button-group {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 40px;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    justify-items: center;
   }
-  
-  .title { flex: 1.2; }
-  .about-card { flex: 0.8; max-width: 450px; }
+
+  /* ESTILO BASE PARA AMBOS */
+  .full-width-btn {
+    height: 54px !important;
+    border-radius: 16px !important;
+    font-weight: 600 !important;
+    letter-spacing: 1px !important;
+    text-transform: uppercase;
+    transition: all 0.3s ease !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  }
+
+  /* BOTÓN EXPLORAR: Verde Musgo Profundo con Degradado */
+  .btn-nature {
+    background: linear-gradient(135deg, #2d5a27 0%, #1b3a1a 100%) !important;
+    color: white !important;
+    box-shadow: 0 4px 15px rgba(27, 58, 26, 0.4) !important;
+  }
+
+  /* BOTÓN CONTACTAR: Estilo Cristal (Glassmorphism) con borde WhatsApp */
+  .btn-contact {
+    background: rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: blur(10px);
+    color: white !important;
+    width: 100%;
+    border: 1px solid rgba(37, 211, 102, 0.5) !important;
+    /* Color WhatsApp suave */
+  }
+
+  .contact-link {
+    text-decoration: none !important;
+    /* Quita subrayados */
+    display: block;
+    /* Hace que el enlace ocupe todo el ancho */
+    width: 100%;
+  }
+
+  /* Opcional: Cambia el icono a uno de WhatsApp si lo prefieres */
+  .btn-contact mat-icon {
+    color: white;
+  }
+
+  /* Efecto al pulsar (Active) */
+  .full-width-btn:active {
+    transform: scale(0.96);
+    filter: brightness(1.2);
+  }
+
+  /* Ajuste de Iconos */
+  mat-icon {
+    margin-right: 8px !important;
+    font-size: 20px !important;
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+}
+
+
+#splash-screen {
+  /* Posicionamiento fijo para cubrir TODA la pantalla */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  /* 100% de la altura de la ventana (viewport height) */
+  background-color: #ffffff;
+  /* 🎨 COLOR DE FONDO: Puedes cambiar este color */
+
+  /* Centrado perfecto del contenido (el logo) */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* Asegura que la pantalla de bienvenida esté por encima de todo lo demás */
+  z-index: 9999;
+
+  /* --- CONFIGURACIÓN DE LA ANIMACIÓN --- */
+  /* Nombre de la animación, duración total y cómo termina */
+  animation: fadeOutSplash 2.5s forwards;
+  /* '2.5s' es la duración total: 2s visibles + 0.5s para desaparecer */
+  /* 'forwards' mantiene el estado final de la animación (oculto) */
+}
+
+.splash-logo {
+  /* Estilos para el logo */
+  max-width: 250px;
+  /* 📐 TAMAÑO MÁXIMO DEL LOGO: Ajústalo a tu gusto */
+  height: auto;
+
+  /* Pequeña animación de entrada opcional para el logo */
+  animation: scaleIn 0.8s ease-out;
+}
+
+/* --- DEFINICIÓN DE LAS ANIMACIONES (KEYFRAMES) --- */
+
+/* 1. Animación principal para desaparecer la pantalla completa */
+@keyframes fadeOutSplash {
+  0% {
+    opacity: 1;
+    /* Totalmente visible al inicio */
+    visibility: visible;
+  }
+
+  80% {
+    opacity: 1;
+    /* Permanece visible hasta el 80% del tiempo (2 segundos) */
+    visibility: visible;
+  }
+
+  100% {
+    opacity: 0;
+    /* Desaparece completamente al final (en los últimos 0.5 segundos) */
+    visibility: hidden;
+    /* Se quita de la vista para no interferir con los clics */
+  }
+}
+
+/* 2. Animación de entrada suave para el logo (escala y opacidad) */
+@keyframes scaleIn {
+  0% {
+    transform: scale(0.8);
+    /* Empieza un poco más pequeño */
+    opacity: 0;
+    /* Y transparente */
+  }
+
+  100% {
+    transform: scale(1);
+    /* Termina en su tamaño normal */
+    opacity: 1;
+    /* Y totalmente visible */
+  }
 }
