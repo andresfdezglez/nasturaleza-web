@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
@@ -10,6 +10,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
+import { BackgroundService } from './services/background-service';
 
 
 @Component({
@@ -22,4 +23,10 @@ import { FormsModule } from '@angular/forms';
 })
 export class App {
   protected readonly title = signal('nasturaleza');
+  
+  // Inyectamos el servicio
+  bgService = inject(BackgroundService);
+  
+  // Creamos un acceso directo a la configuración
+  config = this.bgService.backgroundConfig;
 }

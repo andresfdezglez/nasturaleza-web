@@ -4,9 +4,8 @@
   <mat-sidenav #drawer class="sidenav" mode="over">
     <mat-nav-list>
       <a mat-list-item href="" (click)="drawer.close()">Inicio</a>
-      <a mat-list-item href="events" (click)="drawer.close()">Eventos</a>
       <a mat-list-item href="activities" (click)="drawer.close()">Actividades</a>
-      <a mat-list-item href="contact" (click)="drawer.close()">Contacto</a>
+      <a mat-list-item href="reviews" (click)="drawer.close()">Reseñas</a>
     </mat-nav-list>
   </mat-sidenav>
 
@@ -14,7 +13,10 @@
   <mat-sidenav-content class="sidenav-content">
 
     <!-- Fondo fijo -->
-    <div class="app-background" [style.background-image]="'url(assets/images/1765627550958.webp)'"></div>
+    <div class="app-background" 
+       [class.es-seccion-verde]="config().isGreen"
+       [style.background-image]="config().isGreen ? 'none' : 'url(' + config().image + ')'">
+  </div>
 
     <!-- Toolbar fija -->
     <mat-toolbar color="primary" class="toolbar">
@@ -31,9 +33,8 @@
       <!-- Links visibles en tablet/escritorio -->
       <nav class="nav-links">
         <a mat-button href="">Inicio</a>
-        <a mat-button href="events">Eventos</a>
         <a mat-button href="activities">Actividades</a>
-        <a mat-button href="contact">Contacto</a>
+        <a mat-button href="reviews">Reseñas</a>
       </nav>
 
     </mat-toolbar>

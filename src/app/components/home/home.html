@@ -8,10 +8,8 @@
 <div class="main-wrapper">
   <section class="header-about">
     <header class="title">
-      <div class="hero-content">
         <h1>N'ASTURALEZA</h1>
-        <p class="hero-subtitle">Experiencias de naturaleza y fauna salvaje en Asturias</p>
-      </div>
+        <p>Experiencias de naturaleza y fauna salvaje en Asturias</p>
     </header>
   </section>
 
@@ -26,7 +24,7 @@
           CONTACTAR
         </button>
       </a>
-    </section>
+  </section>
 
   <section class="about-me-section">
     <h2>Sobre mí</h2>
@@ -44,8 +42,8 @@
   </section>
 
   @if (!isMobile()) {
-    <h2>Nuestras actividades</h2>
     <section class="activities">
+      <h2>Nuestras actividades</h2>
     <div class="grid-layout">
       <mat-card class="custom-card">
         <mat-card-header>
@@ -86,4 +84,32 @@
     </div>
     </section>
     }
+
+    <section class="reviews-section">
+          <h2>Opiniones de otros clientes</h2>
+
+          <div class="reviews-list">
+            @if (listaReviews().length === 0) {
+              <p class="empty-msg">Aún no hay reseñas. ¡Sé el primero!</p>
+            }
+
+            @for (item of listaReviews(); track item.id) {
+              <mat-card class="review-card">
+                <mat-card-content>
+                  <div class="review-header">
+                    <span class="user-name">{{ item.name }}</span>
+                    <div class="display-stars">
+                      @for (s of [1,2,3,4,5]; track s) {
+                        <mat-icon class="mini-star">{{ item.rating >= s ? 'star' : 'star_border' }}</mat-icon>
+                      }
+                    </div>
+                  </div>
+                  <p class="comment-text">{{ item.comment }}</p>
+                  <span class="date">{{ item.created_date | date:'dd/MM/yyyy' }}</span>
+                </mat-card-content>
+              </mat-card>
+            }
+          </div>
+
+    </section>
 </div>

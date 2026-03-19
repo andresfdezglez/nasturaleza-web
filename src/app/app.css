@@ -83,7 +83,7 @@ html, body {
   position: relative;
   z-index: 1;
   padding: 16px;
-  min-height: 100vh;
+  min-height: 90vh;
 }
 
 /* ------------------ */
@@ -96,4 +96,26 @@ html, body {
 mat-nav-list a {
   font-size: 18px;
   font-weight: 500;
+}
+
+/* app.component.css */
+.app-background {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  
+  /* Imagen por defecto (Tu foto de Asturias) */
+  background-image: url('/assets/images/1765627550958.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  
+  /* Transición suave de 0.6 segundos */
+  transition: all 0.6s ease-in-out;
+}
+
+/* Cuando queremos el fondo verde */
+.app-background.es-seccion-verde {
+  background-image: none !important; /* Quitamos la foto */
+  background-color: #1b301b; /* Un verde bosque profundo muy elegante */
 }

@@ -1,0 +1,63 @@
+<div class="main-container">
+  <div class="fixed-header">
+    <mat-card class="form-card" appearance="outlined">
+      <mat-card-header>
+        <mat-card-title>¿Qué te pareció?</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <div class="stars-selector">
+          @for (star of [1, 2, 3, 4, 5]; track star) {
+            <button mat-icon-button type="button" (click)="setRating(star)">
+              <mat-icon [class.active]="newReview.rating >= star">
+                {{ newReview.rating >= star ? 'star' : 'star_border' }}
+              </mat-icon>
+            </button>
+          }
+        </div>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Tu nombre</mat-label>
+          <input matInput [(ngModel)]="newReview.name" placeholder="Ej. Juan Pérez">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Comentario</mat-label>
+          <textarea matInput [(ngModel)]="newReview.comment" rows="3" placeholder="Cuéntanos tu experiencia..."></textarea>
+        </mat-form-field>
+      </mat-card-content>
+
+      <mat-card-actions align="end">
+        <button mat-flat-button class="btn-send" (click)="save()">
+          Enviar
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+    <hr class="divider">
+    <h3>Opiniones de otros usuarios</h3>
+  </div>
+
+  <div class="list-container">
+    @if (listaReviews().length === 0) {
+      <p class="empty-msg">Aún no hay reseñas. ¡Sé el primero!</p>
+    }
+
+    @for (item of listaReviews(); track item.id) {
+      <mat-card class="review-card">
+        <mat-card-content>
+          <div class="review-header">
+            <span class="user-name">{{ item.name }}</span>
+            <div class="display-stars">
+              @for (s of [1,2,3,4,5]; track s) {
+                <mat-icon class="mini-star">{{ item.rating >= s ? 'star' : 'star_border' }}</mat-icon>
+              }
+            </div>
+          </div>
+          <p class="comment-text">{{ item.comment }}</p>
+          <span class="date">{{ item.created_date | date:'dd/MM/yyyy' }}</span>
+        </mat-card-content>
+      </mat-card>
+    }
+  </div>
+</div>

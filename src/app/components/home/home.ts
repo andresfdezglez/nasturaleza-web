@@ -7,16 +7,17 @@ import { MatDividerModule } from '@angular/material/divider';
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Router } from '@angular/router';
+import { DatabaseService } from '../../services/database';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
-    CommonModule, 
-    MatCardModule, 
-    MatButtonModule, 
-    MatTableModule, 
-    MatIconModule, 
+    CommonModule,
+    MatCardModule,
+    MatButtonModule,
+    MatTableModule,
+    MatIconModule,
     MatDividerModule
   ],
   templateUrl: './home.html',
@@ -59,6 +60,9 @@ export class Home {
 
   // Usamos un Signal para que la plantilla @if sea reactiva y rápida
   isMobile = signal<boolean>(false);
+  listaReviews = signal<any[]>([]);
+
+  constructor(private supabaseService: DatabaseService){}
 
   ngOnInit(): void {
     // Escuchamos el cambio de tamaño de pantalla
@@ -67,10 +71,22 @@ export class Home {
         // Actualizamos el valor del Signal
         this.isMobile.set(result.matches);
       });
+
+    this.loadReviews();
   }
 
-  toActivities(){
+  toActivities() {
     this.router.navigate(['/activities'])
-    
+
+  }
+
+  async loadReviews() {
+    try {
+      const data = await this.supabaseService.getTopReviews();
+      // Forzamos la asignación en el hilo principal
+      this.listaReviews.set(data);
+    } catch (error) {
+      console.error("Error cargando reviews:", error);
+    }
   }
 }
