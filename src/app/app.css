@@ -1,13 +1,12 @@
-/* ------------------ */
-/* BASE */
+/* ----------------------------------------------------------- */
+/* 1. BASE Y ESTRUCTURA GLOBAL */
+/* ----------------------------------------------------------- */
 html, body {
   margin: 0;
   height: 100%;
   overflow: hidden; /* scroll solo en contenido */
 }
 
-/* ------------------ */
-/* CONTENEDOR */
 .sidenav-container {
   min-height: 100vh;
 }
@@ -16,31 +15,34 @@ html, body {
   position: relative;
   height: 100vh;
   overflow-y: auto;
-  /* Activa el scroll suave en iPhone */
-  -webkit-overflow-scrolling: touch;
+  -webkit-overflow-scrolling: touch; /* Suave en iOS */
 }
 
-/* ------------------ */
-/* FONDO FIJO */
+/* ----------------------------------------------------------- */
+/* 2. FONDO DINÁMICO (Cambia según componente) */
+/* ----------------------------------------------------------- */
 .app-background {
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
-  /* Usa lvh para que el fondo no se estire cuando Chrome esconda su barra */
-  height: 100lvh; 
-  
+  height: 100lvh; /* Dinámico para móvil */
   z-index: -1;
   background-size: cover;
   background-position: center;
-  
-  /* Evita que el navegador intente recalcular la imagen */
+  background-repeat: no-repeat;
   background-attachment: scroll; 
+  transition: all 0.6s ease-in-out;
 }
 
+/* Estado verde cuando el servicio lo activa */
+.app-background.es-seccion-verde {
+  background-image: none !important;
+  background-color: #f2e8df; /* Beige/Verde claro según tu config */
+}
 
-/* ------------------ */
-/* TOOLBAR FIJA */
+/* ----------------------------------------------------------- */
+/* 3. TOOLBAR Y LOGO PEQUEÑO */
+/* ----------------------------------------------------------- */
 .toolbar {
   position: fixed;
   top: 0;
@@ -50,72 +52,137 @@ html, body {
   background-color: rgba(247, 247, 245, 0.95) !important;
   display: flex;
   align-items: center;
+  padding: 0 16px;
 }
 
-/* ------------------ */
-/* BOTÓN HAMBURGUESA (solo móvil) */
+/* Contenedor circular para el logo en la barra */
+.toolbar-logo-container {
+  width: 42px;
+  height: 42px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 12px;
+  overflow: hidden;
+  border: 2px solid #034001; /* Verde marca */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.toolbar-logo-img {
+  width: 150%;
+  height: 150%;
+  object-fit: contain;
+
+  will-change: transform;
+  transform: translateZ(0); 
+  
+  /* Evita que el navegador intente suavizar la imagen pesada constantemente */
+  image-rendering: -webkit-optimize-contrast;
+}
+
+.logo {
+  font-weight: 600;
+  color: #034001; /* Texto en verde musgo */
+  letter-spacing: 0.5px;
+  margin-right: 15px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+/* ----------------------------------------------------------- */
+/* 4. MENÚ Y NAVEGACIÓN */
+/* ----------------------------------------------------------- */
 .menu-button {
   display: inline-flex;
+  margin-right: 12px;
 }
 
-@media (min-width: 769px) {
-  .menu-button {
-    display: none;
-  }
-}
-
-/* ------------------ */
-/* LINKS DE LA TOOLBAR (solo tablet/escritorio) */
 .nav-links {
   display: none;
   gap: 10px;
 }
 
 @media (min-width: 769px) {
-  .nav-links {
-    display: flex;
-  }
+  .menu-button { display: none; }
+  .nav-links { display: flex; }
 }
 
-/* ------------------ */
-/* CONTENIDO SCROLLEABLE */
-.app-content {
-  position: relative;
-  z-index: 1;
-  padding: 16px;
-  min-height: 90vh;
-}
-
-/* ------------------ */
-/* SIDENAV */
 .sidenav {
   width: 250px;
   background-color: #f7f7f5;
 }
 
-mat-nav-list a {
-  font-size: 18px;
-  font-weight: 500;
+/* ----------------------------------------------------------- */
+/* 5. CONTENIDO PRINCIPAL */
+/* ----------------------------------------------------------- */
+.app-content {
+  position: relative;
+  z-index: 1;
+  padding: 80px 16px 16px 16px; /* Padding top para no quedar bajo la toolbar */
+  min-height: 90vh;
 }
 
-/* app.component.css */
-.app-background {
+/* ----------------------------------------------------------- */
+/* 6. INTRO / SPLASH SCREEN (La que te funciona perfecta) */
+/* ----------------------------------------------------------- */
+.intro-overlay {
   position: fixed;
   inset: 0;
-  z-index: -1;
-  
-  /* Imagen por defecto (Tu foto de Asturias) */
-  background-image: url('/assets/images/1765627550958.webp');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  
-  /* Transición suave de 0.6 segundos */
-  transition: all 0.6s ease-in-out;
+  z-index: 99999;
+  background-color: #f7f7f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
 }
 
-/* Cuando queremos el fondo verde */
-.app-background.es-seccion-verde {
-  background-image: none !important; /* Quitamos la foto */
-  background-color: #1b301b; /* Un verde bosque profundo muy elegante */
+.intro-overlay.fade-out {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.logo-circle-container {
+  display: flex;
+  width: 500px; 
+  height: 500px;
+  background-color: #ffffff; 
+  border-radius: 50%; 
+  border: 4px solid #034001;
+  box-shadow: 0 15px 45px rgba(0,0,0,0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; 
+  animation: scaleInIntro 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.logo-img-intro {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  /* Mantenemos el truco de la GPU para evitar tirones */
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+@keyframes scaleInIntro {
+  0% { transform: scale(0.6); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@media (max-width: 600px) {
+  .logo-circle-container {
+    width: 250px;
+    height: 250px;
+    border: 3px solid #034001;
+  }
 }

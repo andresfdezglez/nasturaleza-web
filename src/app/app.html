@@ -1,3 +1,18 @@
+@if (isIntroVisible()) {
+ <div class="intro-overlay" [class.fade-out]="fadeOutStarted()">
+    <div class="logo-circle-container">
+      
+      <picture>
+        <source srcset="assets/images/logo_grande.webp" media="(max-width: 767px)">
+        
+        <img src="assets/images/logo_grande.png" 
+             alt="Logo N'asturaleza" 
+             class="logo-img-intro">
+      </picture>
+
+    </div>
+  </div>
+}
 <mat-sidenav-container class="sidenav-container">
 
   <!-- Sidenav móvil -->
@@ -26,9 +41,16 @@
         <mat-icon>menu</mat-icon>
       </button>
 
-      <span class="logo">Nasturaleza</span>
+      <div class="toolbar-logo-container">
+        <img ngSrc="assets/images/logo_grande.webp" width="126" 
+     height="126"
+     priority 
+     alt="Logo N'asturaleza" 
+     disableOptimizedImageSizeCheck
+     class="toolbar-logo-img">
+      </div>
 
-      <span class="spacer"></span>
+      <span class="logo">N'asturaleza</span>
 
       <!-- Links visibles en tablet/escritorio -->
       <nav class="nav-links">
@@ -36,6 +58,8 @@
         <a mat-button href="activities">Actividades</a>
         <a mat-button href="reviews">Reseñas</a>
       </nav>
+
+      <span class="spacer"></span>
 
     </mat-toolbar>
 
