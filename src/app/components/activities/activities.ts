@@ -77,8 +77,8 @@ readonly rutas: Seccion = {
   id: 'rutas-montaña',
   titulo: 'Senderismo Interpretativo',
   imagenes: [
-    'assets/images/DSC08315.JPG', 'assets/images/DSC08309.JPG', 'assets/images/DSC08313.JPG',
-    'assets/images/1765626582748.webp', 'assets/images/1765626582748.webp', 'assets/images/1765626582748.webp'
+    'assets/images/rutas/ruta1.webp', 'assets/images/rutas/ruta2.webp', 'assets/images/rutas/ruta3.webp',
+    'assets/images/rutas/ruta4.webp', 'assets/images/rutas/ruta5.webp'
   ],
   descripcion: `Descubre Asturias a pie a través de rutas de senderismo interpretativo diseñadas para conectar con la naturaleza de una forma cercana, didáctica y enriquecedora. A lo largo del recorrido, exploraremos la diversidad del paisaje asturiano mientras interpretamos su geología, su flora y la fauna que habita estos entornos privilegiados.
 Cada paso se convierte en una oportunidad para aprender: identificaremos especies, entenderemos las dinámicas del ecosistema y descubriremos las historias que esconde el territorio. Todo ello acompañado por un guía titulado que, además, es maestro de educación primaria, lo que aporta un enfoque pedagógico único, adaptado especialmente a familias y niños.
@@ -94,10 +94,10 @@ Una actividad perfecta para disfrutar en familia, aprender juntos y vivir la nat
 
 readonly fotografia: Seccion = {
   id: 'foto-natura',
-  titulo: 'Talleres de Fotografía de Naturaleza',
+  titulo: 'Fotografía de Naturaleza',
   imagenes: [
-    'assets/images/foto1.webp', 'assets/images/foto2.webp', 'assets/images/foto3.webp',
-    'assets/images/foto4.webp', 'assets/images/foto5.webp', 'assets/images/foto6.webp'
+    'assets/images/foto1.jpeg', 'assets/images/foto2.jpg', 'assets/images/foto3.jpg',
+    'assets/images/foto4.jpg', 'assets/images/foto5.JPG', 'assets/images/foto6.jpg'
   ],
   descripcion: `Descubre Asturias a través del objetivo en una experiencia de fotografía de naturaleza diseñada para inspirar y aprender en pleno entorno natural. Durante la actividad, recorreremos distintos paisajes en busca de la mejor luz y de escenas únicas, combinando la observación de fauna y flora con la captura de rincones de gran belleza.
 
@@ -121,13 +121,15 @@ Una experiencia perfecta tanto para iniciarse como para mejorar en la fotografí
       id: 'oso',
       name: 'Oso Pardo',
       title: 'Avistamiento de Oso Pardo Cantábrico',
-      video: 'assets/video/oso-pardo.mp4',
+      video: 'assets/videos/oso.mov',
       poster: 'assets/images/1765627550958.webp',
       desc: `Descubre la magia del bosque y adéntrate en el fascinante mundo del oso pardo con nuestra experiencia de avistamiento responsable. Durante esta actividad realizaremos esperas en puntos estratégicos del hábitat natural de la especie, siempre desde la máxima discreción y respeto, con el objetivo de intentar observar a este emblemático animal en libertad.
+
 A lo largo de la jornada, nuestros guías especializados te acercarán a la etología del oso pardo: conoceremos sus hábitos, comportamiento, alimentación y su papel clave en el equilibrio del ecosistema. Esta interpretación del entorno nos permitirá comprender mejor la importancia de su conservación y el delicado equilibrio en el que vive.
+
 La actividad pone un énfasis especial en la educación ambiental como herramienta fundamental para la protección de la biodiversidad. Creemos que solo a través del conocimiento y el respeto podemos fomentar una convivencia sostenible entre las personas y la fauna salvaje.
-Una experiencia única que combina emoción, aprendizaje y compromiso con la naturaleza.
-`,
+
+Una experiencia única que combina emoción, aprendizaje y compromiso con la naturaleza.`,
       precios: [
         { option: 'Salida Individual (Mañana)', duration: '4h', cost: '60€' },
         { option: 'Salida Individual (Tarde)', duration: '4h', cost: '60€' },
@@ -139,13 +141,15 @@ Una experiencia única que combina emoción, aprendizaje y compromiso con la nat
       id: 'lobo',
       name: 'Lobo Ibérico',
       title: 'Tras la huella del Lobo Ibérico',
-      video: 'assets/video/lobo-iberico.mp4',
+      video: 'assets/videos/lobos.mov',
       poster: 'assets/images/1765627550958.webp',
       desc: `Sumérgete en el territorio del lobo ibérico y vive una experiencia única de observación en plena naturaleza. A través de esperas cuidadosamente planificadas en enclaves estratégicos, trataremos de detectar la presencia de uno de los depredadores más emblemáticos de la península, siempre desde el respeto y sin interferir en su comportamiento natural.
+
 Durante la actividad, nuestro guía te introducirá en la etología del lobo ibérico, desvelando aspectos clave de su conducta, organización social, técnicas de caza y su papel esencial como regulador de los ecosistemas. Comprender su biología y su relación con el entorno nos permitirá derribar mitos y valorar su verdadera importancia en la naturaleza.
+
 Esta experiencia pone especial énfasis en la educación ambiental como base para la conservación de la especie. A través del conocimiento, buscamos fomentar una mirada más consciente y respetuosa hacia la fauna salvaje, promoviendo su protección y la convivencia con el medio rural.
-Una actividad emocionante y enriquecedora que te conectará con la esencia más salvaje del paisaje.
-`,
+
+Una actividad emocionante y enriquecedora que te conectará con la esencia más salvaje del paisaje.`,
       precios: [
         { option: 'Espera Alba/Ocaso', duration: '5h', cost: '70€' },
         { option: 'Ruta de Rastreo', duration: '4h', cost: '45€' },
@@ -159,10 +163,12 @@ Una actividad emocionante y enriquecedora que te conectará con la esencia más 
       video: 'assets/video/berrea-ciervo.mp4',
       poster: 'assets/images/1765627550958.webp',
       desc: `Vive uno de los espectáculos naturales más sobrecogedores del otoño: la berrea del ciervo en los paisajes salvajes de Asturias. Durante esta experiencia nos adentraremos en su hábitat al amanecer o al atardecer, realizando esperas en puntos estratégicos para escuchar y, con suerte, observar a los grandes machos en pleno periodo de celo.
+
 A lo largo de la actividad, nuestro guía interpretará este fascinante comportamiento, explicando la etología del ciervo durante la berrea: sus potentes bramidos, las disputas entre machos, la formación de harenes y la importancia de este momento clave en su ciclo vital.
+
 Además, profundizaremos en el papel del ciervo dentro del ecosistema y en la riqueza natural de Asturias, destacando la importancia de la educación ambiental como herramienta fundamental para la conservación de la fauna y sus hábitats. Entender estos procesos naturales nos ayuda a valorar y respetar el equilibrio del entorno.
-Una experiencia sensorial única, donde sonido, paisaje y emoción se combinan para acercarte a la naturaleza en estado puro.
-`,
+
+Una experiencia sensorial única, donde sonido, paisaje y emoción se combinan para acercarte a la naturaleza en estado puro.`,
       precios: [
         { option: 'Ruta Berrea Estándar', duration: '3h', cost: '35€' },
         { option: 'Salida Fotográfica Especial', duration: '5h', cost: '65€' },

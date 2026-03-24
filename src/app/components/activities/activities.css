@@ -1,11 +1,19 @@
-.custom-tabs{
-  padding: 10% 0 0;
-}
+
 
 
 /* Contenedor con altura mínima para evitar que el fondo "baile" al cambiar */
 
-
+.tab-description{
+  /* Crucial: convierte los "Enter" del .ts en saltos de línea reales */
+  white-space: pre-line; 
+  
+  /* Estilos para N'asturaleza */
+  line-height: 1.7; /* Da aire entre líneas para que no sea pesado leer */
+  color: black;
+  text-align: justify;
+  margin-bottom: 25px;
+  font-size: 1.05rem;
+}
 
 .tab-container {
   min-height: 600px;
@@ -13,7 +21,8 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  color: white;
+  color: black;
+  text-align: center;
 }
 
 /* Selector horizontal tipo "Pills" */
@@ -28,9 +37,9 @@
 .animal-selector::-webkit-scrollbar { display: none; } /* Oculta scroll en Chrome */
 
 .animal-selector button {
-  border: 1px solid rgba(163, 193, 173, 0.5);
+  border: 1px solid #034001;
   background: transparent;
-  color: white;
+  color: black;
   padding: 8px 20px;
   border-radius: 25px;
   white-space: nowrap;
@@ -38,18 +47,18 @@
 }
 
 .animal-selector button.active {
-  background: #a3c1ad;
+  background: #6F7303;
   color: #1a1e1a;
-  border-color: #a3c1ad;
+  border-color: #034001;
 }
 
 /* Vídeo Responsivo 16:9 */
 .video-wrapper {
   width: 100%;
-  aspect-ratio: 16 / 9;
+  height: 100%;
+  aspect-ratio: 9 / 12;
   background: #000;
   border-radius: 12px;
-  overflow: hidden;
 }
 
 .video-wrapper video {
@@ -81,12 +90,12 @@
   color: black !important;
   font-size: 0.95rem;
   padding: 15px 10px !important;
-  border-bottom: 1px solid black !important;
+  border-bottom: 1px solid #593A1E !important;
 }
 
 /* Quitar el fondo blanco de las filas al pasar el ratón */
 .mat-mdc-row:hover {
-  background: rgba(255, 255, 255, 0.05) !important;
+  background: #6f73032d !important;
 }
 
 /* Estenedor con scroll para móviles */
@@ -124,9 +133,9 @@
 
   /* BOTÓN CONTACTAR: Estilo Cristal (Glassmorphism) con borde WhatsApp */
   .btn-contact {
-    background: rgba(255, 255, 255, 0.15) !important;
+    background: #034001;
     backdrop-filter: blur(10px);
-    color: white !important;
+    color: white;
     width: 100%;
     border: 1px solid rgba(37, 211, 102, 0.5) !important;
     /* Color WhatsApp suave */
@@ -162,19 +171,19 @@
   
 /* 1. Cambiar el color del TEXTO de la pestaña activa */
 ::ng-deep .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label {
-  color: #a3c1ad !important; /* Tu verde de marca */
+  color: #034001 !important;;  /* Tu verde de marca */
   font-weight: 600;
 }
 
 /* 2. Cambiar el color de la BARRITA inferior (Indicador) */
 ::ng-deep .mat-mdc-tab-group.mat-primary .mdc-tab-indicator__content--underline {
-  border-color: #a3c1ad !important; /* El mismo verde */
+  border-color: #034001 !important; /* El mismo verde */
   border-width: 3px; /* Un poco más gruesa para que resalte */
 }
 
 /* 3. Opcional: Color del texto de las pestañas NO activas */
 ::ng-deep .mat-mdc-tab .mdc-tab__text-label {
-  color: rgba(255, 255, 255, 0.6) !important; /* Blanco suave translúcido */
+  color: black !important; /* Blanco suave translúcido */
 }
 
 /* 4. Quitar el color de fondo gris que sale al hacer clic (ripple) */
@@ -190,9 +199,8 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 1000px; /* Un poco más ancho en PC */
-  margin: 0 auto 3rem auto; /* Más espacio inferior */
-  padding: 0 10px;
+  max-width: 1000px; 
+  margin: auto;
 }
 
 /* --- EL TRACK (CARRUSEL) --- */
@@ -209,11 +217,28 @@
 .carousel-track::-webkit-scrollbar { display: none; }
 
 /* --- CADA FOTO (ITEM) --- */
-.carousel-item {
-  flex: 0 0 75%; /* Móvil: se ve 1 foto y un trozo de la siguiente */
+.carousel-item-ruta {
+  flex: 0 0 90%; /* Móvil: se ve 1 foto y un trozo de la siguiente */
   scroll-snap-align: center;
   aspect-ratio: 4 / 5; /* Formato retrato Premium (estilo Instagram/Galería) */
-  border-radius: 20px; /* Bordes más redondeados */
+  border-radius: 10px; /* Bordes más redondeados */
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05); /* Efecto cristal sutil */
+  border: 1px solid rgba(163, 193, 173, 0.1); /* Borde verde musgo muy fino */
+  
+  /* SOMBRA SUAVE (Premium) */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  
+  /* TRANSICIÓN PARA EL HOVER */
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease;
+  will-change: transform;
+}
+
+.carousel-item-foto {
+  flex: 0 0 90%; /* Móvil: se ve 1 foto y un trozo de la siguiente */
+  scroll-snap-align: center;
+  aspect-ratio: 3 / 2; /* Formato retrato Premium (estilo Instagram/Galería) */
+  border-radius: 10px; /* Bordes más redondeados */
   overflow: hidden;
   background: rgba(255, 255, 255, 0.05); /* Efecto cristal sutil */
   border: 1px solid rgba(163, 193, 173, 0.1); /* Borde verde musgo muy fino */
@@ -228,14 +253,27 @@
 
 /* EFECTO DE HOVER (Solo en PC) */
 @media (min-width: 900px) {
-  .carousel-item:hover {
+  .carousel-item-ruta:hover {
+    transform: translateY(-10px) scale(1.03); /* Se levanta y agranda un poco */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5); /* Sombra más intensa */
+    cursor: pointer;
+  }
+
+  .carousel-item-foto:hover {
     transform: translateY(-10px) scale(1.03); /* Se levanta y agranda un poco */
     box-shadow: 0 20px 40px rgba(0,0,0,0.5); /* Sombra más intensa */
     cursor: pointer;
   }
 }
 
-.carousel-item img {
+.carousel-item-ruta img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Recorta inteligentemente para rellenar */
+  object-position: center;
+}
+
+.carousel-item-foto img {
   width: 100%;
   height: 100%;
   object-fit: cover; /* Recorta inteligentemente para rellenar */
@@ -251,7 +289,7 @@
   background: rgba(45, 90, 39, 0.6) !important; /* Verde translúcido */
   backdrop-filter: blur(8px); /* Desenfoque del fondo */
   
-  color: white !important;
+  color: black !important;
   border: 1px solid rgba(163, 193, 173, 0.3) !important;
   border-radius: 50% !important;
   width: 50px !important;
@@ -276,7 +314,7 @@
     display: flex; /* Aparecen las flechas */
   }
 
-  .carousel-item {
+  .carousel-item-foto, .carousel-item-ruta {
     flex: 0 0 28%; /* Se ven 3 fotos a la vez, tamaño ajustado */
     aspect-ratio: 3 / 4; /* Formato más estilizado en PC */
   }
