@@ -7,7 +7,7 @@ export class BackgroundService {
   // Guardamos la configuración del fondo: imagen y si debe ser verde
   backgroundConfig = signal({
     image: 'assets/images/1765627550958.webp',
-    isGreen: false
+    isGreen: true
   });
 
   // Método para cambiar el fondo

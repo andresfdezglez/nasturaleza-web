@@ -1,9 +1,9 @@
 /* Contenedor principal con espaciado entre secciones */
 .main-wrapper {
-  padding: 5% 0 0;
+  padding: 1% 0 0;
   display: flex;
   flex-direction: column;
-  gap: 140px;
+  gap: 90px;
   /* Espacio masivo entre secciones */
   height: 100%;
   margin-bottom:5%
@@ -12,27 +12,22 @@
 .header-about {
   /* Hacemos que la sección ocupe toda la altura de la pantalla (menos la toolbar si tienes) */
   min-height: 40vh; /* O 100dvh si quieres que sea pantalla completa */
-  
+  width: 100%;
   display: flex;
   flex-direction: column; /* Apila el H1 y el P uno sobre otro */
   justify-content: center; /* Centra verticalmente */
   align-items: center;    /* Centra horizontalmente */
   
   text-align: center;      /* Asegura que las líneas de texto se centren entre sí */
-  padding: 20px;
   box-sizing: border-box;
 }
 
 .title h1 {
-  margin-bottom: 5%;
-  font-size: 7rem; /* Tamaño grande para el nombre de la empresa */
-  letter-spacing: 2px;
-}
-
-.title p {
-  margin-top: 10px;
+  margin-top: 5px;
   font-size: 3rem;
   font-weight: 300;
+  letter-spacing: 4px;
+  line-height: 1.5;
 }
 
 /* 1. Ajustamos el contenedor principal para separar bien los elementos */
@@ -49,7 +44,7 @@
 /* 2. El título cede espacio */
 .title {
   text-align: center;
-  color: white;
+  color: rgb(46, 82, 46);
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
   width: 40%;
   /* Le dejamos menos de la mitad para dárselo a la tarjeta */
@@ -110,7 +105,7 @@
 
 h2 {
   font-size: 2.5rem;
-  color: white;
+  color: rgb(46, 82, 46);
   line-height: 1.2;
   margin: 0 0 15px 0;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
@@ -230,17 +225,17 @@ h2 {
 
 /* BOTÓN EXPLORAR: Verde Musgo Profundo con Degradado */
 .btn-nature {
-  background: linear-gradient(135deg, #2d5a27 0%, #1b3a1a 100%) !important;
+  background:  #034001  !important;
   color: white !important;
   box-shadow: 0 4px 15px rgba(27, 58, 26, 0.4) !important;
 }
 
 /* BOTÓN CONTACTAR: Estilo Cristal (Glassmorphism) con borde WhatsApp */
 .btn-contact {
-  background: rgba(255, 255, 255, 0.15) !important;
-  backdrop-filter: blur(10px);
+  background: #034001 ;
   color: white !important;
   border: 1px solid rgba(37, 211, 102, 0.5) !important;
+  box-shadow: 0 4px 15px rgba(27, 58, 26, 0.4) !important;
   /* Color WhatsApp suave */
 }
 
@@ -260,7 +255,7 @@ h2 {
 /* Efecto al pulsar (Active) */
 .full-width-btn:active {
   transform: scale(0.96);
-  filter: brightness(1.2);
+  filter: brightness(1.5);
 }
 
 /* Ajuste de Iconos */
@@ -290,7 +285,7 @@ mat-icon {
 }
 
 h3 {
-  color: white;
+  color: black;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
   margin-bottom: 16px;
 }
@@ -384,10 +379,8 @@ h3 {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    /* Distribuye arriba, centro y abajo */
-
     /* El padding-top debe ser igual al alto de tu toolbar (ej: 64px) */
-    padding: 70px 15px 10px 15px !important;
+    padding: 0px 15px 10px 15px !important;
     box-sizing: border-box;
     /* Crucial: para que el padding no sume altura extra */
   }
@@ -403,13 +396,12 @@ h3 {
   .title {
     width: 100%;
     text-align: center;
-    margin-bottom: 5px;
   }
 
   .title h1 {
-    font-size: 2rem !important;
+    font-size: 1.3rem !important;
     /* Título más pequeño */
-    margin-bottom: 5px;
+    margin-bottom: 10px;
   }
   
   h2{
@@ -477,18 +469,18 @@ h3 {
 
   /* BOTÓN EXPLORAR: Verde Musgo Profundo con Degradado */
   .btn-nature {
-    background: linear-gradient(135deg, #2d5a27 0%, #1b3a1a 100%) !important;
+    background: #034001 !important;
     color: white !important;
     box-shadow: 0 4px 15px rgba(27, 58, 26, 0.4) !important;
   }
 
   /* BOTÓN CONTACTAR: Estilo Cristal (Glassmorphism) con borde WhatsApp */
   .btn-contact {
-    background: rgba(255, 255, 255, 0.15) !important;
-    backdrop-filter: blur(10px);
+    background: #034001 ;
     color: white !important;
     width: 100%;
     border: 1px solid rgba(37, 211, 102, 0.5) !important;
+    box-shadow: 0 4px 15px rgba(27, 58, 26, 0.4) !important;
     /* Color WhatsApp suave */
   }
 
@@ -595,5 +587,53 @@ h3 {
     /* Termina en su tamaño normal */
     opacity: 1;
     /* Y totalmente visible */
+  }
+}
+
+/* --- NUEVA SECCIÓN DE IMAGEN DESTACADA --- */
+
+.header-image-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px; /* Separación con el texto de arriba */
+  perspective: 1000px; /* Preparado por si quieres efectos 3D luego */
+}
+
+.main-featured-img {
+  /* Tamaño para Ordenador */
+  width: 43%; 
+  height: 43%; 
+  
+  object-fit: cover; /* Para que la foto rellene el cuadrado sin deformarse */
+  border-radius: 24px; /* Bordes ligeramente redondeados y modernos */
+  
+  /* SOMBRA ATRACTIVA: Sombra suave pero profunda para dar relieve */
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  
+  /* Borde fino sutil para definir la imagen contra el fondo */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* --- AJUSTE RESPONSIVE PARA MÓVIL --- */
+@media (max-width: 800px) {
+  .header-image-container {
+    margin-top: 10px;
+    padding: 0 10px;
+  }
+
+  .main-featured-img {
+    /* En móvil se adapta al ancho de la pantalla */
+    width: 100%; 
+    height: 100%; /* Mantenemos el formato cuadrado */
+    max-width: 350px;
+    max-height: 350px;
+    border-radius: 16px; /* Bordes un poco menos pronunciados en móvil */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Ajustamos el gap del wrapper para que la imagen no quede pegada a los botones */
+  .main-wrapper {
+    gap: 80px; /* Reducimos el gap masivo en móvil */
   }
 }
