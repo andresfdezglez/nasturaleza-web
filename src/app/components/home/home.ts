@@ -31,7 +31,7 @@ export class Home {
     {
       titulo: 'Avistamiento Oso Pardo',
       descripcion: 'Observación en libertad del plantígrado más emblemático de la Cordillera Cantábrica.',
-      imagen: 'assets/images/DSC06499.JPG' // Asegúrate de tener estas fotos en /public/assets/
+      imagen: 'assets/images/DSC06499.JPG'
     },
     {
       titulo: 'Rutas del Lobo Ibérico',
@@ -44,16 +44,6 @@ export class Home {
       imagen: 'assets/images/DSC06499.JPG'
     }
   ];
-
-  dataSource = [
-    { actividad: 'Avistamiento Oso', adulto: '50€', ninos: '25€', grupos: 'Consultar' },
-    { actividad: 'Rutas Lobo', adulto: '70€', ninos: 'Consultar', grupos: 'Consultar' },
-    { actividad: 'Berrea', adulto: '40€', ninos: '80€', grupos: 'Consultar' },
-    { actividad: 'Salida Fotográfica', adulto: '60€', ninos: 'Consultar', grupos: 'Consultar' },
-    { actividad: 'Ruta Interpret.', adulto: '35€', ninos: 'Consultar', grupos: 'Consultar' }
-  ];
-
-  displayedColumns: string[] = ['actividad', 'adulto', 'ninos', 'grupos'];
 
   // Inyectamos el servicio (estilo Angular 21)
   private breakpointObserver = inject(BreakpointObserver);
@@ -77,7 +67,6 @@ export class Home {
 
   toActivities() {
     this.router.navigate(['/activities'])
-
   }
 
   async loadReviews() {
