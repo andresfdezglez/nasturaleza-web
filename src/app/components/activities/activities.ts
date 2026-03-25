@@ -72,7 +72,7 @@ export class Activities implements OnInit, OnDestroy{
   // Definimos las columnas que se verán en la tabla
   displayedColumns: string[] = ['opcion', 'duracion', 'precio'];
 
-  // Dentro de tu clase...
+
 readonly rutas: Seccion = {
   id: 'rutas-montaña',
   titulo: 'Senderismo Interpretativo',
@@ -184,20 +184,5 @@ Una experiencia sensorial única, donde sonido, paisaje y emoción se combinan p
   // 3. MÉTODOS
   selectAnimal(animal: Animal) {
     this.selectedFauna.set(animal);
-  }
-
-  // Generador dinámico de URL para WhatsApp
-  getWhatsAppUrl(): string {
-    const telefono = '34727702571';
-    const animalNombre = this.selectedFauna().name;
-    const mensaje = `¡Hola N'asturaleza! Me gustaría recibir información y reservar la actividad de: ${animalNombre}.`;
-    
-    return `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
-  }
-
-  // Función opcional para el botón de contacto general
-  toContact() {
-    // Aquí podrías navegar a la sección de contacto o abrir un modal
-    window.location.href = '#contact'; 
   }
 }
