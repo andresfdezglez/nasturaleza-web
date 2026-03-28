@@ -1,44 +1,54 @@
 /* Contenedor principal con espaciado entre secciones */
 .main-wrapper {
-  padding: 1% 0 0;
   display: flex;
   flex-direction: column;
   gap: 90px;
   /* Espacio masivo entre secciones */
   height: 100%;
-  margin-bottom:5%
+  margin-bottom:5%;
+  width: 100%
+
 }
 
 .header-about {
   /* Hacemos que la sección ocupe toda la altura de la pantalla (menos la toolbar si tienes) */
-  min-height: 40vh; /* O 100dvh si quieres que sea pantalla completa */
-  width: 100%;
+  width: 100dvw;
+  position: relative;
   display: flex;
   flex-direction: column; /* Apila el H1 y el P uno sobre otro */
   justify-content: center; /* Centra verticalmente */
   align-items: center;    /* Centra horizontalmente */
-  
   text-align: center;      /* Asegura que las líneas de texto se centren entre sí */
-  box-sizing: border-box;
+  padding: 0; 
+  margin: 0;
 }
 
 .title h1 {
-  margin-top: 5px;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 3rem;
-  font-weight: 300;
+  font-weight: 700;
   letter-spacing: 4px;
   line-height: 1.5;
-}
+  text-transform: uppercase;
+  color: white;
 
-/* 1. Ajustamos el contenedor principal para separar bien los elementos */
-.header-about {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  /* Lo abrimos un poco más (antes 80%) para que quepa todo mejor */
-  margin: 0 auto;
+  /* Nombre de la animación que definimos arriba */
+  animation-name: fadeInTexto;
+  
+  /* Duración total del fundido (1.5s lo hace místico y suave) */
+  animation-duration: 1.5s;
+  
+  /* Tipo de curva de velocidad ('ease-out' empieza rápido y frena suave) */
+  animation-timing-function: ease-out;
+  
+  /* RETRASO DE ENTRADA: Espera 0.5s para que el vídeo ya esté rodando */
+  animation-delay: 2s;
+  
+  /* IMPORTANTE: Mantiene el estado final (visible) tras la animación */
+  animation-fill-mode: forwards; 
+  
+  /* OPCIONAL: Empezar invisible para evitar el 'flash' inicial */
+  opacity: 0;
 }
 
 /* 2. El título cede espacio */
@@ -50,61 +60,45 @@
   /* Le dejamos menos de la mitad para dárselo a la tarjeta */
 }
 
-/* 3. La tarjeta EXTRA GRANDE */
-.about-card {
-  width: 60%;
-  /* Ahora la tarjeta domina el espacio derecho */
-  max-width: 800px;
-  /* Aumentamos el límite máximo muchísimo */
-  background-color: rgba(255, 255, 255, 0.95);
-  border-radius: 16px;
-  /* Bordes un poco más redondeados para que se vea moderna */
-  padding: 40px;
-  /* Mucho más espacio interior */
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-  /* Sombra más pronunciada */
+/* Se activa solo cuando llegamos con el scroll */
+.about-me-section.visible .about-text-area {
+  animation-name: fadeLeftTexto;
+  
+  /* Duración total del fundido (1.5s lo hace místico y suave) */
+  animation-duration: 1.5s;
+  
+  /* Tipo de curva de velocidad ('ease-out' empieza rápido y frena suave) */
+  animation-timing-function: ease-out;
+  
+  /* RETRASO DE ENTRADA: Espera 0.5s para que el vídeo ya esté rodando */
+  animation-delay: 0s;
+  
+  /* IMPORTANTE: Mantiene el estado final (visible) tras la animación */
+  animation-fill-mode: forwards; 
+
+  opacity: 0;
 }
 
-/* 4. Separación entre foto y texto */
-.about-content {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 40px;
-  /* Más aire entre la cara y las letras */
-}
+.about-me-section.visible .svg-importado {
+  animation-name: fadeRightTexto;
+  
+  /* Duración total del fundido (1.5s lo hace místico y suave) */
+  animation-duration: 1.5s;
+  
+  /* Tipo de curva de velocidad ('ease-out' empieza rápido y frena suave) */
+  animation-timing-function: ease-out;
+  
+  /* RETRASO DE ENTRADA: Espera 0.5s para que el vídeo ya esté rodando */
+  animation-delay: 0s;
+  
+  /* IMPORTANTE: Mantiene el estado final (visible) tras la animación */
+  animation-fill-mode: forwards; 
 
-/* 5. Foto de perfil XL */
-.profile-avatar {
-  width: 180px;
-  /* Foto notablemente más grande */
-  height: 180px;
-  border-radius: 50%;
-  object-fit: cover;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-  flex-shrink: 0;
-}
-
-/* 6. Textos destacados */
-.about-text-area h3 {
-  margin: 0 0 15px 0;
-  font-size: 1.8rem;
-  /* Título casi como un H2 */
-  color: #333;
-  font-weight: 800;
-  /* Letra más gordita/negrita */
-}
-
-.about-text-area p {
-  margin: 0;
-  font-size: 1.3rem;
-  /* Texto muy fácil de leer */
-  line-height: 1.6;
-  color: #444;
+  opacity: 0;
 }
 
 h2 {
-  font-size: 2.5rem;
+  font-size: 4.5rem;
   color: rgb(46, 82, 46);
   line-height: 1.2;
   margin: 0 0 15px 0;
@@ -118,19 +112,54 @@ h2 {
   margin-bottom: 30px;
 }
 
-/* 1. Contenedor principal: Ocupa la pantalla y centra todo */
+/*********** SOBRE MI ********/
+
 .about-me-section {
-  height: 50%;
-  /* Ocupa el 100% del alto de la ventana */
-  width: 100%;
-  box-sizing: border-box;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* Centra el grid horizontalmente */
-  justify-content: center;
-  /* Centra el grid verticalmente */
+  flex-direction: row; 
+  width: 100%;
+  min-height: 80vh;    /* Le da una altura importante a la sección */
+  margin: 0 auto;
+  box-sizing: border-box;
+  overflow: hidden;
+  background-color: #6F7303;
+  position: relative;
+  z-index: 6;
+  margin-top: -120px;
+  padding-bottom: 10px;
 }
+
+.svg-importado {
+  width: 60%;         /* Se expande a todo ese 60% */
+  height: 100%;  
+  margin-right: -15%;
+  margin-left: -5%;
+
+  opacity: 0;
+}
+
+/* ÁREA DE TEXTO: El compañero */
+.about-text-area {
+  width: 55%;
+  height: 100%;
+  color: white;
+  justify-content: center;
+
+  opacity: 0;
+}
+
+.about-text-area h2 {
+  font-family: 'HandelsonTwo';
+  color: #3a3939;
+}
+
+.about-text-area p.about-description {
+  font-family: "Belleza", sans-serif;
+  font-size: 1rem ;
+  font-weight: 200;
+  text-align: justify;
+}
+ /********************** FIN *****************/
 
 .activities{
   display: flex;
@@ -205,42 +234,42 @@ h2 {
   flex-direction: column;
   align-items: center;
   gap: 12px;
-  margin-top: auto;
 }
 
 /* ESTILO BASE PARA AMBOS */
 .full-width-btn {
-  height: 54px !important;
-  border-radius: 16px !important;
-  font-weight: 600 !important;
-  letter-spacing: 1px !important;
+  height: 54px ;
+  border-radius: 16px ;
+  font-weight: 600 ;
+  letter-spacing: 1px ;
   text-transform: uppercase;
-  transition: all 0.3s ease !important;
-  display: flex !important;
+  transition: all 0.3s ease ;
+  display: flex ;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) ;
   width: 30%;
 }
 
 /* BOTÓN EXPLORAR: Verde Musgo Profundo con Degradado */
 .btn-nature {
-  background:  #034001  !important;
-  color: white !important;
-  box-shadow: 0 4px 15px rgba(27, 58, 26, 0.4) !important;
+  background:  #034001  ;
+  color: white ;
+  box-shadow: 0 4px 15px rgba(27, 58, 26, 0.4) ;
 }
 
 /* BOTÓN CONTACTAR: Estilo Cristal (Glassmorphism) con borde WhatsApp */
 .btn-contact {
   background: #034001 ;
-  color: white !important;
-  border: 1px solid rgba(37, 211, 102, 0.5) !important;
-  box-shadow: 0 4px 15px rgba(27, 58, 26, 0.4) !important;
+  color: white ;
+  border: 1px solid rgba(37, 211, 102, 0.5) ;
+  box-shadow: 0 4px 15px rgba(27, 58, 26, 0.4) ;
+
   /* Color WhatsApp suave */
 }
 
 .contact-link {
-  text-decoration: none !important;
+  text-decoration: none ;
   /* Quita subrayados */
   display: contents;
   /* Hace que el enlace ocupe todo el ancho */
@@ -260,10 +289,10 @@ h2 {
 
 /* Ajuste de Iconos */
 mat-icon {
-  margin-right: 8px !important;
-  font-size: 20px !important;
-  width: 20px !important;
-  height: 20px !important;
+  margin-right: 8px ;
+  font-size: 20px ;
+  width: 20px ;
+  height: 20px ;
 }
 /* ########## RESEÑAS ############# */
 
@@ -290,7 +319,7 @@ h3 {
   margin-bottom: 16px;
 }
 
-.reviews-section, .activities{
+.activities{
   flex-grow: 1; /* Para que ocupe el resto de la pantalla */
   display: flex;
   flex-direction: column;
@@ -306,15 +335,23 @@ h3 {
   box-sizing: border-box;
 
   align-items: center;
+  
+}
 
- 
+.reviews-section{
+  flex-grow: 1; /* Para que ocupe el resto de la pantalla */
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: hidden; /* Importante para que el scroll interno no se salga */
+  align-items: center;
   
 }
 
 /* Contenedor de Reseñas con SCROLL */
 .list-container {
   flex-grow: 1; /* Ocupa todo el espacio restante */
-  overflow-y: auto; /* Activa el scroll vertical solo aquí */
+   /* Activa el scroll vertical solo aquí */
   padding-right: 10px; /* Espacio para que el scroll no pise las tarjetas */
 }
 
@@ -367,7 +404,33 @@ h3 {
   color: #999;
 }
 
+/************ FRASE ***********/
 
+.nature-text {
+  width: 100%;
+  display: flex;
+  margin-top: -10%;
+  justify-content: center; /* Centra horizontalmente el contenedor */
+  align-items: center;     /* Centra verticalmente si hay altura */
+  background-color: #f2e8df; /* El color arena que usamos antes */
+  text-align: center;      /* Centra el texto por dentro */
+}
+
+.nature-text p {
+  /* Usamos tu nueva fuente HandelsonTwo o Caveat aquí */
+  font-family: 'HandelsonTwo', cursive; 
+  font-size: 3.5rem;
+  color: #6F7303;          /* El verde de N'asturaleza */
+  margin: 0;
+  line-height: 1.4;
+}
+
+.phrase-part {
+  display: block;          /* Fuerza el salto de línea siempre */
+  width: 100%;             /* Asegura que ocupe todo el ancho para centrar */
+}
+
+/************ FRASE ***********/
 /* =========================================
    DISEÑO PARA MÓVILES (Responsive Design)
    Se activa en pantallas de 800px o menos
@@ -378,9 +441,6 @@ h3 {
   .main-wrapper {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    /* El padding-top debe ser igual al alto de tu toolbar (ej: 64px) */
-    padding: 0px 15px 10px 15px !important;
     box-sizing: border-box;
     /* Crucial: para que el padding no sume altura extra */
   }
@@ -390,7 +450,7 @@ h3 {
 
   /* 3. LIMITAR EL TEXTO (El culpable número 1 del scroll) */
   .about-p {
-    font-size: 0.8rem !important;
+    font-size: 0.8rem ;
   }
 
   .title {
@@ -399,102 +459,72 @@ h3 {
   }
 
   .title h1 {
-    font-size: 1.3rem !important;
+    font-size: 1.3rem ;
     /* Título más pequeño */
     margin-bottom: 10px;
   }
   
   h2{
-    font-size: 2rem !important;
+    font-size: 2rem ;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-  }
-  /* Ajuste Tarjeta Sobre Mí para que sea compacta */
-  .about-card {
-    width: 100%;
-    padding: 12px !important;
-    height: auto !important;
-    /* Quitamos el 50% que tenías */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  }
-
-
-  .about-content {
-    flex-direction: column !important;
-    /* Foto al lado del texto para ahorrar altura */
-    text-align: center;
-    gap: 10%;
-  }
-
-  .profile-avatar {
-    width: 140px !important;
-    /* Foto mucho más pequeña en móvil */
-    height: 140px !important;
-    margin-bottom: 10px;
-  }
-
-  .about-text-area h3 {
-    font-size: 1rem !important;
-    margin-bottom: 2px;
-  }
-
-  .about-text-area p.about-description {
-    font-size: 0.75rem !important;
-    /* Letra pequeña para que entre todo */
-    text-align: start;
   }
 
   .button-group {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    width: 100%;
-    justify-items: center;
-    justify-content: center;
+    width: 90%;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: auto;
   }
 
   /* ESTILO BASE PARA AMBOS */
   .full-width-btn {
-    height: 54px !important;
+    height: 54px ;
     width: 100%;
-    border-radius: 16px !important;
-    font-weight: 600 !important;
+    border-radius: 16px ;
+    font-weight: 600 ;
     font-size: 1rem;
     text-transform: uppercase;
-    transition: all 0.3s ease !important;
-    display: flex !important;
+    transition: all 0.3s ease ;
+    display: flex ;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) ;
   }
 
   /* BOTÓN EXPLORAR: Verde Musgo Profundo con Degradado */
   .btn-nature {
-    background: #034001 !important;
-    color: white !important;
-    box-shadow: 0 4px 15px rgba(27, 58, 26, 0.4) !important;
+    background: #034001 ;
+    color: white ;
+    box-shadow: 0 4px 15px rgba(27, 58, 26, 0.4) ;
   }
 
   /* BOTÓN CONTACTAR: Estilo Cristal (Glassmorphism) con borde WhatsApp */
   .btn-contact {
     background: #034001 ;
-    color: white !important;
+    color: white ;
     width: 100%;
-    border: 1px solid rgba(37, 211, 102, 0.5) !important;
-    box-shadow: 0 4px 15px rgba(27, 58, 26, 0.4) !important;
-    /* Color WhatsApp suave */
+    border: 1px solid rgba(37, 211, 102, 0.5) ;
+    box-shadow: 0 4px 15px rgba(27, 58, 26, 0.4) ;
   }
 
+  .material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 1,    /* 1 para que el icono esté relleno */
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+  font-size: 24px;
+}
+
   .contact-link {
-    text-decoration: none !important;
+    text-decoration: none ;
     /* Quita subrayados */
     display: block;
     /* Hace que el enlace ocupe todo el ancho */
     width: 100%;
-  }
-
-  /* Opcional: Cambia el icono a uno de WhatsApp si lo prefieres */
-  .btn-contact mat-icon {
-    color: white;
   }
 
   /* Efecto al pulsar (Active) */
@@ -505,58 +535,361 @@ h3 {
 
   /* Ajuste de Iconos */
   mat-icon {
-    margin-right: 8px !important;
-    font-size: 20px !important;
-    width: 20px !important;
-    height: 20px !important;
+    margin-right: 8px ;
+    font-size: 20px ;
+    width: 20px ;
+    height: 20px ;
   }
+
+  /************ FRASE ***********/
+
+.nature-text {
+  width: 100%;
+  padding: 20px 0px;
+  display: flex;
+  margin-top: -10%;
+  justify-content: center; /* Centra horizontalmente el contenedor */
+  align-items: center;     /* Centra verticalmente si hay altura */
+  background-color: #f2e8df; /* El color arena que usamos antes */
+  text-align: center;      /* Centra el texto por dentro */
+}
+
+.nature-text p {
+  /* Usamos tu nueva fuente HandelsonTwo o Caveat aquí */
+  font-family: 'HandelsonTwo', cursive; 
+  font-size: 1.5rem;
+  color: #6F7303;          /* El verde de N'asturaleza */
+  margin: 0;
+  line-height: 1.4;
+}
+
+.phrase-part {
+  display: block;          /* Fuerza el salto de línea siempre */
+  width: 100%;             /* Asegura que ocupe todo el ancho para centrar */
+}
+
+/************ FRASE ***********/
+
+
+  /*********** SOBRE MI ********/
+
+.about-me-section {
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+  justify-items:center;
+  width: 100%;
+  min-height: 80vh;
+  margin: 0 auto;
+  overflow: hidden;
+  background-color: #6F7303;
+  position: relative;
+  z-index: 6;
+  margin-top: -100px;
+  padding-bottom: 10px;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.svg-importado {
+  width: 100%;         /* Se expande a todo ese 60% */
+  height: 100%;  
+  margin-left: 5%;
+}
+
+/* ÁREA DE TEXTO: El compañero */
+.about-text-area {
+  width:100%;
+  height: 100%;
+  color: white;
+  justify-content: center;
+}
+
+.about-text-area h2 {
+  font-family: 'HandelsonTwo';
+  color: #3a3939;
+}
+
+.about-text-area p.about-description {
+  font-family: "Belleza", sans-serif;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  text-align: justify;
+}
+ /********************** FIN *****************/
+
 
 }
 
 /* --- NUEVA SECCIÓN DE IMAGEN DESTACADA --- */
 
 .header-image-container {
+  position: relative;
+  /* El truco: Ancho total de la ventana */
   width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-top: 20px; /* Separación con el texto de arriba */
-  perspective: 1000px; /* Preparado por si quieres efectos 3D luego */
+  margin-left: -50vw;
+  margin-right: -50vw;
+  height: 100%;
+  background: radial-gradient(circle, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.6) 100%);
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  clip-path: ellipse(120% 85% at 50% 0%);
 }
 
+
+
 .main-featured-img {
-  /* Tamaño para Ordenador */
-  width: 43%; 
-  height: 43%; 
-  
-  object-fit: cover; /* Para que la foto rellene el cuadrado sin deformarse */
-  border-radius: 24px; /* Bordes ligeramente redondeados y modernos */
-  
-  /* SOMBRA ATRACTIVA: Sombra suave pero profunda para dar relieve */
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-  
-  /* Borde fino sutil para definir la imagen contra el fondo */
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 100%;
+  height: 100%;
+  /* Mantiene la proporción cubriendo todo el espacio */
+  object-fit: cover; 
+  filter: brightness(70%);
+  aspect-ratio: 2/3;
+}
+
+.video-overlay-content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  margin-top: -20%;
+  display: flex;
+  justify-content: center; /* Centrado horizontal */
+  align-items: center;  /* Centrado vertical */
+  text-align: center;
+  z-index: 1;
 }
 
 /* --- AJUSTE RESPONSIVE PARA MÓVIL --- */
 @media (max-width: 800px) {
-  .header-image-container {
-    margin-top: 10px;
-    padding: 0 10px;
-  }
 
-  .main-featured-img {
-    /* En móvil se adapta al ancho de la pantalla */
-    width: 100%; 
-    height: 100%; /* Mantenemos el formato cuadrado */
-    max-width: 350px;
-    max-height: 350px;
-    border-radius: 16px; /* Bordes un poco menos pronunciados en móvil */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  .header-image-container {
+
+    aspect-ratio: 5 / 4; 
   }
   
   /* Ajustamos el gap del wrapper para que la imagen no quede pegada a los botones */
   .main-wrapper {
     gap: 80px; /* Reducimos el gap masivo en móvil */
   }
+}
+
+/* --- 1. DEFINIR LA ANIMACIÓN DE FADE IN --- */
+@keyframes fadeInTexto {
+  0% {
+    /* Estado inicial: Invisible y un pelín más abajo */
+    opacity: 0;
+    transform: translateY(20px); 
+  
+  }
+  
+  100% {
+    /* Estado final: Visible y en su posición correcta */
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeLeftTexto {
+  0% {
+    /* Estado inicial: Invisible y un pelín más abajo */
+    opacity: 0;
+    transform: translateX(50px); 
+  }
+  
+  100% {
+    /* Estado final: Visible y en su posición correcta */
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeRightTexto {
+  0% {
+    /* Estado inicial: Invisible y un pelín más abajo */
+    opacity: 0;
+    transform: translateX(-50px); 
+  }
+  
+  100% {
+    /* Estado final: Visible y en su posición correcta */
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/********* SVG  ********/
+
+/* --- CONTENEDOR PRINCIPAL DE LOS PICOS --- */
+.mountain-divider-container {
+  position: relative;
+  width: 100%;
+  
+  /* AJUSTE DE ALTURA: Define cuánta "montaña" se ve */
+  height: 180px; 
+  
+  overflow: hidden;
+  line-height: 0; /* Elimina espacio fantasma abajo */
+  
+  /* Solapamiento de seguridad para que la onda de Diego no choque */
+  margin-top: -100px; 
+  z-index: 5;
+}
+
+/* --- ESTILOS COMUNES PARA LAS CAPAS --- */
+.mountain-layer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.mountain-layer svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* --- CAPA 1: PICOS LEJANOS (Detrás) --- */
+.layer-back {
+  fill: #2d5a27; /* Verde Musgo Oscuro */
+  opacity: 0.4; /* Opacidad para simular la lejanía */
+  z-index: 1;
+  overflow: hidden;
+  /* Pequeño movimiento para asimetría */
+  transform: translateX(-5%); 
+
+}
+
+/* --- CAPA 2: PICOS FRONTALES (Delante) --- */
+.layer-front {
+  fill: #6F7303; /* Tu Verde Sólido para N'asturaleza */
+  z-index: 2;
+  overflow: hidden;
+}
+
+.about-me-divider-container {
+  position: relative;
+  width: 100%;
+  
+  /* AJUSTE DE ALTURA: Define cuánta "montaña" se ve */
+  height: 500px; 
+  
+  overflow: hidden;
+  line-height: 0; /* Elimina espacio fantasma abajo */
+  
+  /* Solapamiento de seguridad para que la onda de Diego no choque */
+  margin-top: -28%; 
+  z-index: 7;
+}
+
+/* --- ESTILOS COMUNES PARA LAS CAPAS --- */
+.about-me-layer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.mountain-layer svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* --- CAPA 1: PICOS LEJANOS (Detrás) --- */
+.about-me-layer-back {
+  fill: #5d3511; 
+  opacity: 0.4; 
+  z-index: 1;
+  overflow: hidden;
+  /* Pequeño movimiento para asimetría */
+  transform: translateX(-5%); 
+}
+
+/* --- CAPA 2: PICOS FRONTALES (Delante) --- */
+.about-me-layer-front {
+  fill: #f2e8df; /* Tu Verde Sólido para N'asturaleza */
+  z-index: 2;
+  overflow: hidden;
+}
+
+
+/* OPTIMIZACIÓN PARA MÓVIL */
+@media (max-width: 768px) {
+  .mountain-divider-container {
+    height: 100px; /* Reducimos la altura en móvil */
+    margin-top: -60px;
+  }
+}
+
+
+/* --- CARRUSEL --- */
+/* --- CONTENEDOR PRINCIPAL --- */
+.carousel-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1000px; 
+  background-color: #f2e8df;
+  margin: auto;
+  overflow: hidden;
+  padding: 5%; /* Bajé un poco el padding para que las cartas tengan más aire */
+  border-radius: 5%;
+}
+
+/* --- EL TRACK (CARRUSEL) --- */
+.carousel-track {
+  display: flex;
+  flex-wrap: nowrap;     /* CLAVE 1: Evita que las cartas bajen a la siguiente línea */
+  width: 100%;           /* Ocupa el ancho del wrapper */
+  overflow-x: auto;      /* ¡VITAL! Sin esto el método scrollBy no tiene efecto */
+  scroll-behavior: smooth;
+  gap: 20px; 
+  scrollbar-width: none;
+  padding: 20px 0;
+  -webkit-overflow-scrolling: touch; 
+}
+
+.carousel-track::-webkit-scrollbar { display: none; }
+
+/* --- LAS TARJETAS (Añade esto) --- */
+
+/* --- BOTONES (Asegúrate de que no estorben al track) --- */
+.nav-btn {
+  position: absolute;
+  z-index: 10;
+  background-color: white;
+}
+
+.nav-btn.left { left: 10px; }
+.nav-btn.right { right: 10px; }
+
+
+.carousel-item {
+  flex: 0 0 50%;       /* CLAVE 2: No crece, no encoge, mide 320px fijos */ 
+  scroll-snap-align: center;
+  border-radius: 10px; /* Bordes más redondeados */
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05); /* Efecto cristal sutil */
+  border: 1px solid rgba(163, 193, 173, 0.1); /* Borde verde musgo muy fino */
+  max-width: 400px;
+  /* SOMBRA SUAVE (Premium) */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  
+  /* TRANSICIÓN PARA EL HOVER */
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease;
+  will-change: transform;
+}
+
+.example-card {
+  max-width: 400px;
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.dev/assets/img/examples/shiba1.jpg');
+  background-size: cover;
 }

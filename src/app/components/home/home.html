@@ -1,41 +1,96 @@
 <div class="main-wrapper">
   <section class="header-about">
-    <header class="title">
-      <h1>Experiencias de naturaleza y fauna salvaje en Asturias</h1>
-    </header>
 
     <div class="header-image-container">
-      <img src="assets/images/foto_inicio.jpeg" alt="N'asturaleza Asturias" class="main-featured-img">
+      <video playsinline autoplay loop muted class="main-featured-img" src="assets/videos/video_inicio.mov"></video>
     </div>
+    <div class="video-overlay-content">
+      <header class="title">
+        <h1 class="logo-font">Experiencias de naturaleza y fauna salvaje en Asturias</h1>
+      </header>
+    </div>
+
   </section>
+
+  <section class="nature-text">
+    <p>
+      <span class="phrase-part">"Lo que se conoce se valora,</span>
+      <span class="phrase-part">y lo que se valora se cuida"</span>
+    </p>
+  </section>
+
+
 
   <section class="button-group">
     <button mat-stroked-button (click)="toActivities()" class="full-width-btn btn-nature">
-      <mat-icon>explore</mat-icon> EXPLORAR ACTIVIDADES
+      <mat-icon>explore</mat-icon> VER ACTIVIDADES
     </button>
 
     <a href="https://wa.me/34727702571?text=¡Hola!" class="contact-link">
       <button mat-stroked-button class="full-width-btn btn-contact">
-        <mat-icon>call</mat-icon>
+        <i class="bi bi-whatsapp"></i>
         CONTACTAR
       </button>
     </a>
   </section>
 
-  <section class="about-me-section">
-    <h2>Sobre mí</h2>
-    <mat-card class="about-card">
-      <mat-card-content class="about-content">
-        <img src="assets/images/1765626582748.webp" alt="Perfil Guía" class="profile-avatar">
-        <div class="about-text-area">
-          <h3>Diego Álvarez</h3>
-          <p class="about-description">Docente y guía especializado en la observación e interpreta
-            ción del medio natural en Asturias. Te ofrezco experiencias guiadas y adaptadas a cada época
-            del año y a cada grupo. ¿Te animas?.</p>
-        </div>
-      </mat-card-content>
-    </mat-card>
+  <div class="mountain-divider-container">
+
+    <div class="mountain-layer layer-back">
+      <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+        <path
+          d="M0,160L80,186.7C160,213,320,267,480,245.3C640,224,800,128,960,112C1120,96,1280,160,1360,192L1440,224L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z">
+        </path>
+      </svg>
+    </div>
+
+    <div class="mountain-layer layer-front">
+      <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+        <path
+          d="M0,224L60,213.3C120,203,240,181,360,186.7C480,192,600,224,720,229.3C840,235,960,213,1080,186.7C1200,160,1320,128,1380,112L1440,96L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z">
+        </path>
+      </svg>
+    </div>
+
+  </div>
+
+  <section #seccionSobreMi class="about-me-section" [class.visible]="isVisible()">
+    @if (!isMobile()) {
+    <img src="assets/images/diego.svg" alt="Diego" class="svg-importado">
+    }
+    @else{
+    <img src="assets/images/diego_movil.svg" alt="Diego" class="svg-importado">
+    }
+
+    <div class="about-text-area">
+      <h2 class="about-title">Diego Álvarez</h2>
+      <p class="about-description">
+        Soy guía de naturaleza y senderismo, además de maestro de Educación Primaria, con una profunda vocación por la
+        enseñanza y la divulgación del medio natural. A lo largo de los años me he especializado en el rastreo y
+        avistamiento de fauna salvaje, desarrollando una mirada atenta y respetuosa que me permite interpretar los
+        pequeños detalles que la naturaleza nos ofrece.
+      </p>
+      <p class="about-description">
+        Apasionado de Asturias y de todo su patrimonio natural, he pasado gran parte de mi vida recorriendo sus montes,
+        bosques y costas, aprendiendo directamente del entorno y acumulando una valiosa experiencia sobre el terreno.
+        Este conocimiento, unido a mi formación pedagógica, me permite diseñar experiencias enriquecedoras, adaptadas a
+        todo tipo de público.
+      </p>
+      <p class="about-description">
+        Tras años de aprendizaje y vivencias en la naturaleza, he decidido emprender este proyecto personal con el
+        objetivo de compartir mi forma de entender y vivir el entorno natural. A través de actividades como la
+        observación de fauna, rutas interpretativas y fotografía de naturaleza, ofrezco experiencias personalizadas que
+        buscan no solo mostrar, sino también enseñar a mirar, comprender y respetar la naturaleza.
+
+      </p>
+      <p class="about-description">
+        Mi propósito es que cada persona que me acompañe se lleve algo más que una ruta: una conexión auténtica con el
+        entorno y una nueva manera de descubrir la naturaleza.
+      </p>
+    </div>
   </section>
+
+
 
   @if (!isMobile()) {
   <section class="activities">
@@ -81,31 +136,53 @@
   </section>
   }
 
+
+
+
   <section class="reviews-section">
     <h2>Opiniones de otros clientes</h2>
 
-    <div class="reviews-list">
+
+    <div class="carousel-wrapper">
+
+
       @if (listaReviews().length === 0) {
       <p class="empty-msg">Aún no hay reseñas. ¡Sé el primero!</p>
       }
+      @else{
+      <button mat-icon-button class="nav-btn left mat-elevation-z4" (click)="scroll('left')">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+      <div class="carousel-container">
+        <div class="carousel-track" #carouselTrack>
+          @for (item of listaReviews(); track item.id) {
+          <div class="carousel-item">
+            <mat-card class="example-card" appearance="outlined">
+              <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>Shiba Inu</mat-card-title>
+                <mat-card-subtitle>@for (s of [1,2,3,4,5]; track s) {
+                <mat-icon class="mini-star">{{ item.rating >= s ? 'star' : 'star_border' }}</mat-icon>
+              }</mat-card-subtitle>
+                
+              </mat-card-header>
+              <mat-card-content>
+                <p>
+                  The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                  A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+                  bred for hunting.
+                </p>
+              </mat-card-content>
+            </mat-card>
 
-      @for (item of listaReviews(); track item.id) {
-      <mat-card class="review-card">
-        <mat-card-content>
-          <div class="review-header">
-            <span class="user-name">{{ item.name }}</span>
-            <div class="display-stars">
-              @for (s of [1,2,3,4,5]; track s) {
-              <mat-icon class="mini-star">{{ item.rating >= s ? 'star' : 'star_border' }}</mat-icon>
-              }
-            </div>
           </div>
-          <p class="comment-text">{{ item.comment }}</p>
-          <span class="date">{{ item.created_date | date:'dd/MM/yyyy' }}</span>
-        </mat-card-content>
-      </mat-card>
+          }
+        </div>
+      </div>
+       <button class="nav-btn right mat-elevation-z4" mat-icon-button (click)="scroll('right')">
+          <mat-icon>chevron_right</mat-icon>
+        </button>
       }
     </div>
-
   </section>
 </div>
