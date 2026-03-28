@@ -4,7 +4,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
 import { MatRippleModule } from '@angular/material/core';
 import { MatTableModule } from '@angular/material/table';
-import { App } from '../../app';
+import { Header } from '../header/header'; 
 import { BackgroundService } from '../../services/background-service';
 // Definimos la estructura para evitar errores de tipos
 interface Precio {
@@ -34,7 +34,7 @@ interface Seccion {
 @Component({
   selector: 'app-servicios-fauna',
   standalone: true,
-  imports: [CommonModule, MatTabsModule, MatIconModule, MatRippleModule, MatTableModule],
+  imports: [CommonModule, MatTabsModule, MatIconModule, MatRippleModule, MatTableModule, Header],
   templateUrl: './activities.html',
   styleUrls: ['./activities.css']
 })

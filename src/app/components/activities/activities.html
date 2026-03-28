@@ -11,39 +11,9 @@
         }
       </div>
 
-      <h2 class="tab-title">{{ selectedFauna().title }}</h2>
-
-      <div class="video-wrapper">
-        <video autoplay muted loop controls playsinline
-          [src]="selectedFauna().video"></video>
-      </div>
+      <app-header srcVideo={{selectedFauna().video}} title={{selectedFauna().title}}>  </app-header>
 
       <p class="tab-description">{{ selectedFauna().desc }}</p>
-
-      <div class="table-container">
-        <table mat-table [dataSource]="selectedFauna().precios" class="mat-elevation-z0 custom-table">
-
-          <ng-container matColumnDef="opcion">
-            <th mat-header-cell *matHeaderCellDef> Actividad </th>
-            <td mat-cell *matCellDef="let element"> {{element.opcion}} </td>
-          </ng-container>
-
-          <ng-container matColumnDef="duracion">
-            <th mat-header-cell *matHeaderCellDef> Duración </th>
-            <td mat-cell *matCellDef="let element"> {{element.duracion}} </td>
-          </ng-container>
-
-          <ng-container matColumnDef="precio">
-            <th mat-header-cell *matHeaderCellDef> Precio </th>
-            <td mat-cell *matCellDef="let element">
-              <span class="price-tag">{{element.precio}}</span>
-            </td>
-          </ng-container>
-
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
-      </div>
 
       <section class="button-group">
         <a href="https://wa.me/34727702571?text=¡Hola!" class="contact-link">

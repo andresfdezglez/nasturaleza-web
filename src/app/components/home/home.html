@@ -1,16 +1,6 @@
 <div class="main-wrapper">
-  <section class="header-about">
-
-    <div class="header-image-container">
-      <video playsinline autoplay loop muted class="main-featured-img" src="assets/videos/video_inicio.mov"></video>
-    </div>
-    <div class="video-overlay-content">
-      <header class="title">
-        <h1 class="logo-font">Experiencias de naturaleza y fauna salvaje en Asturias</h1>
-      </header>
-    </div>
-
-  </section>
+ 
+  <app-header srcVideo="assets/videos/video_inicio.mov" title="Experiencias de naturaleza y fauna salvaje de Asturias">  </app-header>
 
   <section class="nature-text">
     <p>
@@ -18,8 +8,6 @@
       <span class="phrase-part">y lo que se valora se cuida"</span>
     </p>
   </section>
-
-
 
   <section class="button-group">
     <button mat-stroked-button (click)="toActivities()" class="full-width-btn btn-nature">
@@ -91,22 +79,24 @@
   </section>
 
 
-<section class="activities">
-  <h2>Nuestras actividades</h2>
-  <div class="grid-layout">
-    <a href="/fotografia" class="activity-link">
-      <img class="svg-boton" src="assets/images/fotografia.svg" alt="Actividad Fotografía">
-    </a>
+  <section class="activities">
+    <h2>Nuestras actividades</h2>
+    <div class="grid-layout">
 
-    <a href="/fotografia" class="activity-link">
-      <img class="svg-boton" src="assets/images/fauna.svg" alt="Actividad Fotografía">
-    </a>
+      <a href="/activities" class="activity-link">
+        <img class="svg-boton" src="assets/images/fauna.svg" alt="Actividad Fotografía">
+      </a>
 
-    <a href="/fotografia" class="activity-link">
-      <img class="svg-boton" src="assets/images/senderismo.svg" alt="Actividad Fotografía">
-    </a>
+      <a href="/activities" class="activity-link">
+        <img class="svg-boton" src="assets/images/senderismo.svg" alt="Actividad Fotografía">
+      </a>
+
+      <a href="/activities" class="activity-link">
+        <img class="svg-boton" src="assets/images/fotografia.svg" alt="Actividad Fotografía">
+      </a>
+
     </div>
-</section>
+  </section>
 
 
   <section class="reviews-section">
@@ -121,8 +111,8 @@
       }
       @else{
       <button mat-icon-button class="nav-btn left mat-elevation-z4" (click)="scroll('left')">
-      <mat-icon>chevron_left</mat-icon>
-    </button>
+        <mat-icon>chevron_left</mat-icon>
+      </button>
       <div class="carousel-container">
         <div class="carousel-track" #carouselTrack>
           @for (item of listaReviews(); track item.id) {
@@ -132,9 +122,9 @@
                 <div mat-card-avatar class="example-header-image"></div>
                 <mat-card-title>{{item.name}}</mat-card-title>
                 <mat-card-subtitle>@for (s of [1,2,3,4,5]; track s) {
-                <mat-icon class="mini-star">{{ item.rating >= s ? 'star' : 'star_border' }}</mat-icon>
-              }</mat-card-subtitle>
-                
+                  <mat-icon class="mini-star">{{ item.rating >= s ? 'star' : 'star_border' }}</mat-icon>
+                  }</mat-card-subtitle>
+
               </mat-card-header>
               <mat-card-content>
                 <p>
@@ -147,9 +137,9 @@
           }
         </div>
       </div>
-       <button class="nav-btn right mat-elevation-z4" mat-icon-button (click)="scroll('right')">
-          <mat-icon>chevron_right</mat-icon>
-        </button>
+      <button class="nav-btn right mat-elevation-z4" mat-icon-button (click)="scroll('right')">
+        <mat-icon>chevron_right</mat-icon>
+      </button>
       }
     </div>
   </section>
@@ -159,7 +149,7 @@
 </div>
 <footer class="main-footer">
   <div class="footer-container">
-    
+
     <div class="footer-section brand">
       <h3 class="n-logo">N'asturaleza</h3>
       <p>Guías de naturaleza y fotografía en la Cordillera Cantábrica.</p>

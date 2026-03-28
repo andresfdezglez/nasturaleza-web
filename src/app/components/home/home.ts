@@ -8,6 +8,7 @@ import { AfterViewInit, Component, ElementRef, inject, OnInit, PLATFORM_ID, sign
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Router } from '@angular/router';
 import { DatabaseService } from '../../services/database';
+import { Header } from '../header/header';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +19,8 @@ import { DatabaseService } from '../../services/database';
     MatButtonModule,
     MatTableModule,
     MatIconModule,
-    MatDividerModule
+    MatDividerModule,
+    Header
   ],
   templateUrl: './home.html',
   styleUrl: './home.css'

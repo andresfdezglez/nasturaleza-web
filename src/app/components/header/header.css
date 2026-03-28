@@ -1,0 +1,104 @@
+.header-content {
+  /* Hacemos que la sección ocupe toda la altura de la pantalla (menos la toolbar si tienes) */
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column; /* Apila el H1 y el P uno sobre otro */
+  justify-content: center; /* Centra verticalmente */
+  align-items: center;    /* Centra horizontalmente */
+  text-align: center;      /* Asegura que las líneas de texto se centren entre sí */
+  padding: 0; 
+  margin: 0;
+}
+
+/* 2. El título cede espacio */
+.title {
+  text-align: center;
+  color: rgb(46, 82, 46);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  width: 40%;
+  /* Le dejamos menos de la mitad para dárselo a la tarjeta */
+}
+
+.title h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  line-height: 1.5;
+  text-transform: uppercase;
+  color: white;
+  margin-top: -30%;
+
+  /* Nombre de la animación que definimos arriba */
+  animation-name: fadeInTexto;
+  
+  /* Duración total del fundido (1.5s lo hace místico y suave) */
+  animation-duration: 1.5s;
+  
+  /* Tipo de curva de velocidad ('ease-out' empieza rápido y frena suave) */
+  animation-timing-function: ease-out;
+  
+  /* RETRASO DE ENTRADA: Espera 0.5s para que el vídeo ya esté rodando */
+  animation-delay: 2s;
+  
+  /* IMPORTANTE: Mantiene el estado final (visible) tras la animación */
+  animation-fill-mode: forwards; 
+  
+  /* OPCIONAL: Empezar invisible para evitar el 'flash' inicial */
+  opacity: 0;
+}
+
+
+/* --- NUEVA SECCIÓN DE IMAGEN DESTACADA --- */
+
+.header-image-container {
+  position: relative;
+  /* El truco: Ancho total de la ventana */
+  width: 100%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  height: 100%;
+  background: radial-gradient(circle, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.6) 100%);
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  clip-path: ellipse(120% 85% at 50% 0%);
+}
+
+
+
+.main-featured-img {
+  width: 100%;
+  height: 100%;
+  /* Mantiene la proporción cubriendo todo el espacio */
+  object-fit: cover; 
+  filter: brightness(70%);
+  aspect-ratio: 2/3;
+}
+
+.video-overlay-content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center; /* Centrado horizontal */
+  align-items: center;  /* Centrado vertical */
+  text-align: center;
+  z-index: 1;
+}
+
+/* --- 1. DEFINIR LA ANIMACIÓN DE FADE IN --- */
+@keyframes fadeInTexto {
+  0% {
+    /* Estado inicial: Invisible y un pelín más abajo */
+    opacity: 0;
+    transform: translateY(20px); 
+  
+  }
+  
+  100% {
+    /* Estado final: Visible y en su posición correcta */
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
