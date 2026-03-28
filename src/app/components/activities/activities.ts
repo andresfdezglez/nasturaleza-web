@@ -38,37 +38,9 @@ interface Seccion {
   templateUrl: './activities.html',
   styleUrls: ['./activities.css']
 })
-export class Activities implements OnInit, OnDestroy{
-
-  // Inyectamos el padre para poder cambiar su señal
-  private appRoot = inject(App);
-
-  private bgService = inject(BackgroundService);
+export class Activities{
 
   @ViewChild('carouselTrack') carouselTrack!: ElementRef;
-
-  scroll(direction: 'left' | 'right') {
-    const track = this.carouselTrack.nativeElement;
-    // Calculamos el desplazamiento: el ancho visible del track
-    // Multiplicamos por 0.8 para que no mueva la foto entera y se vea la siguiente
-    const scrollAmount = track.offsetWidth * 0.8; 
-    
-    track.scrollBy({
-      left: direction === 'left' ? -scrollAmount : scrollAmount,
-      behavior: 'smooth' // Movimiento fluido de Angular
-    });
-  }
-
-  ngOnInit() {
-    // Al entrar: Fondo verde, sin imagen
-    this.bgService.updateBackground('', true);
-  }
-
-  ngOnDestroy() {
-    // Al salir: Volvemos a la foto original de Nasturaleza
-    this.bgService.updateBackground('assets/images/1765627550958.webp', false);
-  }
-
   // Definimos las columnas que se verán en la tabla
   displayedColumns: string[] = ['opcion', 'duracion', 'precio'];
 
@@ -184,5 +156,17 @@ Una experiencia sensorial única, donde sonido, paisaje y emoción se combinan p
   // 3. MÉTODOS
   selectAnimal(animal: Animal) {
     this.selectedFauna.set(animal);
+  }
+
+  scroll(direction: 'left' | 'right') {
+    const track = this.carouselTrack.nativeElement;
+    // Calculamos el desplazamiento: el ancho visible del track
+    // Multiplicamos por 0.8 para que no mueva la foto entera y se vea la siguiente
+    const scrollAmount = track.offsetWidth * 0.8; 
+    
+    track.scrollBy({
+      left: direction === 'left' ? -scrollAmount : scrollAmount,
+      behavior: 'smooth' // Movimiento fluido de Angular
+    });
   }
 }
