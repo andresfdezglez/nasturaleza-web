@@ -1,12 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
-
-html, body { height: 100%; }
+html, body { height: 100%; overflow: hidden; 
+  width: 100%;}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html ::-webkit-scrollbar{
+  width: 8px; 
+}
 
+html ::-webkit-scrollbar-thumb{
+
+background-color: rgb(162, 155, 155);
+border-radius: 10px;
+background-clip: content-box;
+}
 @font-face {
-  font-family: 'Agatho';
-  src: url('/fonts/AgathoBlack.otf') format('otf');
+  font-family: 'HandelsonTwo';
+  src: url('assets/fonts/handelson-two.otf') format('opentype');
   font-weight: 700;
-  font-style: inherit;
+  font-style: normal;
   font-display: swap;
+}
+
+
+@media (max-width: 800px) {
+
+  html ::-webkit-scrollbar{
+  width: 0px; 
+}
 }
