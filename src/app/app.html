@@ -1,17 +1,15 @@
 @if (isIntroVisible()) {
- <div class="intro-overlay" [class.fade-out]="fadeOutStarted()">
-    <div class="logo-circle-container">
-      
-      <picture>
-        <source srcset="assets/images/logo_grande.webp" media="(max-width: 767px)">
-        
-        <img src="assets/images/logo_grande.png" 
-             alt="Logo N'asturaleza" 
-             class="logo-img-intro">
-      </picture>
+<div class="intro-overlay" [class.fade-out]="fadeOutStarted()">
+  <div class="logo-circle-container">
 
-    </div>
+    <picture>
+      <source srcset="assets/images/logo_grande.webp" media="(max-width: 767px)">
+
+      <img src="assets/images/logo_grande.png" alt="Logo N'asturaleza" class="logo-img-intro">
+    </picture>
+
   </div>
+</div>
 }
 <mat-sidenav-container class="sidenav-container">
 
@@ -26,13 +24,6 @@
 
   <!-- Contenido principal -->
   <mat-sidenav-content class="sidenav-content">
-
-    <!-- Fondo fijo -->
-    <div class="app-background" 
-       [class.es-seccion-verde]="config().isGreen"
-       [style.background-image]="config().isGreen ? 'none' : 'url(' + config().image + ')'">
-  </div>
-
     <!-- Toolbar fija -->
     <mat-toolbar color="primary" class="toolbar">
 
@@ -42,21 +33,18 @@
       </button>
 
       <div class="toolbar-logo-container">
-        <img ngSrc="assets/images/logo_grande.webp" width="126" 
-     height="126"
-     priority 
-     alt="Logo N'asturaleza" 
-     disableOptimizedImageSizeCheck
-     class="toolbar-logo-img">
+        <a href="">
+          <img ngSrc="assets/images/logo_grande.webp" width="110" height="80" priority alt="Logo N'asturaleza"
+            disableOptimizedImageSizeCheck class="toolbar-logo-img"/>
+        </a>
       </div>
-
-      <span class="logo">N'asturaleza</span>
-
+      <a class="logo" href="">
+        <span >N'ASTURALEZA</span>
+      </a>
       <!-- Links visibles en tablet/escritorio -->
       <nav class="nav-links">
         <a mat-button href="">Inicio</a>
         <a mat-button href="activities">Actividades</a>
-        <a mat-button href="reviews">Reseñas</a>
       </nav>
 
       <span class="spacer"></span>

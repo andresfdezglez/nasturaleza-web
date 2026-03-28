@@ -29,7 +29,6 @@
 .animal-selector {
   display: flex;
   gap: 10px;
-  overflow-x: auto;
   padding: 10px 0;
   scrollbar-width: none; /* Oculta scroll en Firefox */
 }
@@ -87,21 +86,21 @@
 
 /* Color de las celdas */
 .mat-mdc-cell {
-  color: black !important;
+  color: black ;
   font-size: 0.95rem;
-  padding: 15px 10px !important;
-  border-bottom: 1px solid #593A1E !important;
+  padding: 15px 10px ;
+  border-bottom: 1px solid #593A1E ;
 }
 
 /* Quitar el fondo blanco de las filas al pasar el ratón */
 .mat-mdc-row:hover {
-  background: #6f73032d !important;
+  background: #6f73032d ;
 }
 
 /* Estenedor con scroll para móviles */
 .table-container {
   width: 100%;
-  overflow-x: auto;
+  
   border-radius: 12px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
@@ -118,17 +117,17 @@
 /* ESTILO BASE PARA AMBOS */
 /* ESTILO BASE PARA AMBOS */
   .full-width-btn {
-    height: 54px !important;
+    height: 54px ;
     width: 100%;
-    border-radius: 16px !important;
-    font-weight: 600 !important;
+    border-radius: 16px ;
+    font-weight: 600 ;
     font-size: 1rem;
     text-transform: uppercase;
-    transition: all 0.3s ease !important;
-    display: flex !important;
+    transition: all 0.3s ease ;
+    display: flex ;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) ;
   }
 
   /* BOTÓN CONTACTAR: Estilo Cristal (Glassmorphism) con borde WhatsApp */
@@ -137,12 +136,12 @@
     backdrop-filter: blur(10px);
     color: white;
     width: 100%;
-    border: 1px solid rgba(37, 211, 102, 0.5) !important;
+    border: 1px solid rgba(37, 211, 102, 0.5) ;
     /* Color WhatsApp suave */
   }
 
   .contact-link {
-    text-decoration: none !important;
+    text-decoration: none ;
     /* Quita subrayados */
     display: block;
     /* Hace que el enlace ocupe todo el ancho */
@@ -162,28 +161,28 @@
 
   /* Ajuste de Iconos */
   mat-icon {
-    margin-right: 8px !important;
-    font-size: 20px !important;
-    width: 20px !important;
-    height: 20px !important;
+    margin-right: 8px ;
+    font-size: 20px ;
+    width: 20px ;
+    height: 20px ;
   }
 
   
 /* 1. Cambiar el color del TEXTO de la pestaña activa */
 ::ng-deep .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label {
-  color: #034001 !important;;  /* Tu verde de marca */
+  color: #034001 ;;  /* Tu verde de marca */
   font-weight: 600;
 }
 
 /* 2. Cambiar el color de la BARRITA inferior (Indicador) */
 ::ng-deep .mat-mdc-tab-group.mat-primary .mdc-tab-indicator__content--underline {
-  border-color: #034001 !important; /* El mismo verde */
+  border-color: #034001 ; /* El mismo verde */
   border-width: 3px; /* Un poco más gruesa para que resalte */
 }
 
 /* 3. Opcional: Color del texto de las pestañas NO activas */
 ::ng-deep .mat-mdc-tab .mdc-tab__text-label {
-  color: black !important; /* Blanco suave translúcido */
+  color: black ; /* Blanco suave translúcido */
 }
 
 /* 4. Quitar el color de fondo gris que sale al hacer clic (ripple) */
@@ -206,7 +205,7 @@
 /* --- EL TRACK (CARRUSEL) --- */
 .carousel-track {
   display: flex;
-  overflow-x: auto;
+  
   scroll-snap-type: x mandatory;
   gap: 20px; /* Más espacio entre fotos */
   scrollbar-width: none;
@@ -286,22 +285,22 @@
   z-index: 10;
   
   /* EFECTO CRISTAL (Glassmorphism) */
-  background: rgba(45, 90, 39, 0.6) !important; /* Verde translúcido */
+  background: rgba(45, 90, 39, 0.6) ; /* Verde translúcido */
   backdrop-filter: blur(8px); /* Desenfoque del fondo */
   
-  color: black !important;
-  border: 1px solid rgba(163, 193, 173, 0.3) !important;
-  border-radius: 50% !important;
-  width: 50px !important;
-  height: 50px !important;
+  color: black ;
+  border: 1px solid rgba(163, 193, 173, 0.3) ;
+  border-radius: 50% ;
+  width: 50px ;
+  height: 50px ;
   display: none; /* Ocultas en móvil */
   
   /* Animación al pulsar */
-  transition: background 0.3s ease, transform 0.2s ease !important;
+  transition: background 0.3s ease, transform 0.2s ease ;
 }
 
 .nav-btn:hover {
-  background: rgba(45, 90, 39, 0.9) !important; /* Más opaco al hover */
+  background: rgba(45, 90, 39, 0.9) ; /* Más opaco al hover */
   transform: scale(1.1);
 }
 
