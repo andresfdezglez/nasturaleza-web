@@ -13,7 +13,7 @@
 
 .header-about {
   /* Hacemos que la sección ocupe toda la altura de la pantalla (menos la toolbar si tienes) */
-  width: 100dvw;
+  width: 100%;
   position: relative;
   display: flex;
   flex-direction: column; /* Apila el H1 y el P uno sobre otro */
