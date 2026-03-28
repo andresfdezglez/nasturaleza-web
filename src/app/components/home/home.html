@@ -91,56 +91,26 @@
   </section>
 
 
+<section class="activities">
+  <h2>Nuestras actividades</h2>
+  <div class="grid-layout">
+    <a href="/fotografia" class="activity-link">
+      <img class="svg-boton" src="assets/images/fotografia.svg" alt="Actividad Fotografía">
+    </a>
 
-  @if (!isMobile()) {
-  <section class="activities">
-    <h2>Nuestras actividades</h2>
-    <div class="grid-layout">
-      <mat-card class="custom-card">
-        <mat-card-header>
-          <mat-icon mat-card-avatar>visibility</mat-icon>
-          <mat-card-title>Avistamiento de fauna</mat-card-title>
-          <mat-card-subtitle>Oso pardo, lobo ibérico</mat-card-subtitle>
-        </mat-card-header>
-        <div class="card-btn-area">
-          <button mat-stroked-button color="accent">RESERVAR AHORA</button>
-        </div>
-        <img mat-card-image src="assets/images/DSC06517.JPG" alt="Lobo ibérico">
-      </mat-card>
+    <a href="/fotografia" class="activity-link">
+      <img class="svg-boton" src="assets/images/fauna.svg" alt="Actividad Fotografía">
+    </a>
 
-      <mat-card class="custom-card">
-        <mat-card-header>
-          <mat-icon mat-card-avatar>pets</mat-icon>
-          <mat-card-title>Rutas interpretativas</mat-card-title>
-          <mat-card-subtitle>Descubriendo indicios y rastros</mat-card-subtitle>
-        </mat-card-header>
-        <div class="card-btn-area">
-          <button mat-stroked-button color="accent">RESERVAR AHORA</button>
-        </div>
-        <img mat-card-image src="assets/images/DSC08309.JPG" alt="Ruta">
-      </mat-card>
-
-      <mat-card class="custom-card">
-        <mat-card-header>
-          <mat-icon mat-card-avatar>photo_camera</mat-icon>
-          <mat-card-title>Fotografía de naturaleza</mat-card-title>
-          <mat-card-subtitle>Fotografías autóctonas</mat-card-subtitle>
-        </mat-card-header>
-        <div class="card-btn-area">
-          <button mat-stroked-button color="accent">RESERVAR AHORA</button>
-        </div>
-        <img mat-card-image src="assets/images/DSC08309.JPG" alt="Fotografía">
-      </mat-card>
-
+    <a href="/fotografia" class="activity-link">
+      <img class="svg-boton" src="assets/images/senderismo.svg" alt="Actividad Fotografía">
+    </a>
     </div>
-  </section>
-  }
-
-
+</section>
 
 
   <section class="reviews-section">
-    <h2>Opiniones de otros clientes</h2>
+    <h2>Reseñas</h2>
 
 
     <div class="carousel-wrapper">
@@ -160,7 +130,7 @@
             <mat-card class="example-card" appearance="outlined">
               <mat-card-header>
                 <div mat-card-avatar class="example-header-image"></div>
-                <mat-card-title>Shiba Inu</mat-card-title>
+                <mat-card-title>{{item.name}}</mat-card-title>
                 <mat-card-subtitle>@for (s of [1,2,3,4,5]; track s) {
                 <mat-icon class="mini-star">{{ item.rating >= s ? 'star' : 'star_border' }}</mat-icon>
               }</mat-card-subtitle>
@@ -168,9 +138,7 @@
               </mat-card-header>
               <mat-card-content>
                 <p>
-                  The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-                  A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-                  bred for hunting.
+                  {{item.comment}}
                 </p>
               </mat-card-content>
             </mat-card>
@@ -185,4 +153,44 @@
       }
     </div>
   </section>
+
+
+
 </div>
+<footer class="main-footer">
+  <div class="footer-container">
+    
+    <div class="footer-section brand">
+      <h3 class="n-logo">N'asturaleza</h3>
+      <p>Guías de naturaleza y fotografía en la Cordillera Cantábrica.</p>
+    </div>
+
+    <div class="footer-section links">
+      <h4>Explora</h4>
+      <ul>
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/activities">Actividades</a></li>
+        <li><a href="/about">Sobre mí</a></li>
+        <li><a href="/contact">Contacto</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section social">
+      <h4>Síguenos</h4>
+      <div class="social-icons">
+        <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+        <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+        <a href="#" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2026 N'asturaleza - Todos los derechos reservados.</p>
+    <div class="legal-links">
+      <a href="#">Aviso Legal</a>
+      <a href="#">Privacidad</a>
+    </div>
+  </div>
+</footer>

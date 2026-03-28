@@ -41,7 +41,7 @@ export class DatabaseService {
       // Segundo ordenamos por fecha (más recientes primero)
       .order('created_date', { ascending: false })
       // Limitamos el resultado a 3
-      .limit(3);
+      .limit(5);
 
     if (error) {
       console.error('Error obteniendo top reviews:', error);

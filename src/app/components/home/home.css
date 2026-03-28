@@ -5,7 +5,8 @@
   gap: 90px;
   /* Espacio masivo entre secciones */
   height: 100%;
-  margin-bottom:5%;
+  margin-bottom:10%;
+  padding-bottom: 10%;
   width: 100%
 
 }
@@ -98,12 +99,12 @@
 }
 
 h2 {
+  font-family: 'HandelsonTwo';
   font-size: 4.5rem;
   color: rgb(46, 82, 46);
-  line-height: 1.2;
-  margin: 0 0 15px 0;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  line-height: 1.5;
   text-align: center;
+  margin: 0;
 }
 
 .title p {
@@ -161,20 +162,14 @@ h2 {
 }
  /********************** FIN *****************/
 
-.activities{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
 /* Modificamos solo el Grid para ajustar tamaño y separación */
 .grid-layout {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  /* 1. MÁS SEPARACIÓN: Aumentamos el hueco entre tarjetas */
+  display: flex;
+  flex-direction: row;
   gap: 40px;
   width: 100%;
+  justify-content: center;
+  justify-items: center;
 }
 
 .reviews-list{
@@ -243,29 +238,22 @@ h2 {
   font-weight: 600 ;
   letter-spacing: 1px ;
   text-transform: uppercase;
-  transition: all 0.3s ease ;
   display: flex ;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.2) ;
   width: 30%;
+  background: #2d3001;
+  color: white ;
 }
 
 /* BOTÓN EXPLORAR: Verde Musgo Profundo con Degradado */
 .btn-nature {
-  background:  #034001  ;
-  color: white ;
   box-shadow: 0 4px 15px rgba(27, 58, 26, 0.4) ;
 }
 
 /* BOTÓN CONTACTAR: Estilo Cristal (Glassmorphism) con borde WhatsApp */
 .btn-contact {
-  background: #034001 ;
-  color: white ;
-  border: 1px solid rgba(37, 211, 102, 0.5) ;
   box-shadow: 0 4px 15px rgba(27, 58, 26, 0.4) ;
-
-  /* Color WhatsApp suave */
 }
 
 .contact-link {
@@ -282,7 +270,7 @@ h2 {
 }
 
 /* Efecto al pulsar (Active) */
-.full-width-btn:active {
+.full-width-btn:hover {
   transform: scale(0.96);
   filter: brightness(1.5);
 }
@@ -320,32 +308,25 @@ h3 {
 }
 
 .activities{
-  flex-grow: 1; /* Para que ocupe el resto de la pantalla */
   display: flex;
   flex-direction: column;
   overflow: hidden; /* Importante para que el scroll interno no se salga */
-  
-  /* Estilo visual transparente */
-  background: rgba(255, 255, 255, 0.1); /* Color blanco muy sutil */
-  backdrop-filter: blur(10px);          /* Desenfoca lo que hay detrás */
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 20px 20px 0 0;        /* Redondeado arriba */
-  padding: 50px;
-  box-sizing: border-box;
-
+  justify-content: center;
   align-items: center;
-  
+  padding-left: 5%;
 }
 
 .reviews-section{
-  flex-grow: 1; /* Para que ocupe el resto de la pantalla */
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: 100%;
   overflow: hidden; /* Importante para que el scroll interno no se salga */
   align-items: center;
-  
+  background-color: #f2e8df;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  justify-content: center;
 }
 
 /* Contenedor de Reseñas con SCROLL */
@@ -465,8 +446,7 @@ h3 {
   }
   
   h2{
-    font-size: 2rem ;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    font-size: 3rem ;
   }
 
   .button-group {
@@ -487,27 +467,9 @@ h3 {
     font-weight: 600 ;
     font-size: 1rem;
     text-transform: uppercase;
-    transition: all 0.3s ease ;
     display: flex ;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(255, 255, 255, 0.2) ;
-  }
-
-  /* BOTÓN EXPLORAR: Verde Musgo Profundo con Degradado */
-  .btn-nature {
-    background: #034001 ;
-    color: white ;
-    box-shadow: 0 4px 15px rgba(27, 58, 26, 0.4) ;
-  }
-
-  /* BOTÓN CONTACTAR: Estilo Cristal (Glassmorphism) con borde WhatsApp */
-  .btn-contact {
-    background: #034001 ;
-    color: white ;
-    width: 100%;
-    border: 1px solid rgba(37, 211, 102, 0.5) ;
-    box-shadow: 0 4px 15px rgba(27, 58, 26, 0.4) ;
   }
 
   .material-symbols-outlined {
@@ -521,7 +483,6 @@ h3 {
 
   .contact-link {
     text-decoration: none ;
-    /* Quita subrayados */
     display: block;
     /* Hace que el enlace ocupe todo el ancho */
     width: 100%;
@@ -617,8 +578,83 @@ h3 {
   text-align: justify;
 }
  /********************** FIN *****************/
+/******* ACTIVIDADES ****************/
+.grid-layout {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;    
+    justify-content: center;            
+    width: 100%;
+    gap: 0px;
+  }
 
+  /* 2. El enlace debe ser un bloque que ocupe todo el ancho */
+  .activity-link {
+    display: flex;
+    justify-content: center; /* Centra el SVG dentro del enlace */
+    align-items: center;
+    width: 100%;            /* Ocupa todo el ancho de la pantalla */
+    margin: 0;              /* Limpiamos márgenes */
+    margin-top: -5%;
+  }
 
+  /* 3. El SVG con tamaño visible */
+  .svg-boton {
+    /* Usamos un porcentaje del ancho de pantalla (vw) para que sea "grande" */
+    width: 70vw;            /* 60% del ancho del móvil */
+    max-width: 250px;       /* Que no se pase de frenada en tablets */
+    height: auto;
+    display: block;
+    
+    /* Eliminamos cualquier float o alineación extra */
+    float: none;
+    margin: 0 auto;         /* Refuerzo de centrado */
+    
+    /* Sombra optimizada para móvil */
+    filter: drop-shadow(0px 8px 12px rgba(0, 0, 0, 0.15));
+  }
+
+/************* CARRUSEL ************/
+
+  .carousel-wrapper {
+    padding: 20px 0 !important;
+    overflow: visible !important; /* Permitimos que el contenido fluya */
+    background-color: transparent; 
+    display: block; /* Cambiamos flex por block para evitar estiramientos raros */
+  }
+
+  .carousel-container {
+    overflow: visible; /* Liberamos la ventana en móvil */
+  }
+
+  /* 2. El track: El motor del scroll */
+  .carousel-track {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important; /* PROHIBIDO saltar de línea */
+    overflow-x: scroll !important; /* Forzamos el scroll manual */
+    -webkit-overflow-scrolling: touch; /* Scroll suave tipo iOS */
+    touch-action: pan-x; /* Permite solo movimiento horizontal */
+    gap: 15px;
+    padding: 30px 30px; /* Padding lateral para que la 1ª carta no pegue al borde */
+    margin: 10px;
+    scroll-snap-type: x mandatory;
+    width: auto;
+  }
+
+  /* 3. Las cartas: Deben tener un tamaño fijo relativo al visor */
+  .carousel-item {
+    flex: 0 0 80vw; /* 80% del ancho de la pantalla */
+    width: 80vw;
+    min-width: 280px;
+    scroll-snap-align: center;
+    list-style: none;
+  }
+
+  /* 4. Escondemos botones definitivamente */
+  .nav-btn {
+    display: none !important;
+  }
 }
 
 /* --- NUEVA SECCIÓN DE IMAGEN DESTACADA --- */
@@ -824,72 +860,241 @@ h3 {
   }
 }
 
+/* --------- ACTIVIDADES --------- */
+
+.activity-link {
+  width: 100%;
+  display: inline-block;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  /* Evitamos que el enlace tenga el subrayado azul por defecto */
+  text-decoration: none; 
+  filter: drop-shadow(4px 6px 8px rgba(111, 115, 3, 0.45));
+}
+
+.svg-boton {
+  /* TAMAÑO RAZONABLE: Ajusta estos valores según tu diseño */
+  width: 85%; 
+  height: auto; 
+  display: block;
+  transition: filter 0.2s ease;
+}
+
+/* EFECTO HOVER: Para que el usuario sepa que es clickeable */
+.svg-boton:hover {
+  transform: scale(1.1) translateY(-5px);
+  filter: drop-shadow(0px 20px 30px rgba(111, 115, 3, 0.4)) brightness(1.1);
+}
+
 
 /* --- CARRUSEL --- */
-/* --- CONTENEDOR PRINCIPAL --- */
+
+/* 1. EL MARCO (La caja de arena #f2e8df) */
 .carousel-wrapper {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 100%;
-  max-width: 1000px; 
+  max-width: 1100px; /* O el ancho que quieras que ocupe en pantalla */
+  margin: 0 auto;
   background-color: #f2e8df;
-  margin: auto;
-  overflow: hidden;
-  padding: 5%; /* Bajé un poco el padding para que las cartas tengan más aire */
-  border-radius: 5%;
+  padding: 40px 60px; /* Espacio para que respiren las cartas y botones */
+  border-radius: 25px;
+  overflow: visible; /* IMPORTANTE: Deja que los botones sobresalgan si quieres */
 }
 
-/* --- EL TRACK (CARRUSEL) --- */
+/* 2. LA VENTANA (Lo que recorta las 5 reviews) */
+.carousel-container {
+  width: 100%; 
+  overflow: hidden; /* ESTE es el que corta las 5 reviews para que solo se vean 3 */
+  position: relative;
+}
+
+/* 3. EL CARRIL (Donde viven las 5 reviews en fila) */
 .carousel-track {
   display: flex;
-  flex-wrap: nowrap;     /* CLAVE 1: Evita que las cartas bajen a la siguiente línea */
-  width: 100%;           /* Ocupa el ancho del wrapper */
-  overflow-x: auto;      /* ¡VITAL! Sin esto el método scrollBy no tiene efecto */
+  flex-direction: row;
+  flex-wrap: nowrap;     /* PROHIBIDO que las reviews bajen a otra línea */
+  gap: 20px;
+  padding: 20px 5px;     /* Espacio para sombras */
+  overflow-x: auto;      /* Permite que el contenido sea más ancho que la ventana */
   scroll-behavior: smooth;
-  gap: 20px; 
-  scrollbar-width: none;
-  padding: 20px 0;
-  -webkit-overflow-scrolling: touch; 
+  scrollbar-width: none; /* Esconde la barra */
+  border-radius: 20px;
 }
 
-.carousel-track::-webkit-scrollbar { display: none; }
+.carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+/* 4. EL TAMAÑO DE LAS CARTAS */
+.carousel-item {
+  flex: 0 0 350px;       /* Obliga a cada carta a medir 320px siempre */
+  width: 320px;
+  height: 280px;
+}
 
 /* --- LAS TARJETAS (Añade esto) --- */
 
 /* --- BOTONES (Asegúrate de que no estorben al track) --- */
+/* --- BOTONES DE NAVEGACIÓN --- */
 .nav-btn {
-  position: absolute;
-  z-index: 10;
-  background-color: white;
-}
-
-.nav-btn.left { left: 10px; }
-.nav-btn.right { right: 10px; }
-
-
-.carousel-item {
-  flex: 0 0 50%;       /* CLAVE 2: No crece, no encoge, mide 320px fijos */ 
-  scroll-snap-align: center;
-  border-radius: 10px; /* Bordes más redondeados */
-  overflow: hidden;
-  background: rgba(255, 255, 255, 0.05); /* Efecto cristal sutil */
-  border: 1px solid rgba(163, 193, 173, 0.1); /* Borde verde musgo muy fino */
-  max-width: 400px;
-  /* SOMBRA SUAVE (Premium) */
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  position: absolute; /* Se posicionan respecto al .carousel-wrapper */
+  top: 50%;           /* Los centramos verticalmente */
+  transform: translateY(-50%); /* Ajuste fino para centrado exacto */
+  z-index: 20;        /* Por encima de todo */
   
-  /* TRANSICIÓN PARA EL HOVER */
-  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease;
-  will-change: transform;
+  /* Estilo visual para que resalten */
+  background-color: white !important;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.example-card {
-  max-width: 400px;
+/* Pegados a los extremos del .carousel-wrapper */
+.nav-btn.left {
+  left: 10px; 
 }
+
+.nav-btn.right {
+  right: 10px; 
+}
+
+
+.carousel-item mat-card {
+  width: 100%;
+  height: 100%;
+}
+
 
 .example-header-image {
-  background-image: url('https://material.angular.dev/assets/img/examples/shiba1.jpg');
+  background-image: url('/assets/images/logo_grande.webp');
   background-size: cover;
+}
+
+
+/********** FOOTER ************/
+
+.main-footer {
+  background-color: #2d3001; /* Un verde oliva muy oscuro y elegante */
+  color: #f2e8df;            /* Crema para el texto */
+  padding: 60px 20px 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.footer-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+  border-bottom: 1px solid rgba(242, 232, 223, 0.1);
+  padding-bottom: 40px;
+}
+
+.footer-section h4 {
+  color: #bc9d5d; /* Dorado tierra para los títulos */
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+}
+
+/* Marca / Logo */
+.n-logo {
+  font-family: 'HandelsonTwo', cursive; /* Tu fuente rústica */
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #f2e8df;
+}
+
+.footer-section p {
+  line-height: 1.6;
+  font-size: 0.95rem;
+  opacity: 0.8;
+}
+
+/* Enlaces */
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+  color: #f2e8df;
+  text-decoration: none;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+
+.footer-section ul li a:hover {
+  opacity: 1;
+  color: #bc9d5d;
+}
+
+/* Iconos Sociales */
+.social-icons {
+  display: flex;
+  gap: 15px;
+}
+
+.social-icons a {
+  color: #2d3001;
+  background-color: #f2e8df;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-icons a:hover {
+  transform: translateY(-5px);
+  background-color: #bc9d5d;
+}
+
+/* Parte Inferior (Copyright) */
+.footer-bottom {
+  max-width: 1100px;
+  margin: 20px auto 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 0.85rem;
+  opacity: 0.6;
+}
+
+.legal-links a {
+  color: #f2e8df;
+  text-decoration: none;
+  margin-left: 20px;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+  .footer-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .social-icons {
+    justify-content: center;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .legal-links a {
+    margin: 0 10px;
+  }
 }

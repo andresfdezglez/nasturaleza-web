@@ -4,7 +4,7 @@
 html, body {
   margin: 0;
   height: 100%;
-  overflow: auto; /* scroll solo en contenido */
+  overflow-x: hidden;
 }
 
 .sidenav-container {
