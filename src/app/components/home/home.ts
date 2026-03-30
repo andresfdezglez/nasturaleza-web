@@ -111,7 +111,7 @@ export class Home implements OnInit,AfterViewInit {
         // Actualizamos el valor del Signal
         this.isMobile.set(result.matches);
       });
-    this.establecerCanonical('https://nasturaleza-web-git-new-home-andresfdezglezs-projects.vercel.app/');
+    this.establecerCanonical('https://nasturaleza-9kp0gec2m-andresfdezglezs-projects.vercel.app/');
     this.loadReviews();
   }
 
