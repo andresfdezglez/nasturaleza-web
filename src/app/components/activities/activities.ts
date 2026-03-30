@@ -87,48 +87,30 @@ export class Activities implements OnInit, AfterViewInit {
     private meta: Meta, @Inject(DOCUMENT) private document: Document, @Optional() @Inject(REQUEST) private request: any) {
   }
 
-  ngOnInit() {
-    let tabName: string | null = null;
-
-    if (isPlatformServer(this.platformId)) {
-      // 1. Intentamos leer la URL directamente de la petición que llega a Vercel
-      // Esto es mucho más fiable en el servidor que el Router
-      const fullUrl = this.request ? this.request.url : this.router.url;
-      const urlParts = fullUrl.split('?');
-
-      if (urlParts.length > 1) {
-        const params = new URLSearchParams(urlParts[1]);
-        tabName = params.get('tab');
-      }
+ngOnInit() {
+  // 1. LECTURA SÍNCRONA (Para el Ctrl + U en el Servidor)
+  // En el servidor, el Router ya conoce la URL antes de renderizar el HTML
+  const currentUrl = this.router.url; 
+  if (currentUrl.includes('tab=')) {
+    const params = new URLSearchParams(currentUrl.split('?')[1]);
+    const tabName = params.get('tab');
+    if (tabName && this.tabMap[tabName] !== undefined) {
+      this.updateSEO(this.tabMap[tabName]);
     }
+  }
 
-    // Si hemos encontrado el tabName en el servidor, forzamos el SEO YA
+  // 2. TU SUBSCRIBE DE SIEMPRE (Para la navegación fluida en el navegador)
+  this.route.queryParams.subscribe(params => {
+    const tabName = params['tab'];
     if (tabName && this.tabMap[tabName] !== undefined) {
       const index = this.tabMap[tabName];
+      this.selectedTabIndex.set(index);
       this.index_activo = index;
       this.updateSEO(index);
     }
+  });
+}
 
-    // 2. Tu subscribe de siempre para cuando el usuario navega en el cliente
-    this.route.queryParams.subscribe(params => {
-      const tabFromQuery = params['tab'];
-      if (tabFromQuery && this.tabMap[tabFromQuery] !== undefined) {
-        const index = this.tabMap[tabFromQuery];
-        this.selectedTabIndex.set(index);
-        this.index_activo = index;
-        this.updateSEO(index);
-      }
-    });
-
-    // El resto de tu código (scrollToTop, etc.)
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe(() => {
-      this.scrollToTop();
-    });
-
-    this.scrollToTop();
-  }
 
   updateSEO(index: number) {
     const data = this.info_seo[index];
