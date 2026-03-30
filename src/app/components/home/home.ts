@@ -111,7 +111,7 @@ export class Home implements OnInit,AfterViewInit {
         // Actualizamos el valor del Signal
         this.isMobile.set(result.matches);
       });
-    this.establecerCanonical('https://nasturalezaexperiencias.es/');
+    this.establecerCanonical('https://www.nasturalezaexperiencias.es/');
     this.loadReviews();
   }
 
