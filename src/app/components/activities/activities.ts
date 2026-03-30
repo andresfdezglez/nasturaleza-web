@@ -87,32 +87,44 @@ export class Activities implements OnInit, AfterViewInit {
     private meta: Meta, @Inject(DOCUMENT) private document: Document, @Optional() @Inject(REQUEST) private request: any) {
   }
 
-ngOnInit() {
-  // 1. LECTURA SÍNCRONA (Para el Ctrl + U en el Servidor)
-  // En el servidor, el Router ya conoce la URL antes de renderizar el HTML
-  const currentUrl = this.router.url; 
-  if (currentUrl.includes('tab=')) {
-    const params = new URLSearchParams(currentUrl.split('?')[1]);
-    const tabName = params.get('tab');
-    if (tabName && this.tabMap[tabName] !== undefined) {
-      this.updateSEO(this.tabMap[tabName]);
+  ngOnInit() {
+   // ESTO ES LO QUE VE EL CTRL + U
+    const url = this.router.url;
+    this.resolverSEO(url);
+
+    // ESTO ES LO QUE VE EL USUARIO AL NAVEGAR
+    this.route.queryParams.subscribe(params => {
+      if (params['tab']) {
+        this.resolverSEO(this.router.url);
+      }
+    });
+
+    // El resto de tu código (scrollToTop, etc.)
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      this.scrollToTop();
+    });
+
+    this.scrollToTop();
+  }
+
+private resolverSEO(url: string) {
+    // Extraemos el tab de la URL de forma manual para asegurar que el servidor lo vea
+    const params = new URLSearchParams(url.split('?')[1]);
+    const tabName = params.get('tab') || 'Avistamiento'; // Fallback manual
+    
+    const index = this.tabMap[tabName];
+    if (index !== undefined) {
+      this.updateSEO(index);
     }
   }
 
-  // 2. TU SUBSCRIBE DE SIEMPRE (Para la navegación fluida en el navegador)
-  this.route.queryParams.subscribe(params => {
-    const tabName = params['tab'];
-    if (tabName && this.tabMap[tabName] !== undefined) {
-      const index = this.tabMap[tabName];
-      this.selectedTabIndex.set(index);
-      this.index_activo = index;
-      this.updateSEO(index);
-    }
-  });
-}
-
 
   updateSEO(index: number) {
+    if (isPlatformServer(this.platformId)) {
+    console.log('--- CRITICAL SEO: Renderizando index', index);
+  }
     const data = this.info_seo[index];
     const nombresTabs = ['Avistamiento', 'Senderismo', 'Fotografia'];
     const nombreTab = nombresTabs[index];
