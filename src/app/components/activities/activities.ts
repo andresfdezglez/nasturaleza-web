@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, DOCUMENT, ElementRef, Inject, inject, OnDestroy, OnInit, PLATFORM_ID, signal, ViewChild } from '@angular/core';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { AfterViewInit, Component, DOCUMENT, ElementRef, Inject, inject, OnInit, PLATFORM_ID, signal, ViewChild } from '@angular/core';
+import { CommonModule, isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
 import { MatRippleModule } from '@angular/material/core';
@@ -12,31 +12,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { Meta, Title } from '@angular/platform-browser';
-// Definimos la estructura para evitar errores de tipos
-interface Precio {
-  option: string;
-  duration: string;
-  cost: string;
-}
 
-interface Animal {
-  id: string;
-  name: string;
-  title: string;
-  video: string;
-  poster: string;
-  desc: string;
-  precios: Precio[];
-}
-
-interface Seccion {
-  id: string;
-  imagen: string;
-  titulo: string;
-  imagenes: string[]; // Array de 6 fotos
-  descripcion: string;
-  precios: any[];
-}
+interface Precio { option: string; duration: string; cost: string; }
+interface Animal { id: string; name: string; title: string; video: string; poster: string; desc: string; precios: Precio[]; }
+interface Seccion { id: string; imagen: string; titulo: string; imagenes: string[]; descripcion: string; precios: any[]; }
 
 @Component({
   selector: 'app-servicios-fauna',
@@ -45,117 +24,128 @@ interface Seccion {
   templateUrl: './activities.html',
   styleUrls: ['./activities.css']
 })
-export class Activities implements OnInit, AfterViewInit{
+export class Activities implements OnInit, AfterViewInit {
 
   info_seo: any = {
-    0: { 
-      title: 'Observación de fauna en Asturias | N\'asturaleza',
-      desc: 'Observación de especies en libertad como el oso pardo, el lobo ibérico y la berrea del ciervo, entre otras.'
-    },
-    1: { 
-      title: 'Rutas Interpretativas del medio natural | N\'asturaleza',
-      desc: 'Descubre los rincones más secretos de Asturias con nuestras rutas de senderismo personalizadas. ¡Naturaleza pura!'
-    },
-    2:{ 
-      title: 'Fotografía de naturaleza | N\'asturaleza',
-      desc: 'Salidas para fotografiar diferentes especies autóctonas y paisajes de la Cordillera Cantábrica'
-    }
+    0: { title: 'Observación de fauna en Asturias | N\'asturaleza', desc: 'Observación de especies en libertad como el oso pardo, el lobo ibérico y la berrea del ciervo.' },
+    1: { title: 'Rutas Interpretativas del medio natural | N\'asturaleza', desc: 'Descubre los rincones más secretos de Asturias con nuestras rutas de senderismo personalizadas.' },
+    2: { title: 'Fotografía de naturaleza | N\'asturaleza', desc: 'Salidas para fotografiar diferentes especies autóctonas y paisajes de la Cordillera Cantábrica.' }
   };
 
-  index_activo = 0;
-
-  @ViewChild('carouselTrack') carouselTrack!: ElementRef;
-  // Definimos las columnas que se verán en la tabla
   displayedColumns: string[] = ['opcion', 'duracion', 'precio'];
   private platformId = inject(PLATFORM_ID);
-  private route = inject(ActivatedRoute);
-  private router = inject(Router);
   private animService = inject(AnimationService);
   
-  // Signal o variable para controlar el índice de la pestaña activa
   selectedTabIndex = signal(0);
+  selectedFauna = signal<Animal | null>(null);
 
-  // Mapa para convertir nombres de texto a índices numéricos
+  @ViewChild('carouselTrack') carouselTrack!: ElementRef;
+
+  // Mapeo de nombres de URL a índices
   tabMap: { [key: string]: number } = {
-    'Avistamiento': 0,
-    'Rutas': 1,
-    'Fotografía': 2
+    'avistamiento': 0,
+    'rutas': 1,
+    'fotografia': 2
   };
-  
 
-  constructor(private title: Title, 
-    private meta: Meta, @Inject(DOCUMENT) private document: Document){
-  }
+constructor(
+  private title: Title, 
+  private meta: Meta, 
+  private router: Router,
+  private route: ActivatedRoute,
+  @Inject(DOCUMENT) private document: Document
+) {
+  // --- CLAVE PARA EL NG BUILD (SSR) ---
+  // Obtenemos la URL de forma síncrona mediante el snapshot
+  // Esto obliga al servidor a ver /activities/rutas antes de pintar el HTML
+  const url = this.router.url;
+  this.sincronizarEstado(url);
+}
 
   ngOnInit() {
-    // Leemos los queryParams al iniciar
-    this.route.queryParams.subscribe(params => {
-      const tabName = params['tab'];
-      if (tabName && this.tabMap[tabName] !== undefined) {
-        this.selectedTabIndex.set(this.tabMap[tabName]);
-      }
+    // Escuchamos los parámetros de la ruta (Ej: /activities/rutas)
+    this.route.url.subscribe(() => {
+    this.sincronizarEstado(this.router.url);
+  });
 
-      this.index_activo = this.tabMap[tabName]
-      this.updateSEO(this.tabMap[tabName])
-    });
-
-
-    // Escuchamos cuando la navegación termine con éxito
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
-    ).subscribe(() => {
-      this.scrollToTop();
-    });
+    ).subscribe(() => this.scrollToTop());
     
-    // También lo ejecutamos al cargar por primera vez
     this.scrollToTop();
   }
 
+  private sincronizarEstado(url: string) {
+  // Extraemos el final de la URL (ej: 'fotografia')
+  const slug = url.split('/').pop()?.split('?')[0] || 'avistamiento';
+  
+  // Mapeo manual para asegurar que no falle
+  const mapa: { [key: string]: number } = { 
+    'avistamiento': 0, 
+    'rutas': 1, 
+    'fotografia': 2 
+  };
+  
+  const index = mapa[slug] ?? 0;
+
+  // 1. Actualizamos el Signal de la pestaña
+  this.selectedTabIndex.set(index);
+
+  // 2. Aplicamos el SEO (Esto es lo que verá Google en el dist)
+  const data = this.info_seo[index];
+  if (data) {
+    this.title.setTitle(data.title);
+    this.meta.updateTag({ name: 'description', content: data.desc });
+    this.updateCanonical(slug);
+  }
+}
+
+  private updateCanonical(slug: string) {
+  const canonicalUrl = `https://www.nasturalezaexperiencias.es/activities/${slug}`;
+  let link: HTMLLinkElement = this.document.querySelector("link[rel='canonical']") || this.document.createElement('link');
+  link.setAttribute('rel', 'canonical');
+  link.setAttribute('href', canonicalUrl);
+  if (!this.document.head.contains(link)) {
+    this.document.head.appendChild(link);
+  }
+}
+
   updateSEO(index: number) {
     const data = this.info_seo[index];
-    const nombresTabs = ['Avistamiento', 'Senderismo', 'Fotografia'];
-    const nombreTab = nombresTabs[index];
+    const slugs = ['avistamiento', 'rutas', 'fotografia'];
+    const currentSlug = slugs[index];
+
     this.title.setTitle(data.title);
     this.meta.updateTag({ name: 'description', content: data.desc });
 
+    // Canonical limpio sin query params
     let link: HTMLLinkElement = this.document.querySelector("link[rel='canonical']") || this.document.createElement('link');
     link.setAttribute('rel', 'canonical');
-    link.setAttribute('href', `https://nasturalezaexperiencias.es/activities?tab=${nombreTab}`);
+    link.setAttribute('href', `https://www.nasturalezaexperiencias.es/activities/${currentSlug}`);
     if (!this.document.head.contains(link)) {
       this.document.head.appendChild(link);
     }
   }
 
   onTabChange(event: any) {
-    const nombresTabs = ['Avistamiento', 'Rutas', 'Fotografía'];
-    const nombreTab = nombresTabs[event.index];
+    const slugs = ['avistamiento', 'rutas', 'fotografia'];
+    const targetSlug = slugs[event.index];
 
-    // Esto actualiza la URL a: n-asturaleza.es/activities?tab=Avistamiento
-    this.router.navigate([], {
-      relativeTo: this.route,
-      queryParams: { tab: nombreTab },
-      queryParamsHandling: 'merge' 
-    });
-
-    this.updateSEO(event.index);
+    // Navegación limpia a la subruta
+    this.router.navigate(['/activities', targetSlug]);
   }
 
   private scrollToTop() {
     if (isPlatformBrowser(this.platformId)) {
-    // Opción para Window estándar
-    window.scrollTo(0, 0);
-
-    // Opción para el contenido de Material Sidenav (si lo usas)
-    const mainContent = document.querySelector('.mat-sidenav-content');
-    if (mainContent) {
-      mainContent.scrollTop = 0;
+      window.scrollTo(0, 0);
+      const mainContent = document.querySelector('.mat-sidenav-content');
+      if (mainContent) mainContent.scrollTop = 0;
     }
   }
-  }
 
-    ngAfterViewInit(){
-       this.animService.disparar()
-    }
+  ngAfterViewInit() {
+    this.animService.disparar();
+  }
 
 readonly rutas: Seccion = {
   id: 'rutas-montaña',
@@ -263,9 +253,6 @@ Una experiencia sensorial única, donde sonido, paisaje y emoción se combinan p
     }
   ];
 
-  // 2. SIGNALS (ANGULAR 21)
-  // Iniciamos con el Oso por defecto
-  selectedFauna = signal<Animal>(this.fauna[0]);
 
   // 3. MÉTODOS
   selectAnimal(animal: Animal) {

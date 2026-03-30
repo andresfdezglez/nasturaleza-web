@@ -3,13 +3,13 @@
   <mat-tab label="Avistamiento">
     <div class="animal-selector">
       @for (animal of fauna; track animal.id) {
-      <button matRipple (click)="selectAnimal(animal)" [class.active]="selectedFauna().id === animal.id">
+      <button matRipple (click)="selectAnimal(animal)" [class.active]="selectedFauna()!.id === animal.id">
         {{ animal.name }}
       </button>
       }
     </div>
 
-    <app-header [isVideo]="true" srcVideo={{selectedFauna().video}} claseAnimacion="animacion-rapida" title={{selectedFauna().title}}> </app-header>
+    <app-header [isVideo]="true" srcVideo={{selectedFauna()!.video}} claseAnimacion="animacion-rapida" title={{selectedFauna()!.title}}> </app-header>
 
     <div class="mountain-divider-container">
 
@@ -34,7 +34,7 @@
     <div class="tab-container">
 
 
-      <p class="tab-description">{{ selectedFauna().desc }}</p>
+      <p class="tab-description">{{ selectedFauna()!.desc }}</p>
 
       <mat-card class="ficha-actividad">
       <mat-card-header>
