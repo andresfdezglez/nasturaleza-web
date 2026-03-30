@@ -32,6 +32,13 @@ html, body {
 
 }
 
+
+mat-icon{
+  margin-right: 10px;
+  color: #034001;
+  vertical-align: middle; margin-bottom: 4px;
+}
+
 /* Contenedor circular para el logo en la barra */
 .toolbar-logo-container {
   width: 42px;

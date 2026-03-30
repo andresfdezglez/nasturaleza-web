@@ -1,0 +1,119 @@
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ESTILO BASE PARA AMBOS */
+.full-width-btn {
+  height: 54px ;
+  border-radius: 16px ;
+  font-weight: 600 ;
+  letter-spacing: 1px ;
+  text-transform: uppercase;
+  display: flex ;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+  background: #2d3001;
+  color: white ;
+}
+
+/* BOTÓN EXPLORAR: Verde Musgo Profundo con Degradado */
+.btn-nature {
+  box-shadow: 0 4px 15px rgba(27, 58, 26, 0.4) ;
+}
+
+/* BOTÓN CONTACTAR: Estilo Cristal (Glassmorphism) con borde WhatsApp */
+.btn-contact {
+  box-shadow: 0 4px 15px rgba(27, 58, 26, 0.4) ;
+}
+
+.contact-link {
+  text-decoration: none ;
+  /* Quita subrayados */
+  display: contents;
+  /* Hace que el enlace ocupe todo el ancho */
+  width: 100%;
+}
+
+/* Opcional: Cambia el icono a uno de WhatsApp si lo prefieres */
+.bi-whatsapp {
+ margin-right: 8px;
+}
+
+/* Efecto al pulsar (Active) */
+.full-width-btn:hover {
+  transform: scale(0.96);
+  filter: brightness(1.5);
+}
+
+/* Ajuste de Iconos */
+mat-icon {
+  margin-right: 8px ;
+  font-size: 20px ;
+  width: 20px ;
+  height: 20px ;
+}
+
+
+
+
+@media (max-width:800px){
+
+    
+  .button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 90%;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: auto;
+  }
+
+  /* ESTILO BASE PARA AMBOS */
+  .full-width-btn {
+    height: 54px ;
+    width: 100%;
+    border-radius: 16px ;
+    font-weight: 600 ;
+    font-size: 1rem;
+    text-transform: uppercase;
+    display: flex ;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 1,    /* 1 para que el icono esté relleno */
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+  font-size: 24px;
+}
+
+  .contact-link {
+    text-decoration: none ;
+    display: block;
+    /* Hace que el enlace ocupe todo el ancho */
+    width: 100%;
+  }
+
+  /* Efecto al pulsar (Active) */
+  .full-width-btn:active {
+    transform: scale(0.96);
+    filter: brightness(1.2);
+  }
+
+  /* Ajuste de Iconos */
+  mat-icon {
+    margin-right: 8px ;
+    font-size: 20px ;
+    width: 20px ;
+    height: 20px ;
+  }
+}

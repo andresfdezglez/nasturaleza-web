@@ -1,18 +1,21 @@
-
+h2 {
+  font-family: 'HandelsonTwo';
+  font-size: 4.5rem;
+  color: rgb(46, 82, 46);
+  line-height: 1.5;
+  text-align: center;
+  margin: 0;
+}
 
 
 /* Contenedor con altura mínima para evitar que el fondo "baile" al cambiar */
 
 .tab-description{
-  /* Crucial: convierte los "Enter" del .ts en saltos de línea reales */
-  white-space: pre-line; 
-  
-  /* Estilos para N'asturaleza */
-  line-height: 1.7; /* Da aire entre líneas para que no sea pesado leer */
-  color: black;
+  font-family: "Belleza", sans-serif;
+  font-size: 1rem ;
+  font-weight: 200;
   text-align: justify;
-  margin-bottom: 25px;
-  font-size: 1.05rem;
+  white-space: pre-line;
 }
 
 .tab-container {
@@ -23,14 +26,17 @@
   gap: 1.5rem;
   color: black;
   text-align: center;
+  background-color: #f2e8df;
 }
 
 /* Selector horizontal tipo "Pills" */
 .animal-selector {
   display: flex;
   gap: 10px;
-  padding: 10px 0;
+  padding-bottom: 20px;
+  padding-top: 20px;
   scrollbar-width: none; /* Oculta scroll en Firefox */
+  justify-content: center;
 }
 
 .animal-selector::-webkit-scrollbar { display: none; } /* Oculta scroll en Chrome */
@@ -66,46 +72,6 @@
   object-fit: cover;
 }
 
-/* Hacer la tabla transparente para ver el fondo de la App */
-.custom-table {
-  background: white; /* Fondo oscuro sutil */
-  backdrop-filter: blur(5px); /* Efecto cristal para legibilidad */
-  width: 100%;
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-/* Color de las cabeceras */
-.mat-mdc-header-cell {
-  color: black; /* Verde musgo */
-  font-family: 'Montserrat', sans-serif;
-  text-transform: uppercase;
-  font-size: 0.85rem;
-  border-bottom: 2px solid black;
-}
-
-/* Color de las celdas */
-.mat-mdc-cell {
-  color: black ;
-  font-size: 0.95rem;
-  padding: 15px 10px ;
-  border-bottom: 1px solid #593A1E ;
-}
-
-/* Quitar el fondo blanco de las filas al pasar el ratón */
-.mat-mdc-row:hover {
-  background: #6f73032d ;
-}
-
-/* Estenedor con scroll para móviles */
-.table-container {
-  width: 100%;
-  
-  border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-}
-
-
 .button-group {
   display: flex;
   flex-direction: column;
@@ -114,69 +80,81 @@
   margin-top: auto;
 }
 
+.button-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
 /* ESTILO BASE PARA AMBOS */
-/* ESTILO BASE PARA AMBOS */
-  .full-width-btn {
-    height: 54px ;
-    width: 100%;
-    border-radius: 16px ;
-    font-weight: 600 ;
-    font-size: 1rem;
-    text-transform: uppercase;
-    transition: all 0.3s ease ;
-    display: flex ;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid rgba(255, 255, 255, 0.2) ;
-  }
+.full-width-btn {
+  height: 54px ;
+  border-radius: 16px ;
+  font-weight: 600 ;
+  letter-spacing: 1px ;
+  text-transform: uppercase;
+  display: flex ;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+  background: #2d3001;
+  color: white ;
+}
 
-  /* BOTÓN CONTACTAR: Estilo Cristal (Glassmorphism) con borde WhatsApp */
-  .btn-contact {
-    background: #034001;
-    backdrop-filter: blur(10px);
-    color: white;
-    width: 100%;
-    border: 1px solid rgba(37, 211, 102, 0.5) ;
-    /* Color WhatsApp suave */
-  }
+/* BOTÓN EXPLORAR: Verde Musgo Profundo con Degradado */
+.btn-nature {
+  box-shadow: 0 4px 15px rgba(27, 58, 26, 0.4) ;
+}
 
-  .contact-link {
-    text-decoration: none ;
-    /* Quita subrayados */
-    display: block;
-    /* Hace que el enlace ocupe todo el ancho */
-    width: 100%;
-  }
+/* BOTÓN CONTACTAR: Estilo Cristal (Glassmorphism) con borde WhatsApp */
+.btn-contact {
+  box-shadow: 0 4px 15px rgba(27, 58, 26, 0.4) ;
+}
 
-  /* Opcional: Cambia el icono a uno de WhatsApp si lo prefieres */
-  .btn-contact mat-icon {
-    color: white;
-  }
+.contact-link {
+  text-decoration: none ;
+  /* Quita subrayados */
+  display: contents;
+  /* Hace que el enlace ocupe todo el ancho */
+  width: 100%;
+}
 
-  /* Efecto al pulsar (Active) */
-  .full-width-btn:active {
-    transform: scale(0.96);
-    filter: brightness(1.2);
-  }
+/* Opcional: Cambia el icono a uno de WhatsApp si lo prefieres */
+.bi-whatsapp {
+ margin-right: 8px;
+}
 
-  /* Ajuste de Iconos */
-  mat-icon {
-    margin-right: 8px ;
-    font-size: 20px ;
-    width: 20px ;
-    height: 20px ;
-  }
+/* Efecto al pulsar (Active) */
+.full-width-btn:hover {
+  transform: scale(0.96);
+  filter: brightness(1.5);
+}
 
+/* Ajuste de Iconos */
+mat-icon {
+  margin-right: 8px ;
+  font-size: 20px ;
+  width: 20px ;
+  height: 20px ;
+}
+
+/* Cambia el color de la barra inferior (indicador) */
+
+/* Cambia el color del "ripple" (el efecto al hacer clic) */
+:host ::ng-deep .mat-mdc-tab .mat-ripple-element {
+  background-color: #034001 !important; 
+}
   
 /* 1. Cambiar el color del TEXTO de la pestaña activa */
 ::ng-deep .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label {
-  color: #034001 ;;  /* Tu verde de marca */
+  color: #034001 !important;  /* Tu verde de marca */
   font-weight: 600;
 }
 
 /* 2. Cambiar el color de la BARRITA inferior (Indicador) */
 ::ng-deep .mat-mdc-tab-group.mat-primary .mdc-tab-indicator__content--underline {
-  border-color: #034001 ; /* El mismo verde */
+  border-color: #034001 !important; /* El mismo verde */
   border-width: 3px; /* Un poco más gruesa para que resalte */
 }
 
@@ -192,28 +170,43 @@
 
 /* --- CARRUSEL --- */
 /* --- CONTENEDOR PRINCIPAL --- */
+/* --- CARRUSEL --- */
+
+/* 1. EL MARCO (La caja de arena #f2e8df) */
 .carousel-wrapper {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 100%;
-  max-width: 1000px; 
-  margin: auto;
+  max-width: 1100px; /* O el ancho que quieras que ocupe en pantalla */
+  margin: 0 auto;
+  background-color: #f2e8df;
+  padding: 40px 60px; /* Espacio para que respiren las cartas y botones */
+  border-radius: 25px;
+  overflow: visible; /* IMPORTANTE: Deja que los botones sobresalgan si quieres */
 }
 
-/* --- EL TRACK (CARRUSEL) --- */
+/* 2. LA VENTANA (Lo que recorta las 5 reviews) */
+.carousel-container {
+  width: 100%; 
+  overflow: hidden; /* ESTE es el que corta las 5 reviews para que solo se vean 3 */
+  position: relative;
+}
+
+/* 3. EL CARRIL (Donde viven las 5 reviews en fila) */
 .carousel-track {
   display: flex;
-  
-  scroll-snap-type: x mandatory;
-  gap: 20px; /* Más espacio entre fotos */
-  scrollbar-width: none;
-  padding: 20px 0; /* Espacio para la sombra de hover */
-  -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
+  flex-direction: row;
+  flex-wrap: nowrap;     /* PROHIBIDO que las reviews bajen a otra línea */
+  gap: 20px;
+  padding: 20px 5px;     /* Espacio para sombras */
+  overflow-x: auto;      /* Permite que el contenido sea más ancho que la ventana */
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Esconde la barra */
+  border-radius: 20px;
 }
 
-.carousel-track::-webkit-scrollbar { display: none; }
+.carousel-track::-webkit-scrollbar {
+  display: none;
+}
 
 /* --- CADA FOTO (ITEM) --- */
 .carousel-item-ruta {
@@ -250,6 +243,133 @@
   will-change: transform;
 }
 
+
+
+/* --- CONTENEDOR PRINCIPAL DE LOS PICOS --- */
+.mountain-divider-container {
+  position: relative;
+  width: 100%;
+  
+  /* AJUSTE DE ALTURA: Define cuánta "montaña" se ve */
+  height: 180px; 
+  
+  overflow: hidden;
+  line-height: 0; /* Elimina espacio fantasma abajo */
+  
+  /* Solapamiento de seguridad para que la onda de Diego no choque */
+  margin-top: -100px; 
+  z-index: 5;
+}
+
+/* --- ESTILOS COMUNES PARA LAS CAPAS --- */
+.mountain-layer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.mountain-layer svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* --- CAPA 1: PICOS LEJANOS (Detrás) --- */
+.layer-back {
+  fill: #2d5a27; /* Verde Musgo Oscuro */
+  opacity: 0.4; /* Opacidad para simular la lejanía */
+  z-index: 1;
+  overflow: hidden;
+  /* Pequeño movimiento para asimetría */
+  transform: translateX(-5%); 
+
+}
+
+/* --- CAPA 2: PICOS FRONTALES (Delante) --- */
+.layer-front {
+  fill: #f2e8df; /* Tu Verde Sólido para N'asturaleza */
+  z-index: 2;
+  overflow: hidden;
+}
+
+
+/* Contenedor principal de la tarjeta de Material */
+.ficha-actividad {
+  width: 60%;
+  margin: 2rem auto;
+  border-radius: 20px;
+  border: 1px solid #e8e2d8;
+  background-color: #fdfcf9; /* Crema suave */
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05) !important;
+}
+
+mat-card-header{
+  justify-content: center;
+}
+
+mat-card-title {
+  font-family: 'HandelsonTwo';
+  font-weight: 700 !important;
+  color: rgb(46, 82, 46);
+  letter-spacing: 1px;
+  text-align: center
+}
+
+.info-grid {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 0;
+}
+
+.info-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #555;
+  font-weight: 500;
+}
+
+/* Colores de los iconos de Material */
+.icon-gold { color: #bc9d5d; }
+.icon-gold-light { color: #d4c197; }
+.icon-green { color: #2e522e; }
+
+.info-value {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Resaltado para los precios */
+.highlight {
+  font-family: 'Belleza', serif;
+  font-size: 1rem;
+  color: #2e522e;
+}
+
+.iva-inc {
+  padding: 1rem;
+  font-size: 0.8rem;
+  color: #888;
+  text-align: center;
+  font-style: italic;
+}
+
+/* Ajuste para que la línea divisoria de Material no pegue en los bordes */
+mat-divider {
+  position: relative !important;
+}
+
+
 /* EFECTO DE HOVER (Solo en PC) */
 @media (min-width: 900px) {
   .carousel-item-ruta:hover {
@@ -279,46 +399,143 @@
   object-position: center;
 }
 
-/* --- FLECHAS DE NAVEGACIÓN (Glassmorphism) --- */
+/* --- BOTONES DE NAVEGACIÓN --- */
 .nav-btn {
-  position: absolute;
-  z-index: 10;
+  position: absolute; /* Se posicionan respecto al .carousel-wrapper */
+  top: 50%;           /* Los centramos verticalmente */
+  transform: translateY(-50%); /* Ajuste fino para centrado exacto */
+  z-index: 20;        /* Por encima de todo */
   
-  /* EFECTO CRISTAL (Glassmorphism) */
-  background: rgba(45, 90, 39, 0.6) ; /* Verde translúcido */
-  backdrop-filter: blur(8px); /* Desenfoque del fondo */
-  
-  color: black ;
-  border: 1px solid rgba(163, 193, 173, 0.3) ;
-  border-radius: 50% ;
-  width: 50px ;
-  height: 50px ;
-  display: none; /* Ocultas en móvil */
-  
-  /* Animación al pulsar */
-  transition: background 0.3s ease, transform 0.2s ease ;
+  /* Estilo visual para que resalten */
+  background-color: white !important;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.nav-btn:hover {
-  background: rgba(45, 90, 39, 0.9) ; /* Más opaco al hover */
-  transform: scale(1.1);
+/* Pegados a los extremos del .carousel-wrapper */
+.nav-btn.left {
+  left: 10px; 
 }
 
-.nav-btn.left { left: -60px; }
-.nav-btn.right { right: -60px; }
+.nav-btn.right {
+  right: 10px; 
+}
+
 
 /* --- RESPONSIVE PARA PC --- */
 @media (min-width: 900px) {
-  .nav-btn {
-    display: flex; /* Aparecen las flechas */
-  }
+
 
   .carousel-item-foto, .carousel-item-ruta {
-    flex: 0 0 28%; /* Se ven 3 fotos a la vez, tamaño ajustado */
-    aspect-ratio: 3 / 4; /* Formato más estilizado en PC */
+    flex: 0 0 50%; 
+    aspect-ratio: 3 / 4;
   }
   
   .carousel-wrapper {
     padding: 0 30px;
   }
 }
+
+@media(max-width:800px){
+  .tab-description {
+  font-family: "Belleza", sans-serif;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  text-align: justify;
+}
+
+/************* CARRUSEL ************/
+
+  .carousel-wrapper {
+    padding: 20px 0 !important;
+    overflow: visible !important; /* Permitimos que el contenido fluya */
+    background-color: transparent; 
+    display: block; /* Cambiamos flex por block para evitar estiramientos raros */
+    margin-top: -40px;
+  }
+
+  .carousel-container {
+    overflow: visible; /* Liberamos la ventana en móvil */
+  }
+
+  /* 2. El track: El motor del scroll */
+  .carousel-track {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important; /* PROHIBIDO saltar de línea */
+    overflow-x: scroll !important; /* Forzamos el scroll manual */
+    -webkit-overflow-scrolling: touch; /* Scroll suave tipo iOS */
+    touch-action: pan-x; /* Permite solo movimiento horizontal */
+    gap: 15px;
+    padding: 30px 30px; /* Padding lateral para que la 1ª carta no pegue al borde */
+    margin: 10px;
+    scroll-snap-type: x mandatory;
+    width: auto;
+  }
+
+    .nav-btn {
+    display: none !important; /* Aparecen las flechas */
+  }
+
+  .ficha-actividad {
+  width: 90%;
+}
+
+
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 90%;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: auto;
+  }
+
+  /* ESTILO BASE PARA AMBOS */
+  .full-width-btn {
+    height: 54px ;
+    width: 100%;
+    border-radius: 16px ;
+    font-weight: 600 ;
+    font-size: 1rem;
+    text-transform: uppercase;
+    display: flex ;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 1,    /* 1 para que el icono esté relleno */
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+  font-size: 24px;
+}
+
+  .contact-link {
+    text-decoration: none ;
+    display: block;
+    /* Hace que el enlace ocupe todo el ancho */
+    width: 100%;
+  }
+
+  /* Efecto al pulsar (Active) */
+  .full-width-btn:active {
+    transform: scale(0.96);
+    filter: brightness(1.2);
+  }
+
+  /* Ajuste de Iconos */
+  mat-icon {
+    margin-right: 8px ;
+    font-size: 20px ;
+    width: 20px ;
+    height: 20px ;
+  }
+} 

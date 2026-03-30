@@ -6,9 +6,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { AfterViewInit, Component, ElementRef, inject, OnInit, PLATFORM_ID, signal, ViewChild } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Router } from '@angular/router';
 import { DatabaseService } from '../../services/database';
 import { Header } from '../header/header';
+import { ButtonGroup } from '../button-group/button-group';
+import { Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -20,14 +22,15 @@ import { Header } from '../header/header';
     MatTableModule,
     MatIconModule,
     MatDividerModule,
-    Header
+    Header,
+    ButtonGroup,
+    RouterModule
   ],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
 export class Home implements AfterViewInit {
 
-  private router = inject(Router)
   @ViewChild('seccionSobreMi') seccion!: ElementRef;
   @ViewChild('carouselTrack', { static: false }) carouselTrack?: ElementRef<HTMLElement>;
 
@@ -90,7 +93,7 @@ export class Home implements AfterViewInit {
   isMobile = signal<boolean>(false);
   listaReviews = signal<any[]>([]);
 
-  constructor(private supabaseService: DatabaseService) { }
+  constructor(private supabaseService: DatabaseService, private router: Router) { }
 
   ngOnInit(): void {
     // Escuchamos el cambio de tamaño de pantalla
@@ -103,10 +106,6 @@ export class Home implements AfterViewInit {
     this.loadReviews();
   }
 
-  toActivities() {
-    this.router.navigate(['/activities'])
-  }
-
   async loadReviews() {
     try {
       const data = await this.supabaseService.getTopReviews();
@@ -117,9 +116,15 @@ export class Home implements AfterViewInit {
     }
   }
 
+  toActivities(nameTab: string){
+
+    this.router.navigate(['/activities'],
+      {queryParams:{tab : nameTab}}
+    )
+  }
+
+
 scroll(direction: 'left' | 'right') {
-  console.log("HOLA");
-  
   // Si por lo que sea no detecta el track, salimos de la función sin error
   if (!this.carouselTrack || !this.carouselTrack.nativeElement) {
     console.warn("El track aún no está disponible");

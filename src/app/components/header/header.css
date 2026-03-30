@@ -30,20 +30,7 @@
   color: white;
   margin-top: -30%;
 
-  /* Nombre de la animación que definimos arriba */
-  animation-name: fadeInTexto;
-  
-  /* Duración total del fundido (1.5s lo hace místico y suave) */
-  animation-duration: 1.5s;
-  
-  /* Tipo de curva de velocidad ('ease-out' empieza rápido y frena suave) */
-  animation-timing-function: ease-out;
-  
-  /* RETRASO DE ENTRADA: Espera 0.5s para que el vídeo ya esté rodando */
-  animation-delay: 2s;
-  
-  /* IMPORTANTE: Mantiene el estado final (visible) tras la animación */
-  animation-fill-mode: forwards; 
+  animation: fadeInTexto 1.5s ease-out 2s forwards;
   
   /* OPCIONAL: Empezar invisible para evitar el 'flash' inicial */
   opacity: 0;
@@ -94,11 +81,42 @@
     opacity: 0;
     transform: translateY(20px); 
   
-  }
+  } 
   
   100% {
     /* Estado final: Visible y en su posición correcta */
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+@media (max-width: 880px) {
+
+    .header-image-container {
+        aspect-ratio: 5 / 4; 
+    }
+
+  .title h1 {
+    font-size: 1.3rem ;
+    /* Título más pequeño */
+    margin-bottom: 10px;
+  }
+
+  .title{
+    width: 70%;
+  }
+
+
+  
+}
+
+/* Tu animación fadeInTexto se mantiene igual */
+
+.animacion-lenta {
+  animation: fadeInTexto 1.5s ease-out 2s forwards;
+}
+
+/* Esta es la que se usa tras el clic en Activities */
+.animacion-rapida {
+  animation: fadeInTexto 1.5s ease-out 0.5s forwards !important;
 }

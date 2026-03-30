@@ -11,6 +11,23 @@
 
 }
 
+h2 {
+  font-family: 'HandelsonTwo';
+  font-size: 4.5rem;
+  color: rgb(46, 82, 46);
+  line-height: 1.5;
+  text-align: center;
+  margin: 0;
+}
+
+.title p {
+  font-size: 1.5rem;
+  opacity: 0.9;
+  margin-bottom: 30px;
+}
+
+/*********** SOBRE MI ********/
+
 /* Se activa solo cuando llegamos con el scroll */
 .about-me-section.visible .about-text-area {
   animation-name: fadeLeftTexto;
@@ -47,23 +64,6 @@
 
   opacity: 0;
 }
-
-h2 {
-  font-family: 'HandelsonTwo';
-  font-size: 4.5rem;
-  color: rgb(46, 82, 46);
-  line-height: 1.5;
-  text-align: center;
-  margin: 0;
-}
-
-.title p {
-  font-size: 1.5rem;
-  opacity: 0.9;
-  margin-bottom: 30px;
-}
-
-/*********** SOBRE MI ********/
 
 .about-me-section {
   display: flex;
@@ -174,64 +174,6 @@ h2 {
 }
 
 
-.button-group {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-}
-
-/* ESTILO BASE PARA AMBOS */
-.full-width-btn {
-  height: 54px ;
-  border-radius: 16px ;
-  font-weight: 600 ;
-  letter-spacing: 1px ;
-  text-transform: uppercase;
-  display: flex ;
-  align-items: center;
-  justify-content: center;
-  width: 30%;
-  background: #2d3001;
-  color: white ;
-}
-
-/* BOTÓN EXPLORAR: Verde Musgo Profundo con Degradado */
-.btn-nature {
-  box-shadow: 0 4px 15px rgba(27, 58, 26, 0.4) ;
-}
-
-/* BOTÓN CONTACTAR: Estilo Cristal (Glassmorphism) con borde WhatsApp */
-.btn-contact {
-  box-shadow: 0 4px 15px rgba(27, 58, 26, 0.4) ;
-}
-
-.contact-link {
-  text-decoration: none ;
-  /* Quita subrayados */
-  display: contents;
-  /* Hace que el enlace ocupe todo el ancho */
-  width: 100%;
-}
-
-/* Opcional: Cambia el icono a uno de WhatsApp si lo prefieres */
-.btn-contact mat-icon {
-  color: white;
-}
-
-/* Efecto al pulsar (Active) */
-.full-width-btn:hover {
-  transform: scale(0.96);
-  filter: brightness(1.5);
-}
-
-/* Ajuste de Iconos */
-mat-icon {
-  margin-right: 8px ;
-  font-size: 20px ;
-  width: 20px ;
-  height: 20px ;
-}
 /* ########## RESEÑAS ############# */
 
 .stars-selector {
@@ -249,12 +191,6 @@ mat-icon {
   border: 0;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   margin: 16px 0;
-}
-
-h3 {
-  color: black;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-  margin-bottom: 16px;
 }
 
 .activities{
@@ -277,22 +213,6 @@ h3 {
   padding-top: 5%;
   padding-bottom: 5%;
   justify-content: center;
-}
-
-/* Contenedor de Reseñas con SCROLL */
-.list-container {
-  flex-grow: 1; /* Ocupa todo el espacio restante */
-   /* Activa el scroll vertical solo aquí */
-  padding-right: 10px; /* Espacio para que el scroll no pise las tarjetas */
-}
-
-/* Estilización del scroll (Chrome/Safari) */
-.list-container::-webkit-scrollbar {
-  width: 6px;
-}
-.list-container::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 10px;
 }
 
 /* Tarjetas de Reseña */
@@ -376,245 +296,200 @@ h3 {
     /* Crucial: para que el padding no sume altura extra */
   }
 
-  /* 2. ACHICAR EL CONTENIDO CENTRAL (Donde suele sobrar espacio) */
-
-
-  /* 3. LIMITAR EL TEXTO (El culpable número 1 del scroll) */
   .about-p {
     font-size: 0.8rem ;
-  }
-
-  .title {
-    width: 100%;
-    text-align: center;
-  }
-
-  .title h1 {
-    font-size: 1.3rem ;
-    /* Título más pequeño */
-    margin-bottom: 10px;
   }
   
   h2{
     font-size: 3rem ;
   }
 
-  .button-group {
+
+    /************ FRASE ***********/
+
+  .nature-text {
+    width: 100%;
+    padding: 20px 0px;
     display: flex;
-    flex-direction: column;
-    gap: 12px;
-    width: 90%;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin: auto;
+    margin-top: -10%;
+    justify-content: center; /* Centra horizontalmente el contenedor */
+    align-items: center;     /* Centra verticalmente si hay altura */
+    background-color: #f2e8df; /* El color arena que usamos antes */
+    text-align: center;      /* Centra el texto por dentro */
   }
 
-  /* ESTILO BASE PARA AMBOS */
-  .full-width-btn {
-    height: 54px ;
-    width: 100%;
-    border-radius: 16px ;
-    font-weight: 600 ;
-    font-size: 1rem;
-    text-transform: uppercase;
-    display: flex ;
-    align-items: center;
-    justify-content: center;
+  .nature-text p {
+    /* Usamos tu nueva fuente HandelsonTwo o Caveat aquí */
+    font-family: 'HandelsonTwo', cursive; 
+    font-size: 1.5rem;
+    color: #6F7303;          /* El verde de N'asturaleza */
+    margin: 0;
+    line-height: 1.4;
   }
 
-  .material-symbols-outlined {
-  font-variation-settings:
-    'FILL' 1,    /* 1 para que el icono esté relleno */
-    'wght' 400,
-    'GRAD' 0,
-    'opsz' 24;
-  font-size: 24px;
-}
-
-  .contact-link {
-    text-decoration: none ;
-    display: block;
-    /* Hace que el enlace ocupe todo el ancho */
-    width: 100%;
-  }
-
-  /* Efecto al pulsar (Active) */
-  .full-width-btn:active {
-    transform: scale(0.96);
-    filter: brightness(1.2);
-  }
-
-  /* Ajuste de Iconos */
-  mat-icon {
-    margin-right: 8px ;
-    font-size: 20px ;
-    width: 20px ;
-    height: 20px ;
+  .phrase-part {
+    display: block;          /* Fuerza el salto de línea siempre */
+    width: 100%;             /* Asegura que ocupe todo el ancho para centrar */
   }
 
   /************ FRASE ***********/
 
-.nature-text {
-  width: 100%;
-  padding: 20px 0px;
-  display: flex;
-  margin-top: -10%;
-  justify-content: center; /* Centra horizontalmente el contenedor */
-  align-items: center;     /* Centra verticalmente si hay altura */
-  background-color: #f2e8df; /* El color arena que usamos antes */
-  text-align: center;      /* Centra el texto por dentro */
-}
 
-.nature-text p {
-  /* Usamos tu nueva fuente HandelsonTwo o Caveat aquí */
-  font-family: 'HandelsonTwo', cursive; 
-  font-size: 1.5rem;
-  color: #6F7303;          /* El verde de N'asturaleza */
-  margin: 0;
-  line-height: 1.4;
-}
+    /*********** SOBRE MI ********/
 
-.phrase-part {
-  display: block;          /* Fuerza el salto de línea siempre */
-  width: 100%;             /* Asegura que ocupe todo el ancho para centrar */
-}
-
-/************ FRASE ***********/
-
-
-  /*********** SOBRE MI ********/
-
-.about-me-section {
-  display: flex;
-  flex-direction: column; 
-  justify-content: center;
-  justify-items:center;
-  width: 100%;
-  min-height: 80vh;
-  margin: 0 auto;
-  overflow: hidden;
-  background-color: #6F7303;
-  position: relative;
-  z-index: 6;
-  margin-top: -100px;
-  padding-bottom: 10px;
-  padding-left: 5%;
-  padding-right: 5%;
-}
-
-.svg-importado {
-  width: 100%;         /* Se expande a todo ese 60% */
-  height: 100%;  
-  margin-left: 5%;
-}
-
-/* ÁREA DE TEXTO: El compañero */
-.about-text-area {
-  width:100%;
-  height: 100%;
-  color: white;
-  justify-content: center;
-}
-
-.about-text-area h2 {
-  font-family: 'HandelsonTwo';
-  color: #3a3939;
-}
-
-.about-text-area p.about-description {
-  font-family: "Belleza", sans-serif;
-  font-size: 0.75rem;
-  line-height: 1.5;
-  text-align: justify;
-}
- /********************** FIN *****************/
-/******* ACTIVIDADES ****************/
-.grid-layout {
+  .about-me-section {
     display: flex;
     flex-direction: column; 
-    align-items: center;    
-    justify-content: center;            
+    justify-content: center;
+    justify-items:center;
     width: 100%;
-    gap: 0px;
+    min-height: 80vh;
+    margin: 0 auto;
+    overflow: hidden;
+    background-color: #6F7303;
+    position: relative;
+    z-index: 6;
+    margin-top: -100px;
+    padding-bottom: 10px;
+    padding-left: 5%;
+    padding-right: 5%;
   }
 
-  /* 2. El enlace debe ser un bloque que ocupe todo el ancho */
-  .activity-link {
-    display: flex;
-    justify-content: center; /* Centra el SVG dentro del enlace */
-    align-items: center;
-    width: 100%;            /* Ocupa todo el ancho de la pantalla */
-    margin: 0;              /* Limpiamos márgenes */
-    margin-top: -5%;
+  .svg-importado {
+    width: 100%;         /* Se expande a todo ese 60% */
+    height: 100%;  
+    margin-left: 5%;
   }
 
-  /* 3. El SVG con tamaño visible */
-  .svg-boton {
-    /* Usamos un porcentaje del ancho de pantalla (vw) para que sea "grande" */
-    width: 70vw;            /* 60% del ancho del móvil */
-    max-width: 250px;       /* Que no se pase de frenada en tablets */
-    height: auto;
-    display: block;
-    
-    /* Eliminamos cualquier float o alineación extra */
-    float: none;
-    margin: 0 auto;         /* Refuerzo de centrado */
-    
-    /* Sombra optimizada para móvil */
-    filter: drop-shadow(0px 8px 12px rgba(0, 0, 0, 0.15));
+  /* ÁREA DE TEXTO: El compañero */
+  .about-text-area {
+    width:100%;
+    height: 100%;
+    color: white;
+    justify-content: center;
   }
 
-/************* CARRUSEL ************/
+  .about-text-area h2 {
+    font-family: 'HandelsonTwo';
+    color: #3a3939;
+  }
+
+  .about-text-area p.about-description {
+    font-family: "Belleza", sans-serif;
+    font-size: 0.75rem;
+    line-height: 1.5;
+    text-align: justify;
+  }
+  /********************** FIN *****************/
+  /******* ACTIVIDADES ****************/
+  .grid-layout {
+      display: flex;
+      flex-direction: column; 
+      align-items: center;    
+      justify-content: center;            
+      width: 100%;
+      gap: 0px;
+    }
+
+    /* 2. El enlace debe ser un bloque que ocupe todo el ancho */
+    .activity-link {
+      display: flex;
+      justify-content: center; /* Centra el SVG dentro del enlace */
+      align-items: center;
+      width: 100%;            /* Ocupa todo el ancho de la pantalla */
+      margin: 0;              /* Limpiamos márgenes */
+      margin-top: -5%;
+      text-decoration: none;
+    }
+
+    /* 3. El SVG con tamaño visible */
+    .svg-boton {
+      /* Usamos un porcentaje del ancho de pantalla (vw) para que sea "grande" */
+      width: 70vw;            /* 60% del ancho del móvil */
+      max-width: 250px;       /* Que no se pase de frenada en tablets */
+      height: auto;
+      display: block;
+      
+      /* Eliminamos cualquier float o alineación extra */
+      float: none;
+      margin: 0 auto;         /* Refuerzo de centrado */
+      
+      /* Sombra optimizada para móvil */
+      filter: drop-shadow(0px 8px 12px rgba(0, 0, 0, 0.15));
+    }
+
+      /* 3. El SVG con tamaño visible */
+    .svg-boton:hover {
+      /* Usamos un porcentaje del ancho de pantalla (vw) para que sea "grande" */
+      transform: none !important;
+      filter: none !important;
+    }
 
   .carousel-wrapper {
-    padding: 20px 0 !important;
-    overflow: visible !important; /* Permitimos que el contenido fluya */
-    background-color: transparent; 
-    display: block; /* Cambiamos flex por block para evitar estiramientos raros */
-  }
+  padding: 20px 0 !important;
+  overflow: visible !important; 
+  background-color: transparent; 
+  display: block; 
+}
 
-  .carousel-container {
-    overflow: visible; /* Liberamos la ventana en móvil */
-  }
+.carousel-container {
+  overflow: visible; 
+}
 
-  /* 2. El track: El motor del scroll */
-  .carousel-track {
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: nowrap !important; /* PROHIBIDO saltar de línea */
-    overflow-x: scroll !important; /* Forzamos el scroll manual */
-    -webkit-overflow-scrolling: touch; /* Scroll suave tipo iOS */
-    touch-action: pan-x; /* Permite solo movimiento horizontal */
-    gap: 15px;
-    padding: 30px 30px; /* Padding lateral para que la 1ª carta no pegue al borde */
-    margin: 10px;
-    scroll-snap-type: x mandatory;
-    width: auto;
-  }
-
-  /* 3. Las cartas: Deben tener un tamaño fijo relativo al visor */
-  .carousel-item {
-    flex: 0 0 80vw; /* 80% del ancho de la pantalla */
-    width: 80vw;
-    min-width: 280px;
-    scroll-snap-align: center;
-    list-style: none;
-  }
-
-  /* 4. Escondemos botones definitivamente */
-  .nav-btn {
-    display: none !important;
-  }
-
-  .header-image-container {
-
-    aspect-ratio: 5 / 4; 
-  }
+/* 2. El track: El motor del scroll */
+.carousel-track {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important; 
+  overflow-x: scroll !important; 
+  -webkit-overflow-scrolling: touch; 
   
-  /* Ajustamos el gap del wrapper para que la imagen no quede pegada a los botones */
-  .main-wrapper {
-    gap: 80px; /* Reducimos el gap masivo en móvil */
-  }
+  /* CAMBIO CLAVE: 'manipulation' permite scroll vertical y horizontal sin bloqueos */
+  touch-action: manipulation !important; 
+  
+  gap: 15px;
+  padding: 30px 30px; 
+  margin: 10px;
+  scroll-snap-type: x mandatory;
+  width: auto;
+
+  /* Ocultar la barra de scroll para estética N'asturaleza */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.carousel-track::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+/* 3. Las cartas */
+.carousel-item {
+  flex: 0 0 80vw; 
+  width: 80vw;
+  min-width: 280px;
+  scroll-snap-align: center;
+  list-style: none;
+  
+  /* Reforzamos que la carta no secuestre el scroll vertical */
+  touch-action: manipulation !important;
+}
+
+    /* 4. Escondemos botones definitivamente */
+    .nav-btn {
+      display: none !important;
+    }
+
+
+    
+    /* Ajustamos el gap del wrapper para que la imagen no quede pegada a los botones */
+    .main-wrapper {
+      gap: 80px; /* Reducimos el gap masivo en móvil */
+    }
+
+      .mountain-divider-container {
+      height: 100px; /* Reducimos la altura en móvil */
+      margin-top: -60px;
+    }
 }
 
 @keyframes fadeLeftTexto {
@@ -743,15 +618,6 @@ h3 {
   overflow: hidden;
 }
 
-
-/* OPTIMIZACIÓN PARA MÓVIL */
-@media (max-width: 768px) {
-  .mountain-divider-container {
-    height: 100px; /* Reducimos la altura en móvil */
-    margin-top: -60px;
-  }
-}
-
 /* --------- ACTIVIDADES --------- */
 
 .activity-link {
@@ -863,130 +729,4 @@ h3 {
 .example-header-image {
   background-image: url('/assets/images/logo_grande.webp');
   background-size: cover;
-}
-
-
-/********** FOOTER ************/
-
-.main-footer {
-  background-color: #2d3001; /* Un verde oliva muy oscuro y elegante */
-  color: #f2e8df;            /* Crema para el texto */
-  padding: 60px 20px 20px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.footer-container {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 40px;
-  border-bottom: 1px solid rgba(242, 232, 223, 0.1);
-  padding-bottom: 40px;
-}
-
-.footer-section h4 {
-  color: #bc9d5d; /* Dorado tierra para los títulos */
-  margin-bottom: 20px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 0.9rem;
-}
-
-/* Marca / Logo */
-.n-logo {
-  font-family: 'HandelsonTwo', cursive; /* Tu fuente rústica */
-  font-size: 2rem;
-  margin-bottom: 10px;
-  color: #f2e8df;
-}
-
-.footer-section p {
-  line-height: 1.6;
-  font-size: 0.95rem;
-  opacity: 0.8;
-}
-
-/* Enlaces */
-.footer-section ul {
-  list-style: none;
-  padding: 0;
-}
-
-.footer-section ul li {
-  margin-bottom: 10px;
-}
-
-.footer-section ul li a {
-  color: #f2e8df;
-  text-decoration: none;
-  opacity: 0.7;
-  transition: opacity 0.3s;
-}
-
-.footer-section ul li a:hover {
-  opacity: 1;
-  color: #bc9d5d;
-}
-
-/* Iconos Sociales */
-.social-icons {
-  display: flex;
-  gap: 15px;
-}
-
-.social-icons a {
-  color: #2d3001;
-  background-color: #f2e8df;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.social-icons a:hover {
-  transform: translateY(-5px);
-  background-color: #bc9d5d;
-}
-
-/* Parte Inferior (Copyright) */
-.footer-bottom {
-  max-width: 1100px;
-  margin: 20px auto 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  font-size: 0.85rem;
-  opacity: 0.6;
-}
-
-.legal-links a {
-  color: #f2e8df;
-  text-decoration: none;
-  margin-left: 20px;
-}
-
-/* --- RESPONSIVE --- */
-@media (max-width: 768px) {
-  .footer-container {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .social-icons {
-    justify-content: center;
-  }
-
-  .footer-bottom {
-    flex-direction: column;
-    gap: 15px;
-    text-align: center;
-  }
-
-  .legal-links a {
-    margin: 0 10px;
-  }
 }

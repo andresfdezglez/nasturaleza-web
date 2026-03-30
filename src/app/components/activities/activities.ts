@@ -1,11 +1,16 @@
-import { Component, ElementRef, inject, OnDestroy, OnInit, signal, ViewChild } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { AfterViewInit, Component, ElementRef, inject, OnDestroy, OnInit, PLATFORM_ID, signal, ViewChild } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
 import { MatRippleModule } from '@angular/material/core';
 import { MatTableModule } from '@angular/material/table';
 import { Header } from '../header/header'; 
-import { BackgroundService } from '../../services/background-service';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router'; 
+import { filter } from 'rxjs';
+import { AnimationService } from '../../services/animation-service';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
 // Definimos la estructura para evitar errores de tipos
 interface Precio {
   option: string;
@@ -25,6 +30,7 @@ interface Animal {
 
 interface Seccion {
   id: string;
+  imagen: string;
   titulo: string;
   imagenes: string[]; // Array de 6 fotos
   descripcion: string;
@@ -34,20 +40,71 @@ interface Seccion {
 @Component({
   selector: 'app-servicios-fauna',
   standalone: true,
-  imports: [CommonModule, MatTabsModule, MatIconModule, MatRippleModule, MatTableModule, Header],
+  imports: [CommonModule, MatTabsModule, MatIconModule, MatRippleModule, MatTableModule, Header, MatButtonModule, MatCardModule, MatDividerModule],
   templateUrl: './activities.html',
   styleUrls: ['./activities.css']
 })
-export class Activities{
+export class Activities implements OnInit, AfterViewInit{
 
   @ViewChild('carouselTrack') carouselTrack!: ElementRef;
   // Definimos las columnas que se verán en la tabla
   displayedColumns: string[] = ['opcion', 'duracion', 'precio'];
+  private platformId = inject(PLATFORM_ID);
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+  private animService = inject(AnimationService);
+  
+  // Signal o variable para controlar el índice de la pestaña activa
+  selectedTabIndex = signal(0);
 
+  // Mapa para convertir nombres de texto a índices numéricos
+  tabMap: { [key: string]: number } = {
+    'Avistamiento': 0,
+    'Rutas': 1,
+    'Fotografía': 2
+  };
+
+  ngOnInit() {
+    // Leemos los queryParams al iniciar
+    this.route.queryParams.subscribe(params => {
+      const tabName = params['tab'];
+      if (tabName && this.tabMap[tabName] !== undefined) {
+        this.selectedTabIndex.set(this.tabMap[tabName]);
+      }
+    });
+
+
+    // Escuchamos cuando la navegación termine con éxito
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      this.scrollToTop();
+    });
+    
+    // También lo ejecutamos al cargar por primera vez
+    this.scrollToTop();
+  }
+  private scrollToTop() {
+    if (isPlatformBrowser(this.platformId)) {
+    // Opción para Window estándar
+    window.scrollTo(0, 0);
+
+    // Opción para el contenido de Material Sidenav (si lo usas)
+    const mainContent = document.querySelector('.mat-sidenav-content');
+    if (mainContent) {
+      mainContent.scrollTop = 0;
+    }
+  }
+  }
+
+    ngAfterViewInit(){
+       this.animService.disparar()
+    }
 
 readonly rutas: Seccion = {
   id: 'rutas-montaña',
-  titulo: 'Senderismo Interpretativo',
+  titulo: 'Rutas interpretativas del medio natural',
+  imagen: 'assets/images/rutas/ruta2.webp',
   imagenes: [
     'assets/images/rutas/ruta1.webp', 'assets/images/rutas/ruta2.webp', 'assets/images/rutas/ruta3.webp',
     'assets/images/rutas/ruta4.webp', 'assets/images/rutas/ruta5.webp'
@@ -67,6 +124,7 @@ Una actividad perfecta para disfrutar en familia, aprender juntos y vivir la nat
 readonly fotografia: Seccion = {
   id: 'foto-natura',
   titulo: 'Fotografía de Naturaleza',
+  imagen: 'assets/images/foto1.jpeg',
   imagenes: [
     'assets/images/foto1.jpeg', 'assets/images/foto2.jpg', 'assets/images/foto3.jpg',
     'assets/images/foto4.jpg', 'assets/images/foto5.JPG', 'assets/images/foto6.jpg'
@@ -131,8 +189,8 @@ Una actividad emocionante y enriquecedora que te conectará con la esencia más 
     {
       id: 'berrea',
       name: 'Berrea',
-      title: 'La Berrea del Ciervo en el Paraíso',
-      video: 'assets/video/berrea-ciervo.mp4',
+      title: 'La Berrea del Ciervo',
+      video: 'assets/videos/berrea.mov',
       poster: 'assets/images/1765627550958.webp',
       desc: `Vive uno de los espectáculos naturales más sobrecogedores del otoño: la berrea del ciervo en los paisajes salvajes de Asturias. Durante esta experiencia nos adentraremos en su hábitat al amanecer o al atardecer, realizando esperas en puntos estratégicos para escuchar y, con suerte, observar a los grandes machos en pleno periodo de celo.
 
@@ -156,6 +214,7 @@ Una experiencia sensorial única, donde sonido, paisaje y emoción se combinan p
   // 3. MÉTODOS
   selectAnimal(animal: Animal) {
     this.selectedFauna.set(animal);
+    this.animService.disparar()
   }
 
   scroll(direction: 'left' | 'right') {
