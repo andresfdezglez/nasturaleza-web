@@ -133,7 +133,7 @@ private resolverSEO(url: string) {
 
     let link: HTMLLinkElement = this.document.querySelector("link[rel='canonical']") || this.document.createElement('link');
     link.setAttribute('rel', 'canonical');
-    link.setAttribute('href', `https://nasturaleza-9kp0gec2m-andresfdezglezs-projects.vercel.app/activities?tab=${nombreTab}`);
+    link.setAttribute('href', `https://www.nasturalezaexperiencias.es/activities?tab=${nombreTab}`);
     if (!this.document.head.contains(link)) {
       this.document.head.appendChild(link);
     }
