@@ -88,27 +88,37 @@ export class Activities implements OnInit, AfterViewInit{
   }
 
   ngOnInit() {
-    // Leemos los queryParams al iniciar
+    const url = this.router.url; 
+    if (url.includes('?')) {
+      const params = new URLSearchParams(url.split('?')[1]);
+      const tabName = params.get('tab');
+      
+      if (tabName && this.tabMap[tabName] !== undefined) {
+        const index = this.tabMap[tabName];
+        this.index_activo = index; // Actualizamos la variable física
+        this.updateSEO(index);     // Ejecutamos SEO YA, sin esperar a nadie
+      }
+    }
+
+    // --- 2. TU LÓGICA ORIGINAL (Controla la navegación del usuario) ---
     this.route.queryParams.subscribe(params => {
       const tabName = params['tab'];
       if (tabName && this.tabMap[tabName] !== undefined) {
-        this.selectedTabIndex.set(this.tabMap[tabName]);
+        const index = this.tabMap[tabName];
+        this.selectedTabIndex.set(index);
+        this.index_activo = index;
+        this.updateSEO(index);
       }
+  });
 
-      this.index_activo = this.tabMap[tabName]
-      this.updateSEO(this.tabMap[tabName])
-    });
-
-
-    // Escuchamos cuando la navegación termine con éxito
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe(() => {
-      this.scrollToTop();
-    });
-    
-    // También lo ejecutamos al cargar por primera vez
+  // El resto de tu código (scrollToTop, etc.)
+  this.router.events.pipe(
+    filter(event => event instanceof NavigationEnd)
+  ).subscribe(() => {
     this.scrollToTop();
+  });
+  
+  this.scrollToTop();
   }
 
   updateSEO(index: number) {
