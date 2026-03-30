@@ -1,5 +1,5 @@
 <mat-tab-group dynamicHeight class="custom-tabs" (selectedTabChange)="onTabChange($event)" [selectedIndex]="selectedTabIndex()">
-
+  @if(selectedFauna()){
   <mat-tab label="Avistamiento">
     <div class="animal-selector">
       @for (animal of fauna; track animal.id) {
@@ -33,7 +33,7 @@
 
     <div class="tab-container">
 
-
+      
       <p class="tab-description">{{ selectedFauna()!.desc }}</p>
 
       <mat-card class="ficha-actividad">
@@ -88,7 +88,7 @@
       </section>
     </div>
   </mat-tab>
-
+  }
   <mat-tab label="Rutas">
     <app-header [isVideo]="false" claseAnimacion="animacion-rapida" srcVideo={{rutas.imagen}} title={{rutas.titulo}}> </app-header>
     <div class="mountain-divider-container">
