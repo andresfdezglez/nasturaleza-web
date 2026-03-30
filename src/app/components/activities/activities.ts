@@ -90,7 +90,7 @@ constructor(
 
   // 1. Actualizamos el Signal de la pestaña
   this.selectedTabIndex.set(index);
-
+  this.selectedFauna.set(this.fauna[0])
   // 2. Aplicamos el SEO (Esto es lo que verá Google en el dist)
   const data = this.info_seo[index];
   if (data) {

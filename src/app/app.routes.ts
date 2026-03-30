@@ -3,6 +3,7 @@ import { Home } from './components/home/home';
 import { Activities } from './components/activities/activities';
 
 export const routes: Routes = [
+  {path:'', component:Home},
   { path: 'activities/avistamiento', component: Activities },
   { path: 'activities/rutas', component: Activities },
   { path: 'activities/fotografia', component: Activities },
