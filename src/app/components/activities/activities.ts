@@ -113,15 +113,31 @@ export class Activities implements OnInit, AfterViewInit{
 
   updateSEO(index: number) {
     const data = this.info_seo[index];
+    const nombresTabs = ['Avistamiento', 'Senderismo', 'Fotografia'];
+    const nombreTab = nombresTabs[index];
     this.title.setTitle(data.title);
     this.meta.updateTag({ name: 'description', content: data.desc });
 
     let link: HTMLLinkElement = this.document.querySelector("link[rel='canonical']") || this.document.createElement('link');
     link.setAttribute('rel', 'canonical');
-    link.setAttribute('href', `https://nasturalezaexperiencias.es/activities?tab=${index}`);
+    link.setAttribute('href', `https://nasturalezaexperiencias.es/activities?tab=${nombreTab}`);
     if (!this.document.head.contains(link)) {
       this.document.head.appendChild(link);
     }
+  }
+
+  onTabChange(event: any) {
+    const nombresTabs = ['Avistamiento', 'Senderismo', 'Fotografia'];
+    const nombreTab = nombresTabs[event.index];
+
+    // Esto actualiza la URL a: n-asturaleza.es/activities?tab=Avistamiento
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { tab: nombreTab },
+      queryParamsHandling: 'merge' 
+    });
+
+    this.updateSEO(event.index);
   }
 
   private scrollToTop() {

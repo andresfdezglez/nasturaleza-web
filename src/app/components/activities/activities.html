@@ -1,4 +1,4 @@
-<mat-tab-group dynamicHeight class="custom-tabs" [selectedIndex]="selectedTabIndex()">
+<mat-tab-group dynamicHeight class="custom-tabs" (selectedTabChange)="onTabChange($event)" [selectedIndex]="selectedTabIndex()">
 
   <mat-tab label="Avistamiento">
     <div class="animal-selector">
