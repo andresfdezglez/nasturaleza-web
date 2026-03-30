@@ -127,7 +127,7 @@ export class Activities implements OnInit, AfterViewInit{
   }
 
   onTabChange(event: any) {
-    const nombresTabs = ['Avistamiento', 'Senderismo', 'Fotografia'];
+    const nombresTabs = ['Avistamiento', 'Rutas', 'Fotografía'];
     const nombreTab = nombresTabs[event.index];
 
     // Esto actualiza la URL a: n-asturaleza.es/activities?tab=Avistamiento
