@@ -139,7 +139,7 @@ export class Activities implements OnInit, AfterViewInit {
 
     let link: HTMLLinkElement = this.document.querySelector("link[rel='canonical']") || this.document.createElement('link');
     link.setAttribute('rel', 'canonical');
-    link.setAttribute('href', `https://nasturalezaexperiencias.es/activities?tab=${nombreTab}`);
+    link.setAttribute('href', `https://nasturaleza-web-git-new-home-andresfdezglezs-projects.vercel.app/activities?tab=${nombreTab}`);
     if (!this.document.head.contains(link)) {
       this.document.head.appendChild(link);
     }
