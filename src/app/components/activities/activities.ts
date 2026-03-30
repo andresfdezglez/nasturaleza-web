@@ -62,8 +62,6 @@ export class Activities implements OnInit, AfterViewInit {
     }
   };
 
-  index_activo = 0;
-
   @ViewChild('carouselTrack') carouselTrack!: ElementRef;
   // Definimos las columnas que se verán en la tabla
   displayedColumns: string[] = ['opcion', 'duracion', 'precio'];
@@ -83,22 +81,38 @@ export class Activities implements OnInit, AfterViewInit {
   };
 
 
-  constructor(private title: Title,
-    private meta: Meta, @Inject(DOCUMENT) private document: Document, @Optional() @Inject(REQUEST) private request: any) {
+// Usamos una Signal para el índice activo, es más rápido en Angular 21
+  index_activo = signal<number>(0);
+
+  constructor() {
+    // 1. EJECUCIÓN INMEDIATA (Para el Servidor)
+    // El constructor se ejecuta antes que el ngOnInit. Es vital para el SSR.
+    const url = this.router.url;
+    this.aplicarSEOInmediato(url);
+
+    // 2. ESCUCHA DE CAMBIOS (Para el Navegador)
+    this.route.queryParams.subscribe(params => {
+      const tab = params['tab'];
+      if (tab) this.aplicarSEOInmediato(this.router.url);
+    });
+  }
+
+  private aplicarSEOInmediato(url: string) {
+    const params = new URLSearchParams(url.split('?')[1]);
+    const tabName = params.get('tab') || 'avistamiento';
+    
+    const index = this.tabMap[tabName.toLowerCase()];
+    if (index !== undefined) {
+      this.index_activo.set(index);
+      this.updateSEO(index); // Esto escribe en el <title> del servidor
+      
+      if (isPlatformServer(this.platformId)) {
+        console.log('--- SERVIDOR OK: Tab', tabName, 'Index', index);
+      }
+    }
   }
 
   ngOnInit() {
-   // ESTO ES LO QUE VE EL CTRL + U
-    const url = this.router.url;
-    this.resolverSEO(url);
-
-    // ESTO ES LO QUE VE EL USUARIO AL NAVEGAR
-    this.route.queryParams.subscribe(params => {
-      if (params['tab']) {
-        this.resolverSEO(this.router.url);
-      }
-    });
-
     // El resto de tu código (scrollToTop, etc.)
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
