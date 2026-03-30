@@ -4,13 +4,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
-import { AfterViewInit, Component, ElementRef, inject, OnInit, PLATFORM_ID, signal, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, DOCUMENT, ElementRef, Inject, inject, OnInit, PLATFORM_ID, signal, ViewChild } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { DatabaseService } from '../../services/database';
 import { Header } from '../header/header';
 import { ButtonGroup } from '../button-group/button-group';
 import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -29,7 +30,7 @@ import { RouterModule } from '@angular/router';
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
-export class Home implements AfterViewInit {
+export class Home implements OnInit,AfterViewInit {
 
   @ViewChild('seccionSobreMi') seccion!: ElementRef;
   @ViewChild('carouselTrack', { static: false }) carouselTrack?: ElementRef<HTMLElement>;
@@ -93,19 +94,35 @@ export class Home implements AfterViewInit {
   isMobile = signal<boolean>(false);
   listaReviews = signal<any[]>([]);
 
-  constructor(private supabaseService: DatabaseService, private router: Router) { }
+  constructor(private supabaseService: DatabaseService, private router: Router, private title: Title, private meta: Meta, @Inject(DOCUMENT) private document: Document) {
+    
+  }
 
   ngOnInit(): void {
+    this.title.setTitle("Inicio | Nasturaleza")
+    this.meta.updateTag({
+      name: 'description',
+      content: 'N`asturaleza: Experiencias de turismo activo en Asturias: Observación de fauna, rutas interpretativas y fotografía de naturaleza en Asturias. ¿Te animas?'
+    })
+
     // Escuchamos el cambio de tamaño de pantalla
     this.breakpointObserver.observe([Breakpoints.HandsetPortrait])
       .subscribe(result => {
         // Actualizamos el valor del Signal
         this.isMobile.set(result.matches);
       });
-
+    this.establecerCanonical('https://nasturalezaexperiencias.es/');
     this.loadReviews();
   }
 
+  establecerCanonical(url: string) {
+    let link: HTMLLinkElement = this.document.querySelector("link[rel='canonical']") || this.document.createElement('link');
+    link.setAttribute('rel', 'canonical');
+    link.setAttribute('href', url);
+    if (!this.document.head.contains(link)) {
+      this.document.head.appendChild(link);
+    }
+  }
   async loadReviews() {
     try {
       const data = await this.supabaseService.getTopReviews();
@@ -116,27 +133,27 @@ export class Home implements AfterViewInit {
     }
   }
 
-  toActivities(nameTab: string){
+  toActivities(nameTab: string) {
 
     this.router.navigate(['/activities'],
-      {queryParams:{tab : nameTab}}
+      { queryParams: { tab: nameTab } }
     )
   }
 
 
-scroll(direction: 'left' | 'right') {
-  // Si por lo que sea no detecta el track, salimos de la función sin error
-  if (!this.carouselTrack || !this.carouselTrack.nativeElement) {
-    console.warn("El track aún no está disponible");
-    return;
+  scroll(direction: 'left' | 'right') {
+    // Si por lo que sea no detecta el track, salimos de la función sin error
+    if (!this.carouselTrack || !this.carouselTrack.nativeElement) {
+      console.warn("El track aún no está disponible");
+      return;
+    }
+
+    const track = this.carouselTrack.nativeElement;
+    const scrollAmount = track.offsetWidth * 0.8;
+
+    track.scrollBy({
+      left: direction === 'left' ? -scrollAmount : scrollAmount,
+      behavior: 'smooth'
+    });
   }
-
-  const track = this.carouselTrack.nativeElement;
-  const scrollAmount = track.offsetWidth * 0.8;
-
-  track.scrollBy({
-    left: direction === 'left' ? -scrollAmount : scrollAmount,
-    behavior: 'smooth'
-  });
-}
 }

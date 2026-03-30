@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, inject, OnDestroy, OnInit, PLATFORM_ID, signal, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, DOCUMENT, ElementRef, Inject, inject, OnDestroy, OnInit, PLATFORM_ID, signal, ViewChild } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
@@ -11,6 +11,7 @@ import { AnimationService } from '../../services/animation-service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
+import { Meta, Title } from '@angular/platform-browser';
 // Definimos la estructura para evitar errores de tipos
 interface Precio {
   option: string;
@@ -46,6 +47,23 @@ interface Seccion {
 })
 export class Activities implements OnInit, AfterViewInit{
 
+  info_seo: any = {
+    0: { 
+      title: 'Observación de fauna en Asturias | N\'asturaleza',
+      desc: 'Observación de especies en libertad como el oso pardo, el lobo ibérico y la berrea del ciervo, entre otras.'
+    },
+    1: { 
+      title: 'Rutas Interpretativas del medio natural | N\'asturaleza',
+      desc: 'Descubre los rincones más secretos de Asturias con nuestras rutas de senderismo personalizadas. ¡Naturaleza pura!'
+    },
+    2:{ 
+      title: 'Fotografía de naturaleza | N\'asturaleza',
+      desc: 'Salidas para fotografiar diferentes especies autóctonas y paisajes de la Cordillera Cantábrica'
+    }
+  };
+
+  index_activo = 0;
+
   @ViewChild('carouselTrack') carouselTrack!: ElementRef;
   // Definimos las columnas que se verán en la tabla
   displayedColumns: string[] = ['opcion', 'duracion', 'precio'];
@@ -63,6 +81,11 @@ export class Activities implements OnInit, AfterViewInit{
     'Rutas': 1,
     'Fotografía': 2
   };
+  
+
+  constructor(private title: Title, 
+    private meta: Meta, @Inject(DOCUMENT) private document: Document){
+  }
 
   ngOnInit() {
     // Leemos los queryParams al iniciar
@@ -71,6 +94,9 @@ export class Activities implements OnInit, AfterViewInit{
       if (tabName && this.tabMap[tabName] !== undefined) {
         this.selectedTabIndex.set(this.tabMap[tabName]);
       }
+
+      this.index_activo = this.tabMap[tabName]
+      this.updateSEO(this.tabMap[tabName])
     });
 
 
@@ -84,6 +110,20 @@ export class Activities implements OnInit, AfterViewInit{
     // También lo ejecutamos al cargar por primera vez
     this.scrollToTop();
   }
+
+  updateSEO(index: number) {
+    const data = this.info_seo[index];
+    this.title.setTitle(data.title);
+    this.meta.updateTag({ name: 'description', content: data.desc });
+
+    let link: HTMLLinkElement = this.document.querySelector("link[rel='canonical']") || this.document.createElement('link');
+    link.setAttribute('rel', 'canonical');
+    link.setAttribute('href', `https://nasturalezaexperiencias.es/activities?tab=${index}`);
+    if (!this.document.head.contains(link)) {
+      this.document.head.appendChild(link);
+    }
+  }
+
   private scrollToTop() {
     if (isPlatformBrowser(this.platformId)) {
     // Opción para Window estándar
