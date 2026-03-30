@@ -1,11 +1,11 @@
-import { AfterViewInit, Component, DOCUMENT, ElementRef, Inject, inject, OnDestroy, OnInit, PLATFORM_ID, signal, ViewChild } from '@angular/core';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { AfterViewInit, Component, DOCUMENT, ElementRef, Inject, inject, OnDestroy, OnInit, Optional, PLATFORM_ID, REQUEST, signal, ViewChild } from '@angular/core';
+import { CommonModule, isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
 import { MatRippleModule } from '@angular/material/core';
 import { MatTableModule } from '@angular/material/table';
-import { Header } from '../header/header'; 
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router'; 
+import { Header } from '../header/header';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { AnimationService } from '../../services/animation-service';
 import { MatButtonModule } from '@angular/material/button';
@@ -45,18 +45,18 @@ interface Seccion {
   templateUrl: './activities.html',
   styleUrls: ['./activities.css']
 })
-export class Activities implements OnInit, AfterViewInit{
+export class Activities implements OnInit, AfterViewInit {
 
   info_seo: any = {
-    0: { 
+    0: {
       title: 'Observación de fauna en Asturias | N\'asturaleza',
       desc: 'Observación de especies en libertad como el oso pardo, el lobo ibérico y la berrea del ciervo, entre otras.'
     },
-    1: { 
+    1: {
       title: 'Rutas Interpretativas del medio natural | N\'asturaleza',
       desc: 'Descubre los rincones más secretos de Asturias con nuestras rutas de senderismo personalizadas. ¡Naturaleza pura!'
     },
-    2:{ 
+    2: {
       title: 'Fotografía de naturaleza | N\'asturaleza',
       desc: 'Salidas para fotografiar diferentes especies autóctonas y paisajes de la Cordillera Cantábrica'
     }
@@ -71,7 +71,7 @@ export class Activities implements OnInit, AfterViewInit{
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private animService = inject(AnimationService);
-  
+
   // Signal o variable para controlar el índice de la pestaña activa
   selectedTabIndex = signal(0);
 
@@ -81,44 +81,53 @@ export class Activities implements OnInit, AfterViewInit{
     'Rutas': 1,
     'Fotografía': 2
   };
-  
 
-  constructor(private title: Title, 
-    private meta: Meta, @Inject(DOCUMENT) private document: Document){
+
+  constructor(private title: Title,
+    private meta: Meta, @Inject(DOCUMENT) private document: Document, @Optional() @Inject(REQUEST) private request: any) {
   }
 
   ngOnInit() {
-    const url = this.router.url; 
-    if (url.includes('?')) {
-      const params = new URLSearchParams(url.split('?')[1]);
-      const tabName = params.get('tab');
-      
-      if (tabName && this.tabMap[tabName] !== undefined) {
-        const index = this.tabMap[tabName];
-        this.index_activo = index; // Actualizamos la variable física
-        this.updateSEO(index);     // Ejecutamos SEO YA, sin esperar a nadie
+    let tabName: string | null = null;
+
+    if (isPlatformServer(this.platformId)) {
+      // 1. Intentamos leer la URL directamente de la petición que llega a Vercel
+      // Esto es mucho más fiable en el servidor que el Router
+      const fullUrl = this.request ? this.request.url : this.router.url;
+      const urlParts = fullUrl.split('?');
+
+      if (urlParts.length > 1) {
+        const params = new URLSearchParams(urlParts[1]);
+        tabName = params.get('tab');
       }
     }
 
-    // --- 2. TU LÓGICA ORIGINAL (Controla la navegación del usuario) ---
+    // Si hemos encontrado el tabName en el servidor, forzamos el SEO YA
+    if (tabName && this.tabMap[tabName] !== undefined) {
+      const index = this.tabMap[tabName];
+      this.index_activo = index;
+      this.updateSEO(index);
+    }
+
+    // 2. Tu subscribe de siempre para cuando el usuario navega en el cliente
     this.route.queryParams.subscribe(params => {
-      const tabName = params['tab'];
-      if (tabName && this.tabMap[tabName] !== undefined) {
-        const index = this.tabMap[tabName];
+      const tabFromQuery = params['tab'];
+      if (tabFromQuery && this.tabMap[tabFromQuery] !== undefined) {
+        const index = this.tabMap[tabFromQuery];
         this.selectedTabIndex.set(index);
         this.index_activo = index;
         this.updateSEO(index);
       }
-  });
+    });
 
-  // El resto de tu código (scrollToTop, etc.)
-  this.router.events.pipe(
-    filter(event => event instanceof NavigationEnd)
-  ).subscribe(() => {
+    // El resto de tu código (scrollToTop, etc.)
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      this.scrollToTop();
+    });
+
     this.scrollToTop();
-  });
-  
-  this.scrollToTop();
   }
 
   updateSEO(index: number) {
@@ -144,7 +153,7 @@ export class Activities implements OnInit, AfterViewInit{
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: { tab: nombreTab },
-      queryParamsHandling: 'merge' 
+      queryParamsHandling: 'merge'
     });
 
     this.updateSEO(event.index);
@@ -152,50 +161,50 @@ export class Activities implements OnInit, AfterViewInit{
 
   private scrollToTop() {
     if (isPlatformBrowser(this.platformId)) {
-    // Opción para Window estándar
-    window.scrollTo(0, 0);
+      // Opción para Window estándar
+      window.scrollTo(0, 0);
 
-    // Opción para el contenido de Material Sidenav (si lo usas)
-    const mainContent = document.querySelector('.mat-sidenav-content');
-    if (mainContent) {
-      mainContent.scrollTop = 0;
+      // Opción para el contenido de Material Sidenav (si lo usas)
+      const mainContent = document.querySelector('.mat-sidenav-content');
+      if (mainContent) {
+        mainContent.scrollTop = 0;
+      }
     }
   }
+
+  ngAfterViewInit() {
+    this.animService.disparar()
   }
 
-    ngAfterViewInit(){
-       this.animService.disparar()
-    }
-
-readonly rutas: Seccion = {
-  id: 'rutas-montaña',
-  titulo: 'Rutas interpretativas del medio natural',
-  imagen: 'assets/images/rutas/ruta2.webp',
-  imagenes: [
-    'assets/images/rutas/ruta1.webp', 'assets/images/rutas/ruta2.webp', 'assets/images/rutas/ruta3.webp',
-    'assets/images/rutas/ruta4.webp', 'assets/images/rutas/ruta5.webp'
-  ],
-  descripcion: `Descubre Asturias a pie a través de rutas de senderismo interpretativo diseñadas para conectar con la naturaleza de una forma cercana, didáctica y enriquecedora. A lo largo del recorrido, exploraremos la diversidad del paisaje asturiano mientras interpretamos su geología, su flora y la fauna que habita estos entornos privilegiados.
+  readonly rutas: Seccion = {
+    id: 'rutas-montaña',
+    titulo: 'Rutas interpretativas del medio natural',
+    imagen: 'assets/images/rutas/ruta2.webp',
+    imagenes: [
+      'assets/images/rutas/ruta1.webp', 'assets/images/rutas/ruta2.webp', 'assets/images/rutas/ruta3.webp',
+      'assets/images/rutas/ruta4.webp', 'assets/images/rutas/ruta5.webp'
+    ],
+    descripcion: `Descubre Asturias a pie a través de rutas de senderismo interpretativo diseñadas para conectar con la naturaleza de una forma cercana, didáctica y enriquecedora. A lo largo del recorrido, exploraremos la diversidad del paisaje asturiano mientras interpretamos su geología, su flora y la fauna que habita estos entornos privilegiados.
 Cada paso se convierte en una oportunidad para aprender: identificaremos especies, entenderemos las dinámicas del ecosistema y descubriremos las historias que esconde el territorio. Todo ello acompañado por un guía titulado que, además, es maestro de educación primaria, lo que aporta un enfoque pedagógico único, adaptado especialmente a familias y niños.
 Gracias a esta experiencia, los más pequeños no solo disfrutan del entorno, sino que aprenden de forma activa y divertida, despertando su curiosidad y fomentando el respeto por la naturaleza desde edades tempranas.
 Ponemos un especial énfasis en la educación ambiental como base para la conservación, promoviendo valores de respeto, sostenibilidad y conexión con el medio natural.
 Una actividad perfecta para disfrutar en familia, aprender juntos y vivir la naturaleza de una manera diferente.
 `,
-  precios: [
-    { opcion: 'Ruta Familiar', duracion: '3h', precio: '25€' },
-    { opcion: 'Ascensión Cumbre', duracion: '7h', precio: '55€' }
-  ]
-};
+    precios: [
+      { opcion: 'Ruta Familiar', duracion: '3h', precio: '25€' },
+      { opcion: 'Ascensión Cumbre', duracion: '7h', precio: '55€' }
+    ]
+  };
 
-readonly fotografia: Seccion = {
-  id: 'foto-natura',
-  titulo: 'Fotografía de Naturaleza',
-  imagen: 'assets/images/foto1.jpeg',
-  imagenes: [
-    'assets/images/foto1.jpeg', 'assets/images/foto2.jpg', 'assets/images/foto3.jpg',
-    'assets/images/foto4.jpg', 'assets/images/foto5.JPG', 'assets/images/foto6.jpg'
-  ],
-  descripcion: `Descubre Asturias a través del objetivo en una experiencia de fotografía de naturaleza diseñada para inspirar y aprender en pleno entorno natural. Durante la actividad, recorreremos distintos paisajes en busca de la mejor luz y de escenas únicas, combinando la observación de fauna y flora con la captura de rincones de gran belleza.
+  readonly fotografia: Seccion = {
+    id: 'foto-natura',
+    titulo: 'Fotografía de Naturaleza',
+    imagen: 'assets/images/foto1.jpeg',
+    imagenes: [
+      'assets/images/foto1.jpeg', 'assets/images/foto2.jpg', 'assets/images/foto3.jpg',
+      'assets/images/foto4.jpg', 'assets/images/foto5.JPG', 'assets/images/foto6.jpg'
+    ],
+    descripcion: `Descubre Asturias a través del objetivo en una experiencia de fotografía de naturaleza diseñada para inspirar y aprender en pleno entorno natural. Durante la actividad, recorreremos distintos paisajes en busca de la mejor luz y de escenas únicas, combinando la observación de fauna y flora con la captura de rincones de gran belleza.
 
     Exploraremos diferentes hábitats donde podremos encontrar una amplia diversidad de especies, siempre desde el respeto y la observación responsable. Cada salida se adapta a la época del año, aprovechando los cambios del paisaje, la luz y el comportamiento de la fauna para ofrecer oportunidades fotográficas únicas en cada estación.
 
@@ -205,12 +214,12 @@ readonly fotografia: Seccion = {
 Una experiencia perfecta tanto para iniciarse como para mejorar en la fotografía de naturaleza, combinando aprendizaje, creatividad y conexión con el paisaje asturiano.
 
 `,
-  precios: [
-    { opcion: 'Taller Básico', duracion: '4h', precio: '40€' },
-    { opcion: 'Escondite (Hide)', duracion: '8h', precio: '90€' }
-  ]
-};
-  
+    precios: [
+      { opcion: 'Taller Básico', duracion: '4h', precio: '40€' },
+      { opcion: 'Escondite (Hide)', duracion: '8h', precio: '90€' }
+    ]
+  };
+
   // 1. LISTA COMPLETA DE DATOS (FAUNA)
   readonly fauna: Animal[] = [
     {
@@ -287,8 +296,8 @@ Una experiencia sensorial única, donde sonido, paisaje y emoción se combinan p
     const track = this.carouselTrack.nativeElement;
     // Calculamos el desplazamiento: el ancho visible del track
     // Multiplicamos por 0.8 para que no mueva la foto entera y se vea la siguiente
-    const scrollAmount = track.offsetWidth * 0.8; 
-    
+    const scrollAmount = track.offsetWidth * 0.8;
+
     track.scrollBy({
       left: direction === 'left' ? -scrollAmount : scrollAmount,
       behavior: 'smooth' // Movimiento fluido de Angular
