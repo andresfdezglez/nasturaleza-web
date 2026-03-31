@@ -152,12 +152,13 @@ export class Home implements OnInit,AfterViewInit {
   }
 
   async fetchGoogleReviews() {
-  // Construimos solo la parte de los parámetros
-  const queryParams = `place_id=${this.PLACE_ID}&fields=reviews,rating&key=${this.API_KEY}&language=es`;
 
-  // IMPORTANTE: Llamamos a nuestra propia ruta de Vercel
-  // En local funcionará si usas 'vercel dev', en producción funciona solo
-  const url = `/api/google-proxy/${queryParams}`;
+  // EL CAMBIO CLAVE: Empezar con '?' y quitar la barra '/' después de google-proxy
+  const queryParams = `?place_id=${this.PLACE_ID}&fields=reviews,rating&key=${this.API_KEY}&language=es`;
+  
+  const url = `/api/google-proxy${queryParams}`;
+
+  console.log('Llamando a:', url); // Debería salir: /api/google-proxy?place_id=...
 
   try {
     const response = await fetch(url);
@@ -171,11 +172,12 @@ export class Home implements OnInit,AfterViewInit {
         comment: rev.text,
         avatar: rev.profile_photo_url
       }));
-
       this.listaReviews.set(transformed);
+    } else {
+      console.error('Respuesta sin reseñas:', data);
     }
   } catch (error) {
-    console.error('Error con el proxy de Vercel:', error);
+    console.error('Error en el fetch:', error);
   }
 }
 }
