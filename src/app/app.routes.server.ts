@@ -18,5 +18,6 @@ export const serverRoutes: ServerRoute[] = [
   },
   { path: 'activities/rutas', renderMode: RenderMode.Prerender },
   { path: 'activities/fotografia', renderMode: RenderMode.Prerender },
+  { path: 'aviso-legal', renderMode: RenderMode.Prerender },
   { path: '**', renderMode: RenderMode.Prerender }
 ];
