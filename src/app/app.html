@@ -17,9 +17,9 @@
   <mat-sidenav #drawer class="sidenav" mode="over">
     <mat-nav-list>
       <a mat-list-item href="" (click)="drawer.close()"><mat-icon>home</mat-icon> Inicio</a>
-      <a mat-list-item [routerLink]="['/activities/avistamiento']" [queryParams]="{ tab: 'Avistamiento' }" (click)="drawer.close();"><mat-icon>pets</mat-icon> <span>Observación de fauna</span></a>
-      <a mat-list-item [routerLink]="['/activities/rutas']" [queryParams]="{ tab: 'Rutas' }" (click)="drawer.close();"><mat-icon>hiking</mat-icon> <span>Rutas</span></a>
-      <a mat-list-item [routerLink]="['/activities/fotografia']" [queryParams]="{ tab: 'Fotografía' }" (click)="drawer.close();"><mat-icon>camera</mat-icon><span> Fotografía</span></a>
+      <a mat-list-item [routerLink]="['/activities/avistamiento']" (click)="drawer.close();"><mat-icon>pets</mat-icon> <span>Observación de fauna</span></a>
+      <a mat-list-item [routerLink]="['/activities/rutas']" (click)="drawer.close();"><mat-icon>hiking</mat-icon> <span>Rutas</span></a>
+      <a mat-list-item [routerLink]="['/activities/fotografia']" (click)="drawer.close();"><mat-icon>camera</mat-icon><span> Fotografía</span></a>
     </mat-nav-list>
   </mat-sidenav>
 

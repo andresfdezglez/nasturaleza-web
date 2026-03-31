@@ -4,7 +4,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
-import { Router, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { NgOptimizedImage } from '@angular/common';
 import { Footer } from './components/footer/footer';
@@ -12,7 +12,7 @@ import { Footer } from './components/footer/footer';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MatToolbarModule, MatButtonModule, MatIconModule, MatListModule, MatSidenavModule, NgOptimizedImage, Footer, RouterModule
+  imports: [RouterOutlet, RouterLink, MatToolbarModule, MatButtonModule, MatIconModule, MatListModule, MatSidenavModule, NgOptimizedImage, Footer, RouterModule
   ],
   templateUrl: './app.html',
   styleUrl: './app.css'
@@ -38,16 +38,5 @@ export class App {
       }, 1000);
 
     }, 1500);
-  }
-
-  toActivities(){
-    this.router.navigate(['/activities'])
-  }
-
-  toActivitiesTab(nameTab: string){
-
-    this.router.navigate(['/activities'],
-      {queryParams:{tab : nameTab}}
-    )
   }
 }
