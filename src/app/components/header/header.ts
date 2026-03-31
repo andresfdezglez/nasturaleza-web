@@ -31,6 +31,5 @@ export class Header {
     this.isVisible.set(false); // 1. Borramos el h1 del mapa
     this.esAnimacionRapida.set(true); // 2. Preparamos la clase sin delay
     setTimeout(() => this.isVisible.set(true), 10);
-     
   }
 }

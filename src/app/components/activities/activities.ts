@@ -75,28 +75,37 @@ constructor(
     this.scrollToTop();
   }
 
-  private sincronizarEstado(url: string) {
-  // Extraemos el final de la URL (ej: 'fotografia')
-  const slug = url.split('/').pop()?.split('?')[0] || 'avistamiento';
-  
-  // Mapeo manual para asegurar que no falle
+private sincronizarEstado(url: string) {
+  const segments = url.split('/');
+  // segments podría ser ["", "activities", "avistamiento", "oso"]
+  const tabSlug = segments[2] || 'avistamiento';
+  const animalSlug = segments[3]; // 'oso', 'lobo' o 'berrea'
+
   const mapa: { [key: string]: number } = { 
     'avistamiento': 0, 
     'rutas': 1, 
     'fotografia': 2 
   };
   
-  const index = mapa[slug] ?? 0;
-
-  // 1. Actualizamos el Signal de la pestaña
+  const index = mapa[tabSlug] ?? 0;
   this.selectedTabIndex.set(index);
-  this.selectedFauna.set(this.fauna[0])
-  // 2. Aplicamos el SEO (Esto es lo que verá Google en el dist)
-  const data = this.info_seo[index];
-  if (data) {
+
+  // --- LÓGICA DE SEO ESPECÍFICA PARA ANIMALES ---
+  if (index === 0) {
+    // Si estamos en la pestaña de fauna, buscamos el animal por el slug de la URL
+    const animalEncontrado = this.fauna.find(a => a.id === animalSlug) || this.fauna[0];
+    this.selectedFauna.set(animalEncontrado);
+
+    // Actualizamos SEO con los datos del animal
+    this.title.setTitle(`${animalEncontrado.title} | N'asturaleza`);
+    this.meta.updateTag({ name: 'description', content: animalEncontrado.desc.substring(0, 160) });
+    this.updateCanonical(tabSlug);
+  } else {
+    // SEO normal para Rutas y Fotografía
+    const data = this.info_seo[index];
     this.title.setTitle(data.title);
     this.meta.updateTag({ name: 'description', content: data.desc });
-    this.updateCanonical(slug);
+    this.updateCanonical(tabSlug);
   }
 }
 
@@ -257,7 +266,8 @@ Una experiencia sensorial única, donde sonido, paisaje y emoción se combinan p
   // 3. MÉTODOS
   selectAnimal(animal: Animal) {
     this.selectedFauna.set(animal);
-    this.animService.disparar()
+    this.animService.disparar();
+    this.router.navigate(['/activities/avistamiento', animal.id]);
   }
 
   scroll(direction: 'left' | 'right') {

@@ -7,9 +7,7 @@ export const routes: Routes = [
   { path: 'activities/avistamiento', component: Activities },
   { path: 'activities/rutas', component: Activities },
   { path: 'activities/fotografia', component: Activities },
-  
-  // Redirección por si alguien entra a /activities a secas
+  { path: 'activities/avistamiento/:animal', component: Activities },
   { path: 'activities', redirectTo: 'activities/avistamiento', pathMatch: 'full' },
-  
   { path: '**', redirectTo: '' }
 ];
