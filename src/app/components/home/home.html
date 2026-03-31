@@ -109,7 +109,10 @@
           <div class="carousel-item">
             <mat-card class="example-card" appearance="outlined">
               <mat-card-header>
-                <div mat-card-avatar class="example-header-image"></div>
+                <div mat-card-avatar 
+                    [style.backgroundImage]="'url(' + item.avatar + ')'" 
+                    class="example-header-image">
+                </div>
                 <mat-card-title>{{item.name}}</mat-card-title>
                 <mat-card-subtitle>@for (s of [1,2,3,4,5]; track s) {
                   <mat-icon class="mini-star">{{ item.rating >= s ? 'star' : 'star_border' }}</mat-icon>

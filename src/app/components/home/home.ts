@@ -90,6 +90,9 @@ export class Home implements OnInit,AfterViewInit {
   // Inyectamos el servicio (estilo Angular 21)
   private breakpointObserver = inject(BreakpointObserver);
 
+  private API_KEY = "AIzaSyDhkKtfe6q6MXkryI7XTk3DUK3xnPF1wUg"
+  private PLACE_ID= "ChIJVYvS_S9uNA0R368X8Y-D6G0"
+
   // Usamos un Signal para que la plantilla @if sea reactiva y rápida
   isMobile = signal<boolean>(false);
   listaReviews = signal<any[]>([]);
@@ -98,7 +101,7 @@ export class Home implements OnInit,AfterViewInit {
     
   }
 
-  ngOnInit(): void {
+   async ngOnInit(): Promise<void> {
     this.title.setTitle("Inicio | Nasturaleza")
     this.meta.updateTag({
       name: 'description',
@@ -112,7 +115,7 @@ export class Home implements OnInit,AfterViewInit {
         this.isMobile.set(result.matches);
       });
     this.establecerCanonical('https://www.nasturalezaexperiencias.es/');
-    this.loadReviews();
+    await this.fetchGoogleReviews();
   }
 
   establecerCanonical(url: string) {
@@ -121,15 +124,6 @@ export class Home implements OnInit,AfterViewInit {
     link.setAttribute('href', url);
     if (!this.document.head.contains(link)) {
       this.document.head.appendChild(link);
-    }
-  }
-  async loadReviews() {
-    try {
-      const data = await this.supabaseService.getTopReviews();
-      // Forzamos la asignación en el hilo principal
-      this.listaReviews.set(data);
-    } catch (error) {
-      console.error("Error cargando reviews:", error);
     }
   }
 
@@ -156,4 +150,32 @@ export class Home implements OnInit,AfterViewInit {
       behavior: 'smooth'
     });
   }
+
+  async fetchGoogleReviews() {
+  // Construimos solo la parte de los parámetros
+  const queryParams = `place_id=${this.PLACE_ID}&fields=reviews,rating&key=${this.API_KEY}&language=es`;
+
+  // IMPORTANTE: Llamamos a nuestra propia ruta de Vercel
+  // En local funcionará si usas 'vercel dev', en producción funciona solo
+  const url = `/api/google-proxy/${queryParams}`;
+
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+
+    if (data.result && data.result.reviews) {
+      const transformed = data.result.reviews.map((rev: any, index: number) => ({
+        id: index,
+        name: rev.author_name,
+        rating: rev.rating,
+        comment: rev.text,
+        avatar: rev.profile_photo_url
+      }));
+
+      this.listaReviews.set(transformed);
+    }
+  } catch (error) {
+    console.error('Error con el proxy de Vercel:', error);
+  }
+}
 }

@@ -26,6 +26,68 @@ interface Seccion { id: string; imagen: string; titulo: string; imagenes: string
 })
 export class Activities implements OnInit, AfterViewInit {
 
+  // 1. LISTA COMPLETA DE DATOS (FAUNA)
+  readonly fauna: Animal[] = [
+    {
+      id: 'oso',
+      name: 'Oso Pardo',
+      title: 'Avistamiento de Oso Pardo Cantábrico',
+      video: 'assets/videos/oso.mov',
+      poster: 'assets/images/1765627550958.webp',
+      desc: `Descubre la magia del bosque y adéntrate en el fascinante mundo del oso pardo con nuestra experiencia de avistamiento responsable. Durante esta actividad realizaremos esperas en puntos estratégicos del hábitat natural de la especie, siempre desde la máxima discreción y respeto, con el objetivo de intentar observar a este emblemático animal en libertad.
+
+A lo largo de la jornada, nuestros guías especializados te acercarán a la etología del oso pardo: conoceremos sus hábitos, comportamiento, alimentación y su papel clave en el equilibrio del ecosistema. Esta interpretación del entorno nos permitirá comprender mejor la importancia de su conservación y el delicado equilibrio en el que vive.
+
+La actividad pone un énfasis especial en la educación ambiental como herramienta fundamental para la protección de la biodiversidad. Creemos que solo a través del conocimiento y el respeto podemos fomentar una convivencia sostenible entre las personas y la fauna salvaje.
+
+Una experiencia única que combina emoción, aprendizaje y compromiso con la naturaleza.`,
+      precios: [
+        { option: 'Salida Individual (Mañana)', duration: '4h', cost: '60€' },
+        { option: 'Salida Individual (Tarde)', duration: '4h', cost: '60€' },
+        { option: 'Jornada Completa', duration: '9h', cost: '110€' },
+        { option: 'Pack Pareja (2 pax)', duration: '4h', cost: '110€' }
+      ]
+    },
+    {
+      id: 'lobo',
+      name: 'Lobo Ibérico',
+      title: 'Tras la huella del Lobo Ibérico',
+      video: 'assets/videos/lobos.mov',
+      poster: 'assets/images/1765627550958.webp',
+      desc: `Sumérgete en el territorio del lobo ibérico y vive una experiencia única de observación en plena naturaleza. A través de esperas cuidadosamente planificadas en enclaves estratégicos, trataremos de detectar la presencia de uno de los depredadores más emblemáticos de la península, siempre desde el respeto y sin interferir en su comportamiento natural.
+
+Durante la actividad, nuestro guía te introducirá en la etología del lobo ibérico, desvelando aspectos clave de su conducta, organización social, técnicas de caza y su papel esencial como regulador de los ecosistemas. Comprender su biología y su relación con el entorno nos permitirá derribar mitos y valorar su verdadera importancia en la naturaleza.
+
+Esta experiencia pone especial énfasis en la educación ambiental como base para la conservación de la especie. A través del conocimiento, buscamos fomentar una mirada más consciente y respetuosa hacia la fauna salvaje, promoviendo su protección y la convivencia con el medio rural.
+
+Una actividad emocionante y enriquecedora que te conectará con la esencia más salvaje del paisaje.`,
+      precios: [
+        { option: 'Espera Alba/Ocaso', duration: '5h', cost: '70€' },
+        { option: 'Ruta de Rastreo', duration: '4h', cost: '45€' },
+        { option: 'Experiencia Lobera (2 días)', duration: '12h', cost: '180€' }
+      ]
+    },
+    {
+      id: 'berrea',
+      name: 'Berrea',
+      title: 'La Berrea del Ciervo',
+      video: 'assets/videos/berrea.mov',
+      poster: 'assets/images/1765627550958.webp',
+      desc: `Vive uno de los espectáculos naturales más sobrecogedores del otoño: la berrea del ciervo en los paisajes salvajes de Asturias. Durante esta experiencia nos adentraremos en su hábitat al amanecer o al atardecer, realizando esperas en puntos estratégicos para escuchar y, con suerte, observar a los grandes machos en pleno periodo de celo.
+
+A lo largo de la actividad, nuestro guía interpretará este fascinante comportamiento, explicando la etología del ciervo durante la berrea: sus potentes bramidos, las disputas entre machos, la formación de harenes y la importancia de este momento clave en su ciclo vital.
+
+Además, profundizaremos en el papel del ciervo dentro del ecosistema y en la riqueza natural de Asturias, destacando la importancia de la educación ambiental como herramienta fundamental para la conservación de la fauna y sus hábitats. Entender estos procesos naturales nos ayuda a valorar y respetar el equilibrio del entorno.
+
+Una experiencia sensorial única, donde sonido, paisaje y emoción se combinan para acercarte a la naturaleza en estado puro.`,
+      precios: [
+        { option: 'Ruta Berrea Estándar', duration: '3h', cost: '35€' },
+        { option: 'Salida Fotográfica Especial', duration: '5h', cost: '65€' },
+        { option: 'Pack Familiar (2 adultos + 2 niños)', duration: '3h', cost: '100€' }
+      ]
+    }
+  ];
+
   info_seo: any = {
     0: { title: 'Observación de fauna en Asturias | N\'asturaleza', desc: 'Observación de especies en libertad como el oso pardo, el lobo ibérico y la berrea del ciervo.' },
     1: { title: 'Rutas Interpretativas del medio natural | N\'asturaleza', desc: 'Descubre los rincones más secretos de Asturias con nuestras rutas de senderismo personalizadas.' },
@@ -37,7 +99,7 @@ export class Activities implements OnInit, AfterViewInit {
   private animService = inject(AnimationService);
   
   selectedTabIndex = signal(0);
-  selectedFauna = signal<Animal | null>(null);
+  selectedFauna = signal<Animal>(this.fauna[0]);
 
   @ViewChild('carouselTrack') carouselTrack!: ElementRef;
 
@@ -200,73 +262,8 @@ Una experiencia perfecta tanto para iniciarse como para mejorar en la fotografí
   ]
 };
   
-  // 1. LISTA COMPLETA DE DATOS (FAUNA)
-  readonly fauna: Animal[] = [
-    {
-      id: 'oso',
-      name: 'Oso Pardo',
-      title: 'Avistamiento de Oso Pardo Cantábrico',
-      video: 'assets/videos/oso.mov',
-      poster: 'assets/images/1765627550958.webp',
-      desc: `Descubre la magia del bosque y adéntrate en el fascinante mundo del oso pardo con nuestra experiencia de avistamiento responsable. Durante esta actividad realizaremos esperas en puntos estratégicos del hábitat natural de la especie, siempre desde la máxima discreción y respeto, con el objetivo de intentar observar a este emblemático animal en libertad.
-
-A lo largo de la jornada, nuestros guías especializados te acercarán a la etología del oso pardo: conoceremos sus hábitos, comportamiento, alimentación y su papel clave en el equilibrio del ecosistema. Esta interpretación del entorno nos permitirá comprender mejor la importancia de su conservación y el delicado equilibrio en el que vive.
-
-La actividad pone un énfasis especial en la educación ambiental como herramienta fundamental para la protección de la biodiversidad. Creemos que solo a través del conocimiento y el respeto podemos fomentar una convivencia sostenible entre las personas y la fauna salvaje.
-
-Una experiencia única que combina emoción, aprendizaje y compromiso con la naturaleza.`,
-      precios: [
-        { option: 'Salida Individual (Mañana)', duration: '4h', cost: '60€' },
-        { option: 'Salida Individual (Tarde)', duration: '4h', cost: '60€' },
-        { option: 'Jornada Completa', duration: '9h', cost: '110€' },
-        { option: 'Pack Pareja (2 pax)', duration: '4h', cost: '110€' }
-      ]
-    },
-    {
-      id: 'lobo',
-      name: 'Lobo Ibérico',
-      title: 'Tras la huella del Lobo Ibérico',
-      video: 'assets/videos/lobos.mov',
-      poster: 'assets/images/1765627550958.webp',
-      desc: `Sumérgete en el territorio del lobo ibérico y vive una experiencia única de observación en plena naturaleza. A través de esperas cuidadosamente planificadas en enclaves estratégicos, trataremos de detectar la presencia de uno de los depredadores más emblemáticos de la península, siempre desde el respeto y sin interferir en su comportamiento natural.
-
-Durante la actividad, nuestro guía te introducirá en la etología del lobo ibérico, desvelando aspectos clave de su conducta, organización social, técnicas de caza y su papel esencial como regulador de los ecosistemas. Comprender su biología y su relación con el entorno nos permitirá derribar mitos y valorar su verdadera importancia en la naturaleza.
-
-Esta experiencia pone especial énfasis en la educación ambiental como base para la conservación de la especie. A través del conocimiento, buscamos fomentar una mirada más consciente y respetuosa hacia la fauna salvaje, promoviendo su protección y la convivencia con el medio rural.
-
-Una actividad emocionante y enriquecedora que te conectará con la esencia más salvaje del paisaje.`,
-      precios: [
-        { option: 'Espera Alba/Ocaso', duration: '5h', cost: '70€' },
-        { option: 'Ruta de Rastreo', duration: '4h', cost: '45€' },
-        { option: 'Experiencia Lobera (2 días)', duration: '12h', cost: '180€' }
-      ]
-    },
-    {
-      id: 'berrea',
-      name: 'Berrea',
-      title: 'La Berrea del Ciervo',
-      video: 'assets/videos/berrea.mov',
-      poster: 'assets/images/1765627550958.webp',
-      desc: `Vive uno de los espectáculos naturales más sobrecogedores del otoño: la berrea del ciervo en los paisajes salvajes de Asturias. Durante esta experiencia nos adentraremos en su hábitat al amanecer o al atardecer, realizando esperas en puntos estratégicos para escuchar y, con suerte, observar a los grandes machos en pleno periodo de celo.
-
-A lo largo de la actividad, nuestro guía interpretará este fascinante comportamiento, explicando la etología del ciervo durante la berrea: sus potentes bramidos, las disputas entre machos, la formación de harenes y la importancia de este momento clave en su ciclo vital.
-
-Además, profundizaremos en el papel del ciervo dentro del ecosistema y en la riqueza natural de Asturias, destacando la importancia de la educación ambiental como herramienta fundamental para la conservación de la fauna y sus hábitats. Entender estos procesos naturales nos ayuda a valorar y respetar el equilibrio del entorno.
-
-Una experiencia sensorial única, donde sonido, paisaje y emoción se combinan para acercarte a la naturaleza en estado puro.`,
-      precios: [
-        { option: 'Ruta Berrea Estándar', duration: '3h', cost: '35€' },
-        { option: 'Salida Fotográfica Especial', duration: '5h', cost: '65€' },
-        { option: 'Pack Familiar (2 adultos + 2 niños)', duration: '3h', cost: '100€' }
-      ]
-    }
-  ];
-
-
   // 3. MÉTODOS
   selectAnimal(animal: Animal) {
-    this.selectedFauna.set(animal);
-    this.animService.disparar();
     this.router.navigate(['/activities/avistamiento', animal.id]);
   }
 

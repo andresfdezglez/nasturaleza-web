@@ -1,15 +1,17 @@
-<mat-tab-group dynamicHeight class="custom-tabs" (selectedTabChange)="onTabChange($event)" [selectedIndex]="selectedTabIndex()">
-  @if(selectedFauna()){
+<mat-tab-group dynamicHeight class="custom-tabs" (selectedTabChange)="onTabChange($event)"
+  [selectedIndex]="selectedTabIndex()">
+
   <mat-tab label="Avistamiento">
     <div class="animal-selector">
       @for (animal of fauna; track animal.id) {
-      <button matRipple (click)="selectAnimal(animal)" [class.active]="selectedFauna()!.id === animal.id">
+      <button matRipple (click)="selectAnimal(animal)" [class.active]="selectedFauna().id === animal.id">
         {{ animal.name }}
       </button>
       }
     </div>
-
-    <app-header [isVideo]="true" srcVideo={{selectedFauna()!.video}} claseAnimacion="animacion-rapida" title={{selectedFauna()!.title}}> </app-header>
+  
+        <app-header [isVideo]="true" claseAnimacion="animacion-rapida" [srcVideo]="selectedFauna().video" [title]="selectedFauna().title"></app-header>
+     
 
     <div class="mountain-divider-container">
 
@@ -33,50 +35,50 @@
 
     <div class="tab-container">
 
-      
-      <p class="tab-description">{{ selectedFauna()!.desc }}</p>
+
+      <p class="tab-description">{{ selectedFauna().desc }}</p>
 
       <mat-card class="ficha-actividad">
-      <mat-card-header>
-        <mat-card-title>PRECIOS</mat-card-title>
-      </mat-card-header>
+        <mat-card-header>
+          <mat-card-title>PRECIOS</mat-card-title>
+        </mat-card-header>
 
-      <mat-card-content>
-        <div class="info-grid">
-          <div class="info-item">
-            <div class="info-label">
-              <mat-icon class="icon-gold">person</mat-icon>
-              <span>Adulto</span>
+        <mat-card-content>
+          <div class="info-grid">
+            <div class="info-item">
+              <div class="info-label">
+                <mat-icon class="icon-gold">person</mat-icon>
+                <span>Adulto</span>
+              </div>
+              <div class="info-value highlight">50€</div>
             </div>
-            <div class="info-value highlight">50€</div>
-          </div>
 
-          <mat-divider></mat-divider>
+            <mat-divider></mat-divider>
 
-          <div class="info-item">
-            <div class="info-label">
-              <mat-icon class="icon-gold-light">child_care</mat-icon>
-              <span>Niño</span>
+            <div class="info-item">
+              <div class="info-label">
+                <mat-icon class="icon-gold-light">child_care</mat-icon>
+                <span>Niño</span>
+              </div>
+              <div class="info-value highlight">25€</div>
             </div>
-            <div class="info-value highlight">25€</div>
-          </div>
 
-          <mat-divider></mat-divider>
+            <mat-divider></mat-divider>
 
-          <div class="info-item">
-            <div class="info-label">
-              <mat-icon class="icon-green">schedule</mat-icon>
-              <span>Duración</span>
+            <div class="info-item">
+              <div class="info-label">
+                <mat-icon class="icon-green">schedule</mat-icon>
+                <span>Duración</span>
+              </div>
+              <div class="info-value">4 horas</div>
             </div>
-            <div class="info-value">4 horas</div>
           </div>
-        </div>
-      </mat-card-content>
+        </mat-card-content>
 
-      <mat-card-footer>
-        <p class="iva-inc">* Incluye material óptico y seguro RC y de accidentes</p>
-      </mat-card-footer>
-    </mat-card>
+        <mat-card-footer>
+          <p class="iva-inc">* Incluye material óptico y seguro RC y de accidentes</p>
+        </mat-card-footer>
+      </mat-card>
 
       <section class="button-group">
         <a href="https://wa.me/34727702571?text=¡Hola!" class="contact-link">
@@ -88,9 +90,10 @@
       </section>
     </div>
   </mat-tab>
-  }
+
   <mat-tab label="Rutas">
-    <app-header [isVideo]="false" claseAnimacion="animacion-rapida" srcVideo={{rutas.imagen}} title={{rutas.titulo}}> </app-header>
+    <app-header [isVideo]="false" claseAnimacion="animacion-rapida" srcVideo={{rutas.imagen}} title={{rutas.titulo}}>
+    </app-header>
     <div class="mountain-divider-container">
 
       <div class="mountain-layer layer-back">
@@ -112,52 +115,49 @@
     </div>
     <div class="tab-container">
 
-
-
-
       <p class="tab-description">{{ rutas.descripcion }}</p>
 
       <mat-card class="ficha-actividad">
-      <mat-card-header>
-        <mat-card-title>PRECIOS</mat-card-title>
-      </mat-card-header>
+        <mat-card-header>
+          <mat-card-title>PRECIOS</mat-card-title>
+        </mat-card-header>
 
-      <mat-card-content>
-        <div class="info-grid">
-          <div class="info-item">
-            <div class="info-label">
-              <mat-icon class="icon-gold">person</mat-icon>
-              <span>Adulto</span>
+        <mat-card-content>
+          <div class="info-grid">
+            <div class="info-item">
+              <div class="info-label">
+                <mat-icon class="icon-gold">person</mat-icon>
+                <span>Adulto</span>
+              </div>
+              <div class="info-value highlight">50€</div>
             </div>
-            <div class="info-value highlight">50€</div>
-          </div>
 
-          <mat-divider></mat-divider>
+            <mat-divider></mat-divider>
 
-          <div class="info-item">
-            <div class="info-label">
-              <mat-icon class="icon-gold-light">child_care</mat-icon>
-              <span>Niño</span>
+            <div class="info-item">
+              <div class="info-label">
+                <mat-icon class="icon-gold-light">child_care</mat-icon>
+                <span>Niño</span>
+              </div>
+              <div class="info-value highlight">25€</div>
             </div>
-            <div class="info-value highlight">25€</div>
-          </div>
 
-          <mat-divider></mat-divider>
+            <mat-divider></mat-divider>
 
-          <div class="info-item">
-            <div class="info-label">
-              <mat-icon class="icon-green">schedule</mat-icon>
-              <span>Duración</span>
+            <div class="info-item">
+              <div class="info-label">
+                <mat-icon class="icon-green">schedule</mat-icon>
+                <span>Duración</span>
+              </div>
+              <div class="info-value">4 horas</div>
             </div>
-            <div class="info-value">4 horas</div>
           </div>
-        </div>
-      </mat-card-content>
+        </mat-card-content>
 
-      <mat-card-footer>
-        <p class="iva-inc">* Incluye material óptico y seguro RC y de accidentes</p>
-      </mat-card-footer>
-    </mat-card>
+        <mat-card-footer>
+          <p class="iva-inc">* Incluye material óptico y seguro RC y de accidentes</p>
+        </mat-card-footer>
+      </mat-card>
 
       <section class="button-group">
         <a href="https://wa.me/34727702571?text=¡Hola!" class="contact-link">
@@ -193,8 +193,9 @@
 
   </mat-tab>
   <mat-tab label="Fotografía">
-    <app-header [isVideo]="false" claseAnimacion="animacion-rapida" srcVideo={{fotografia.imagen}} title={{fotografia.titulo}}> </app-header>
-    
+    <app-header [isVideo]="false" claseAnimacion="animacion-rapida" srcVideo={{fotografia.imagen}}
+      title={{fotografia.titulo}}> </app-header>
+
     <div class="mountain-divider-container">
 
       <div class="mountain-layer layer-back">
@@ -215,80 +216,80 @@
 
     </div>
     <div class="tab-container">
-    <p class="tab-description">{{ fotografia.descripcion }}</p>
-    <mat-card class="ficha-actividad">
-      <mat-card-header>
-        <mat-card-title>PRECIOS</mat-card-title>
-      </mat-card-header>
+      <p class="tab-description">{{ fotografia.descripcion }}</p>
+      <mat-card class="ficha-actividad">
+        <mat-card-header>
+          <mat-card-title>PRECIOS</mat-card-title>
+        </mat-card-header>
 
-      <mat-card-content>
-        <div class="info-grid">
-          <div class="info-item">
-            <div class="info-label">
-              <mat-icon class="icon-gold">person</mat-icon>
-              <span>Adulto</span>
+        <mat-card-content>
+          <div class="info-grid">
+            <div class="info-item">
+              <div class="info-label">
+                <mat-icon class="icon-gold">person</mat-icon>
+                <span>Adulto</span>
+              </div>
+              <div class="info-value highlight">50€</div>
             </div>
-            <div class="info-value highlight">50€</div>
-          </div>
 
-          <mat-divider></mat-divider>
+            <mat-divider></mat-divider>
 
-          <div class="info-item">
-            <div class="info-label">
-              <mat-icon class="icon-gold-light">child_care</mat-icon>
-              <span>Niño</span>
+            <div class="info-item">
+              <div class="info-label">
+                <mat-icon class="icon-gold-light">child_care</mat-icon>
+                <span>Niño</span>
+              </div>
+              <div class="info-value highlight">25€</div>
             </div>
-            <div class="info-value highlight">25€</div>
-          </div>
 
-          <mat-divider></mat-divider>
+            <mat-divider></mat-divider>
 
-          <div class="info-item">
-            <div class="info-label">
-              <mat-icon class="icon-green">schedule</mat-icon>
-              <span>Duración</span>
+            <div class="info-item">
+              <div class="info-label">
+                <mat-icon class="icon-green">schedule</mat-icon>
+                <span>Duración</span>
+              </div>
+              <div class="info-value">4 horas</div>
             </div>
-            <div class="info-value">4 horas</div>
           </div>
-        </div>
-      </mat-card-content>
+        </mat-card-content>
 
-      <mat-card-footer>
-        <p class="iva-inc">* Incluye material óptico y seguro RC y de accidentes</p>
-      </mat-card-footer>
-    </mat-card>
+        <mat-card-footer>
+          <p class="iva-inc">* Incluye material óptico y seguro RC y de accidentes</p>
+        </mat-card-footer>
+      </mat-card>
 
-    <section class="button-group">
-      <a href="https://wa.me/34727702571?text=¡Hola!" class="contact-link">
-        <button mat-stroked-button class="full-width-btn btn-contact">
-          <i class="bi bi-whatsapp me-2"></i>
-          CONTACTAR
+      <section class="button-group">
+        <a href="https://wa.me/34727702571?text=¡Hola!" class="contact-link">
+          <button mat-stroked-button class="full-width-btn btn-contact">
+            <i class="bi bi-whatsapp me-2"></i>
+            CONTACTAR
+          </button>
+        </a>
+      </section>
+
+
+      <h2>Galería</h2>
+
+      <div class="carousel-wrapper">
+        <button mat-icon-button class="nav-btn left mat-elevation-z4" (click)="scroll('left')">
+          <mat-icon>chevron_left</mat-icon>
         </button>
-      </a>
-    </section>
-
-
-    <h2>Galería</h2>
-
-    <div class="carousel-wrapper">
-      <button mat-icon-button class="nav-btn left mat-elevation-z4" (click)="scroll('left')">
-        <mat-icon>chevron_left</mat-icon>
-      </button>
-      <div class="carousel-container">
-        <div class="carousel-track" #carouselTrack>
-          @for (img of fotografia.imagenes; track img) {
-          <div class="carousel-item-foto">
-            <img [src]="img" alt="Foto N'asturaleza" loading="lazy">
+        <div class="carousel-container">
+          <div class="carousel-track" #carouselTrack>
+            @for (img of fotografia.imagenes; track img) {
+            <div class="carousel-item-foto">
+              <img [src]="img" alt="Foto N'asturaleza" loading="lazy">
+            </div>
+            }
           </div>
-          }
         </div>
+        <button class="nav-btn right mat-elevation-z4" mat-icon-button (click)="scroll('right')">
+          <mat-icon>chevron_right</mat-icon>
+        </button>
       </div>
-      <button class="nav-btn right mat-elevation-z4" mat-icon-button (click)="scroll('right')">
-        <mat-icon>chevron_right</mat-icon>
-      </button>
-    </div>
 
-</div>
+    </div>
   </mat-tab>
 
 </mat-tab-group>
