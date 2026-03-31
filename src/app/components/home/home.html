@@ -1,6 +1,7 @@
 <div class="main-wrapper">
 
-  <app-header [isVideo]="true" claseAnimacion="animacion-lenta" srcVideo="assets/videos/video_inicio.mov" title="Experiencias de naturaleza y fauna salvaje de Asturias">
+  <app-header [isVideo]="true" claseAnimacion="animacion-lenta" srcVideo="assets/videos/video_inicio.mov"
+    title="Experiencias de naturaleza y fauna salvaje de Asturias">
   </app-header>
 
   <section class="nature-text">
@@ -109,23 +110,30 @@
           <div class="carousel-item">
             <mat-card class="example-card" appearance="outlined">
               <mat-card-header>
-                <div mat-card-avatar 
-                    [style.backgroundImage]="'url(' + item.avatar + ')'" 
-                    class="example-header-image">
+                <div mat-card-avatar class="user-avatar">
+                  <mat-icon>account_circle</mat-icon>
                 </div>
-                <mat-card-title>{{item.name}}</mat-card-title>
-                <mat-card-subtitle>@for (s of [1,2,3,4,5]; track s) {
-                  <mat-icon class="mini-star">{{ item.rating >= s ? 'star' : 'star_border' }}</mat-icon>
-                  }</mat-card-subtitle>
 
+                <mat-card-title>{{item.name}}</mat-card-title>
+
+                <mat-card-subtitle>
+                  <div class="stars-container">
+                    @for (s of [1,2,3,4,5]; track s) {
+                    <mat-icon class="mini-star">{{ item.rating >= s ? 'star' : 'star_border' }}</mat-icon>
+                    }
+                  </div>
+                  <p class="google-link">
+                    Reseña de <a [href]="item.url" target="_blank">Google</a>
+                  </p>
+                </mat-card-subtitle>
               </mat-card-header>
+
               <mat-card-content>
-                <p>
+                <p class="comment-text">
                   {{item.comment}}
                 </p>
               </mat-card-content>
             </mat-card>
-
           </div>
           }
         </div>

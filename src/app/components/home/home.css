@@ -131,49 +131,6 @@ h2 {
 
 }
 
-/* 3. La tarjeta: Estructura normal */
-.custom-card {
-  display: flex;
-  flex-direction: column;
-  border-radius: 8px;
-  margin: 0;
-}
-
-/* 4. La imagen: Mantiene la proporción siempre */
-.custom-card img[mat-card-image] {
-  width: 100%;
-  /* aspect-ratio mantiene la proporción de la foto. 
-     16/9 es formato panorámico, 4/3 es un poco más cuadrado. */
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  margin: 0;
-}
-
-/* 5. Ajuste de textos y botones para la tarjeta "miniatura" */
-.custom-card mat-card-header {
-  padding: 12px 12px 0 12px;
-}
-
-.custom-card mat-card-title {
-  font-size: 1rem;
-  /* Texto del título un poco más pequeño */
-}
-
-.custom-card mat-card-subtitle {
-  font-size: 0.8rem;
-}
-
-.custom-card .card-btn-area {
-  padding: 12px;
-  text-align: center;
-}
-
-/* Hacemos el botón un poco más pequeño con 'scale' */
-.custom-card .card-btn-area button {
-  transform: scale(0.9);
-}
-
-
 /* ########## RESEÑAS ############# */
 
 .stars-selector {
@@ -215,22 +172,7 @@ h2 {
   justify-content: center;
 }
 
-/* Tarjetas de Reseña */
-.review-card {
-  margin-bottom: 16px;
-  background-color: #fafafa;
-}
 
-.review-card:last-child {
-  margin-bottom: 8px;
-}
-
-.review-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 8px;
-}
 
 .user-name {
   font-weight: 600;
@@ -723,10 +665,50 @@ h2 {
 .carousel-item mat-card {
   width: 100%;
   height: 100%;
+
+  padding-bottom: 20px;
 }
 
 
-.example-header-image {
-  background-image: url('/assets/images/logo_grande.webp');
-  background-size: cover;
+mat-card-content{
+  text-align: justify;
+  overflow-y: scroll;
+}
+
+
+.user-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e0e0e0; 
+  color: #757575;            
+  border-radius: 50%;        
+  overflow: hidden;
+
+  
+}
+
+.user-avatar mat-icon {
+    font-size: 40px;        
+    width: 40px;
+    height: 40px;
+  }
+
+.google-link {
+  margin: 0; 
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.6);
+  
+  a {
+    color: #4285F4; 
+    text-decoration: none;
+    font-weight: 500;
+    &:hover { text-decoration: underline; }
+  }
+}
+
+.comment-text {
+  margin-top: 12px;
+  font-style: italic;
+  line-height: 1.5;
 }

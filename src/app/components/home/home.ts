@@ -12,6 +12,7 @@ import { ButtonGroup } from '../button-group/button-group';
 import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
+import reviewsData from '../../../assets/data/reviews.json';
 
 @Component({
   selector: 'app-home',
@@ -152,29 +153,37 @@ export class Home implements OnInit,AfterViewInit {
   }
 
   async fetchGoogleReviews() {
-
-  // Usamos '?' para que Vercel sepa que lo que sigue son parámetros de la API
-  const url = `/api/google-proxy?place_id=${this.PLACE_ID}&fields=reviews,rating&key=${this.API_KEY}&language=es`;
+  const PLACE_ID = 'ChIJ06mE_7S0NA0R_L6ZSDN18f8';
+  const API_KEY = 'TU_API_KEY';
+  const url = `/api/google-proxy?place_id=${PLACE_ID}&fields=reviews,rating&key=${API_KEY}&language=es`;
 
   try {
     const response = await fetch(url);
     const data = await response.json();
 
-    // Si ves este log en la consola con un objeto 'result', ¡victoria!
-    console.log('Datos recibidos de N\'asturaleza:', data);
-
-    if (data.result && data.result.reviews) {
+    // Si Google nos da reseñas (ya se ha propagado la ficha)
+    if (data.result?.reviews && data.result.reviews.length > 0) {
       const transformed = data.result.reviews.map((rev: any, index: number) => ({
-        id: index,
+        id: 'google-' + index,
         name: rev.author_name,
         rating: rev.rating,
         comment: rev.text,
         avatar: rev.profile_photo_url
       }));
       this.listaReviews.set(transformed);
+    } 
+    // Si la ficha es nueva y Google devuelve OK pero 0 reseñas
+    else {
+      this.cargarReseñasDeReserva();
     }
+
   } catch (error) {
-    console.error('Error en la conexión con Google:', error);
+    this.cargarReseñasDeReserva();
   }
 }
+
+async cargarReseñasDeReserva() {
+    this.listaReviews.set(reviewsData);
+}
+
 }
