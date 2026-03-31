@@ -1,12 +1,12 @@
 {
   "rewrites": [
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    },
-{
       "source": "/api/google-proxy/:path*",
       "destination": "https://maps.googleapis.com/maps/api/place/details/json?:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
