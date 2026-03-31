@@ -91,7 +91,7 @@ export class Home implements OnInit,AfterViewInit {
   private breakpointObserver = inject(BreakpointObserver);
 
   private API_KEY = "AIzaSyDhkKtfe6q6MXkryI7XTk3DUK3xnPF1wUg"
-  private PLACE_ID= "ChIJVYvS_S9uNA0R368X8Y-D6G0"
+  private PLACE_ID= "ChIJ06mE_7S0NA0R70-0M_W_mUg"
 
   // Usamos un Signal para que la plantilla @if sea reactiva y rápida
   isMobile = signal<boolean>(false);
