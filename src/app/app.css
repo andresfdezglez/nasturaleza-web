@@ -1,94 +1,182 @@
-/* ------------------ */
-/* BASE */
+/* ----------------------------------------------------------- */
+/* 1. BASE Y ESTRUCTURA GLOBAL */
+/* ----------------------------------------------------------- */
 html, body {
   margin: 0;
   height: 100%;
-  overflow: hidden; /* scroll solo en contenido */
+  overflow-x: hidden;
 }
 
-/* ------------------ */
-/* CONTENEDOR */
 .sidenav-container {
   min-height: 100vh;
 }
 
 .sidenav-content {
   position: relative;
-  min-height: 100vh;
-  overflow: hidden;
+  height: 100vh;
+  -webkit-overflow-scrolling: touch; /* Suave en iOS */
 }
 
-/* ------------------ */
-/* FONDO FIJO */
-.app-background {
-  position: fixed;
-  inset: 0;
-  background-image: url('/images/1765627550958.jpg');
-  background-attachment: fixed;
-  background-size: cover; 
-  background-position: center;
-  background-repeat: no-repeat;
-  filter: brightness(0.8);
-  z-index: 0;
-}
-
-
-/* ------------------ */
-/* TOOLBAR FIJA */
+/* ----------------------------------------------------------- */
+/* 3. TOOLBAR Y LOGO PEQUEÑO */
+/* ----------------------------------------------------------- */
 .toolbar {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 2;
-  background-color: rgba(247, 247, 245, 0.95) !important;
+  background-color: rgba(247, 247, 245, 0.95) ;
   display: flex;
   align-items: center;
+
 }
 
-/* ------------------ */
-/* BOTÓN HAMBURGUESA (solo móvil) */
+
+mat-icon{
+  margin-right: 10px;
+  color: #034001;
+  vertical-align: middle; margin-bottom: 4px;
+}
+
+/* Contenedor circular para el logo en la barra */
+.toolbar-logo-container {
+  width: 42px;
+  height: 42px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 12px;
+  overflow: hidden;
+  border: 2px solid #034001; /* Verde marca */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.toolbar-logo-img {
+  width: 150%;
+  height: 150%;
+  object-fit: contain;
+  margin-left: -25%;
+  margin-bottom: -10%;
+  will-change: transform;
+  transform: translateZ(0); 
+  
+  /* Evita que el navegador intente suavizar la imagen pesada constantemente */
+  image-rendering: -webkit-optimize-contrast;
+}
+
+.logo {
+  font-family: 'Cormorant Garmond';
+  font-weight: 600;
+  color: #034001; /* Texto en verde musgo */
+  letter-spacing: 0.5px;
+  margin-right: 15px;
+  text-decoration: none;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+/* ----------------------------------------------------------- */
+/* 4. MENÚ Y NAVEGACIÓN */
+/* ----------------------------------------------------------- */
 .menu-button {
   display: inline-flex;
+  margin-right: 12px;
 }
 
-@media (min-width: 769px) {
-  .menu-button {
-    display: none;
-  }
-}
-
-/* ------------------ */
-/* LINKS DE LA TOOLBAR (solo tablet/escritorio) */
 .nav-links {
   display: none;
   gap: 10px;
 }
 
 @media (min-width: 769px) {
-  .nav-links {
-    display: flex;
-  }
+  .menu-button { display: none; }
+  .nav-links { display: flex; }
 }
 
-/* ------------------ */
-/* CONTENIDO SCROLLEABLE */
-.app-content {
-  position: relative;
-  z-index: 1;
-  padding: 16px;
-  overflow-y: auto;
-  min-height: 100vh;
-}
-
-/* ------------------ */
-/* SIDENAV */
 .sidenav {
   width: 250px;
   background-color: #f7f7f5;
 }
 
-mat-nav-list a {
-  font-size: 18px;
-  font-weight: 500;
+/* ----------------------------------------------------------- */
+/* 5. CONTENIDO PRINCIPAL */
+/* ----------------------------------------------------------- */
+.app-content {
+  position: relative;
+  z-index: 1;
+  padding: 62px 0px 0px 0px; /* Padding top para no quedar bajo la toolbar */
+  min-height: 90vh;
+}
+
+/* ----------------------------------------------------------- */
+/* 6. INTRO / SPLASH SCREEN (La que te funciona perfecta) */
+/* ----------------------------------------------------------- */
+.intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background-color: #f7f7f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+}
+
+.intro-overlay.fade-out {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.logo-circle-container {
+  display: flex;
+  width: 500px; 
+  height: 500px;
+  background-color: #ffffff; 
+  border-radius: 50%; 
+  border: 4px solid #034001;
+  box-shadow: 0 15px 45px rgba(0,0,0,0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; 
+  animation: scaleInIntro 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.logo-img-intro {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  /* Mantenemos el truco de la GPU para evitar tirones */
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+@keyframes scaleInIntro {
+  0% { transform: scale(0.6); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@media (max-width: 600px) {
+  .logo-circle-container {
+    width: 250px;
+    height: 250px;
+    border: 3px solid #034001;
+  }
+
+  .logo{
+    font-family: 'Cormorant Garmond';
+    font-weight: 600;
+    color: #034001;
+
+  }
 }

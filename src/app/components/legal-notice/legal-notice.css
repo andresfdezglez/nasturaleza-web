@@ -1,0 +1,101 @@
+header {
+
+    padding: 5%;
+    margin-bottom: 2%;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+    height: 100%;
+    padding: 5%;
+    width: 90%;
+    background-color: #f2e8df;
+}
+
+h1 {
+
+    font-size: 3rem;
+
+}
+
+h2 {
+    font-size: 1.5rem;
+    color: rgb(46, 82, 46);
+}
+
+h1,
+h2 {
+    font-family: 'HandelsonTwo';
+    color: rgb(46, 82, 46);
+    line-height: 1.5;
+    text-align: center;
+    margin: 0;
+}
+
+p {
+    font-family: "Belleza", sans-serif;
+    font-size: 1rem;
+    font-weight: 200;
+    text-align: justify;
+}
+
+
+/* --- CONTENEDOR PRINCIPAL DE LOS PICOS --- */
+.mountain-divider-container {
+    position: relative;
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    line-height: 0;
+    margin-top: -100px;
+    z-index: 5;
+}
+
+/* --- ESTILOS COMUNES PARA LAS CAPAS --- */
+.mountain-layer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.mountain-layer svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* --- CAPA 1: PICOS LEJANOS (Detrás) --- */
+.layer-back {
+    fill: #2d5a27;
+    opacity: 0.4;
+    z-index: 1;
+    overflow: hidden;
+    transform: translateX(-5%);
+
+}
+
+/* --- CAPA 2: PICOS FRONTALES (Delante) --- */
+.layer-front {
+    fill: #f2e8df;
+    z-index: 2;
+    overflow: hidden;
+}
+
+.mountain-layer svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+@media (max-width: 800px) {
+
+    .mountain-divider-container {
+        height: 100px;
+        margin-top: -60px;
+    }
+}

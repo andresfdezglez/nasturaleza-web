@@ -1,21 +1,30 @@
+@if (isIntroVisible()) {
+<div class="intro-overlay" [class.fade-out]="fadeOutStarted()">
+  <div class="logo-circle-container">
+
+    <picture>
+      <source srcset="assets/images/logo_grande.webp" media="(max-width: 767px)">
+
+      <img src="assets/images/logo_grande.png" alt="Logo N'asturaleza" class="logo-img-intro">
+    </picture>
+
+  </div>
+</div>
+}
 <mat-sidenav-container class="sidenav-container">
 
   <!-- Sidenav móvil -->
   <mat-sidenav #drawer class="sidenav" mode="over">
     <mat-nav-list>
-      <a mat-list-item href="" (click)="drawer.close()">Inicio</a>
-      <a mat-list-item href="events" (click)="drawer.close()">Eventos</a>
-      <a mat-list-item href="activities" (click)="drawer.close()">Actividades</a>
-      <a mat-list-item href="contact" (click)="drawer.close()">Contacto</a>
+      <a mat-list-item href="" (click)="drawer.close()"><mat-icon>home</mat-icon> Inicio</a>
+      <a mat-list-item [routerLink]="['/activities/avistamiento']" (click)="drawer.close();"><mat-icon>pets</mat-icon> <span>Observación de fauna</span></a>
+      <a mat-list-item [routerLink]="['/activities/rutas']" (click)="drawer.close();"><mat-icon>hiking</mat-icon> <span>Rutas</span></a>
+      <a mat-list-item [routerLink]="['/activities/fotografia']" (click)="drawer.close();"><mat-icon>camera</mat-icon><span> Fotografía</span></a>
     </mat-nav-list>
   </mat-sidenav>
 
   <!-- Contenido principal -->
   <mat-sidenav-content class="sidenav-content">
-
-    <!-- Fondo fijo -->
-    <div class="app-background"></div>
-
     <!-- Toolbar fija -->
     <mat-toolbar color="primary" class="toolbar">
 
@@ -24,23 +33,31 @@
         <mat-icon>menu</mat-icon>
       </button>
 
-      <span class="logo">Nasturaleza</span>
-
-      <span class="spacer"></span>
-
+      <div class="toolbar-logo-container">
+        <a href="">
+          <img ngSrc="assets/images/logo_grande.webp" width="110" height="80" priority alt="Logo N'asturaleza"
+            disableOptimizedImageSizeCheck class="toolbar-logo-img"/>
+        </a>
+      </div>
+      <a class="logo" href="">
+        <span >N'ASTURALEZA</span>
+      </a>
       <!-- Links visibles en tablet/escritorio -->
       <nav class="nav-links">
         <a mat-button href="">Inicio</a>
-        <a mat-button href="events">Eventos</a>
-        <a mat-button href="activities">Actividades</a>
-        <a mat-button href="contact">Contacto</a>
+        <a mat-button [routerLink]="['/activities/avistamiento']" (click)="drawer.close();">Observación de fauna</a>
+        <a mat-button [routerLink]="['/activities/rutas']" (click)="drawer.close();">Rutas</a>
+        <a mat-button [routerLink]="['/activities/fotografia']" (click)="drawer.close();">Fotografía</a>
       </nav>
+
+      <span class="spacer"></span>
 
     </mat-toolbar>
 
     <!-- Contenido scrolleable -->
     <div class="app-content">
       <router-outlet></router-outlet>
+      <app-footer></app-footer> 
     </div>
 
   </mat-sidenav-content>
