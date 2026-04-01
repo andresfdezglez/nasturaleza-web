@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "pregunta": "¿Por qué es importante cuidar el medio ambiente?",
+    "respuesta": "Cuidar el medio ambiente es fundamental porque garantiza la supervivencia de los ecosistemas, protege la biodiversidad y asegura recursos naturales para las futuras generaciones."
+  },
+  {
+    "id": 2,
+    "pregunta": "¿Qué es la biodiversidad?",
+    "respuesta": "La biodiversidad se refiere a la variedad de seres vivos que existen en el planeta, incluyendo plantas, animales, microorganismos y los ecosistemas en los que habitan."
+  },
+  {
+    "id": 3,
+    "pregunta": "¿Cómo puedo reducir mi impacto ambiental?",
+    "respuesta": "Puedes reducir tu impacto ambiental reciclando, usando menos plástico, ahorrando energía y agua, utilizando transporte sostenible y apoyando productos ecológicos."
+  },
+  {
+    "id": 4,
+    "pregunta": "¿Qué son las energías renovables?",
+    "respuesta": "Las energías renovables son aquellas que provienen de fuentes naturales que se regeneran constantemente, como el sol, el viento, el agua y la biomasa."
+  },
+  {
+    "id": 5,
+    "pregunta": "¿Qué puedo hacer para proteger la fauna silvestre?",
+    "respuesta": "Puedes proteger la fauna silvestre respetando sus hábitats, evitando consumir productos derivados de animales en peligro, apoyando organizaciones de conservación y promoviendo la educación ambiental."
+  }
+]
