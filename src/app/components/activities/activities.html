@@ -1,1 +1,313 @@
-<p>activities works!</p>
+<mat-tab-group dynamicHeight class="custom-tabs" (selectedTabChange)="onTabChange($event)"
+  [selectedIndex]="selectedTabIndex()">
+
+  <mat-tab label="Avistamiento">
+    <div class="animal-selector">
+      @for (animal of fauna; track animal.id) {
+      <button matRipple (click)="selectAnimal(animal)" [class.active]="selectedFauna().id === animal.id">
+        {{ animal.name }}
+      </button>
+      }
+    </div>
+
+    <app-header [isVideo]="true" claseAnimacion="animacion-rapida" [srcVideo]="selectedFauna().video"
+      [title]="selectedFauna().title"></app-header>
+
+
+    <div class="mountain-divider-container">
+
+      <div class="mountain-layer layer-back">
+        <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+          <path
+            d="M0,160L80,186.7C160,213,320,267,480,245.3C640,224,800,128,960,112C1120,96,1280,160,1360,192L1440,224L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z">
+          </path>
+        </svg>
+      </div>
+
+      <div class="mountain-layer layer-front">
+        <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+          <path
+            d="M0,224L60,213.3C120,203,240,181,360,186.7C480,192,600,224,720,229.3C840,235,960,213,1080,186.7C1200,160,1320,128,1380,112L1440,96L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z">
+          </path>
+        </svg>
+      </div>
+
+    </div>
+
+    <div class="tab-container">
+
+
+      <p class="tab-description">{{ selectedFauna().desc }}</p>
+
+      <mat-card class="ficha-actividad">
+        <mat-card-header>
+          <mat-card-title>PRECIOS</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+          <div class="info-grid">
+            <div class="info-item">
+              <div class="info-label">
+                <mat-icon class="icon-gold">person</mat-icon>
+                <span>Adulto</span>
+              </div>
+              <div class="info-value highlight">50€</div>
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <div class="info-item">
+              <div class="info-label">
+                <mat-icon class="icon-gold-light">child_care</mat-icon>
+                <span>Niño</span>
+              </div>
+              <div class="info-value highlight">25€</div>
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <div class="info-item">
+              <div class="info-label">
+                <mat-icon class="icon-green">schedule</mat-icon>
+                <span>Duración</span>
+              </div>
+              <div class="info-value">4 horas</div>
+            </div>
+          </div>
+        </mat-card-content>
+
+        <mat-card-footer>
+          <p class="iva-inc">* Incluye material óptico, reportaje fotográfico y seguro RC y de accidentes</p>
+        </mat-card-footer>
+      </mat-card>
+
+      <section class="button-group">
+        <a href="https://wa.me/34616877203" class="contact-link">
+          <button mat-stroked-button class="full-width-btn btn-contact">
+            <i class="bi bi-whatsapp me-2"></i>
+            CONTACTAR
+          </button>
+        </a>
+      </section>
+
+      <mat-card class="ficha-actividad">
+        <mat-card-header>
+          <mat-card-title><mat-icon>info</mat-icon> INFORMACIÓN IMPORTANTE</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+          <p class="info">La observación de fauna salvaje es una experiencia única, pero es importante tener en
+            cuenta que no puede garantizarse el avistamiento de las especies al 100%. Al tratarse de animales en
+            libertad, su presencia y comportamiento dependen de múltiples factores naturales como el clima, la
+            disponibilidad de alimento o su propio ritmo biológico</p>
+          <p class="info">No obstante, todas nuestras actividades están diseñadas y guiadas por profesionales
+            especializados, que dedican numerosas horas de trabajo de campo al seguimiento de las especies y al
+            conocimiento profundo de sus hábitats. Gracias a esta labor, se seleccionan cuidadosamente los lugares y
+            momentos más adecuados para maximizar las probabilidades de observación.</p>
+        </mat-card-content>
+
+      </mat-card>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Rutas">
+    <app-header [isVideo]="false" claseAnimacion="animacion-rapida" srcVideo={{rutas.imagen}} title={{rutas.titulo}}>
+    </app-header>
+    <div class="mountain-divider-container">
+
+      <div class="mountain-layer layer-back">
+        <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+          <path
+            d="M0,160L80,186.7C160,213,320,267,480,245.3C640,224,800,128,960,112C1120,96,1280,160,1360,192L1440,224L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z">
+          </path>
+        </svg>
+      </div>
+
+      <div class="mountain-layer layer-front">
+        <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+          <path
+            d="M0,224L60,213.3C120,203,240,181,360,186.7C480,192,600,224,720,229.3C840,235,960,213,1080,186.7C1200,160,1320,128,1380,112L1440,96L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z">
+          </path>
+        </svg>
+      </div>
+
+    </div>
+    <div class="tab-container">
+
+      <p class="tab-description">{{ rutas.descripcion }}</p>
+
+      <mat-card class="ficha-actividad">
+        <mat-card-header>
+          <mat-card-title>PRECIOS</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+          <div class="info-grid">
+            <div class="info-item">
+              <div class="info-label">
+                <mat-icon class="icon-gold">person</mat-icon>
+                <span>Adulto</span>
+              </div>
+              <div class="info-value highlight">50€</div>
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <div class="info-item">
+              <div class="info-label">
+                <mat-icon class="icon-gold-light">child_care</mat-icon>
+                <span>Niño</span>
+              </div>
+              <div class="info-value highlight">25€</div>
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <div class="info-item">
+              <div class="info-label">
+                <mat-icon class="icon-green">schedule</mat-icon>
+                <span>Duración</span>
+              </div>
+              <div class="info-value">4 horas</div>
+            </div>
+          </div>
+        </mat-card-content>
+
+        <mat-card-footer>
+          <p class="iva-inc">* Incluye material óptico, reportaje fotográfico y seguro RC y de accidentes</p>
+        </mat-card-footer>
+      </mat-card>
+
+      <section class="button-group">
+        <a href="https://wa.me/34616877203" class="contact-link">
+          <button mat-stroked-button class="full-width-btn btn-contact">
+            <i class="bi bi-whatsapp me-2"></i>
+            CONTACTAR
+          </button>
+        </a>
+      </section>
+
+      <h2>Galería</h2>
+
+      <div class="carousel-wrapper">
+
+        <button mat-icon-button class="nav-btn left mat-elevation-z4" (click)="scroll('left')">
+          <mat-icon>chevron_left</mat-icon>
+        </button>
+        <div class="carousel-container">
+          <div class="carousel-track" #carouselTrack>
+            @for (img of rutas.imagenes; track img) {
+            <div class="carousel-item-ruta">
+              <img [src]="img" alt="Foto N'asturaleza" loading="lazy">
+            </div>
+            }
+          </div>
+        </div>
+        <button class="nav-btn right mat-elevation-z4" mat-icon-button (click)="scroll('right')">
+          <mat-icon>chevron_right</mat-icon>
+        </button>
+      </div>
+    </div>
+
+
+  </mat-tab>
+  <mat-tab label="Fotografía">
+    <app-header [isVideo]="false" claseAnimacion="animacion-rapida" srcVideo={{fotografia.imagen}}
+      title={{fotografia.titulo}}> </app-header>
+
+    <div class="mountain-divider-container">
+
+      <div class="mountain-layer layer-back">
+        <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+          <path
+            d="M0,160L80,186.7C160,213,320,267,480,245.3C640,224,800,128,960,112C1120,96,1280,160,1360,192L1440,224L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z">
+          </path>
+        </svg>
+      </div>
+
+      <div class="mountain-layer layer-front">
+        <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+          <path
+            d="M0,224L60,213.3C120,203,240,181,360,186.7C480,192,600,224,720,229.3C840,235,960,213,1080,186.7C1200,160,1320,128,1380,112L1440,96L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z">
+          </path>
+        </svg>
+      </div>
+
+    </div>
+    <div class="tab-container">
+      <p class="tab-description">{{ fotografia.descripcion }}</p>
+      <mat-card class="ficha-actividad">
+        <mat-card-header>
+          <mat-card-title>PRECIOS</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+          <div class="info-grid">
+            <div class="info-item">
+              <div class="info-label">
+                <mat-icon class="icon-gold">person</mat-icon>
+                <span>Adulto</span>
+              </div>
+              <div class="info-value highlight">50€</div>
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <div class="info-item">
+              <div class="info-label">
+                <mat-icon class="icon-gold-light">child_care</mat-icon>
+                <span>Niño</span>
+              </div>
+              <div class="info-value highlight">25€</div>
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <div class="info-item">
+              <div class="info-label">
+                <mat-icon class="icon-green">schedule</mat-icon>
+                <span>Duración</span>
+              </div>
+              <div class="info-value">4 horas</div>
+            </div>
+          </div>
+        </mat-card-content>
+
+        <mat-card-footer>
+          <p class="iva-inc">* Incluye material óptico, reportaje fotográfico y seguro RC y de accidentes</p>
+        </mat-card-footer>
+      </mat-card>
+
+      <section class="button-group">
+        <a href="https://wa.me/34616877203" class="contact-link">
+          <button mat-stroked-button class="full-width-btn btn-contact">
+            <i class="bi bi-whatsapp me-2"></i>
+            CONTACTAR
+          </button>
+        </a>
+      </section>
+
+      <h2>Galería</h2>
+
+      <div class="carousel-wrapper">
+        <button mat-icon-button class="nav-btn left mat-elevation-z4" (click)="scroll('left')">
+          <mat-icon>chevron_left</mat-icon>
+        </button>
+        <div class="carousel-container">
+          <div class="carousel-track" #carouselTrack>
+            @for (img of fotografia.imagenes; track img) {
+            <div class="carousel-item-foto">
+              <img [src]="img" alt="Foto N'asturaleza" loading="lazy">
+            </div>
+            }
+          </div>
+        </div>
+        <button class="nav-btn right mat-elevation-z4" mat-icon-button (click)="scroll('right')">
+          <mat-icon>chevron_right</mat-icon>
+        </button>
+      </div>
+
+    </div>
+  </mat-tab>
+
+</mat-tab-group>

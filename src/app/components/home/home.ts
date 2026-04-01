@@ -1,11 +1,144 @@
-import { Component } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
+import { AfterViewInit, Component, DOCUMENT, ElementRef, Inject, inject, OnInit, PLATFORM_ID, signal, ViewChild } from '@angular/core';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Header } from '../header/header';
+import { ButtonGroup } from '../button-group/button-group';
+import { Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { Meta, Title } from '@angular/platform-browser';
+import reviewsData from '../../../assets/data/reviews.json';
 
 @Component({
   selector: 'app-home',
-  imports: [],
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatCardModule,
+    MatButtonModule,
+    MatTableModule,
+    MatIconModule,
+    MatDividerModule,
+    Header,
+    ButtonGroup,
+    RouterModule
+  ],
   templateUrl: './home.html',
-  styleUrl: './home.css',
+  styleUrl: './home.css'
 })
-export class Home {
+export class Home implements OnInit, AfterViewInit {
+
+  @ViewChild('seccionSobreMi') seccion!: ElementRef;
+  @ViewChild('carouselTrack', { static: false }) carouselTrack?: ElementRef<HTMLElement>;
+  isVisible = signal(false);
+  private platformId = inject(PLATFORM_ID);
+  private breakpointObserver = inject(BreakpointObserver);
+  private API_KEY = "AIzaSyDhkKtfe6q6MXkryI7XTk3DUK3xnPF1wUg"
+  private PLACE_ID = "ChIJi3sI3koiKmERNByJdNvODUg"
+
+  isMobile = signal<boolean>(false);
+  listaReviews = signal<any[]>([]);
+
+  constructor(private title: Title, private meta: Meta, @Inject(DOCUMENT) private document: Document) {
+
+  }
+
+  ngAfterViewInit() {
+    if (isPlatformBrowser(this.platformId)) {
+
+      const options = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.05
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+
+          if (entry.isIntersecting) {
+            this.isVisible.set(true); 
+            observer.unobserve(this.seccion.nativeElement);
+          }
+        });
+      }, options);
+
+      if (this.seccion) {
+        observer.observe(this.seccion.nativeElement);
+      }
+    }
+  }
+
+  async ngOnInit(): Promise<void> {
+    this.title.setTitle("Inicio | Nasturaleza")
+    this.meta.updateTag({
+      name: 'description',
+      content: 'Experiencias de turismo activo en Asturias: Observación de fauna, rutas interpretativas y fotografía de naturaleza en Asturias. ¿Te animas?'
+    })
+
+    this.breakpointObserver.observe([Breakpoints.HandsetPortrait])
+      .subscribe(result => {
+        this.isMobile.set(result.matches);
+      });
+    this.putCanonical('https://www.nasturalezaexperiencias.es/');
+    await this.fetchGoogleReviews();
+  }
+
+  putCanonical(url: string) {
+    let link: HTMLLinkElement = this.document.querySelector("link[rel='canonical']") || this.document.createElement('link');
+    link.setAttribute('rel', 'canonical');
+    link.setAttribute('href', url);
+    if (!this.document.head.contains(link)) {
+      this.document.head.appendChild(link);
+    }
+  }
+
+
+  scroll(direction: 'left' | 'right') {
+    if (!this.carouselTrack || !this.carouselTrack.nativeElement) {
+      return;
+    }
+
+    const track = this.carouselTrack.nativeElement;
+    const scrollAmount = track.offsetWidth * 0.8;
+
+    track.scrollBy({
+      left: direction === 'left' ? -scrollAmount : scrollAmount,
+      behavior: 'smooth'
+    });
+  }
+
+  async fetchGoogleReviews() {
+    const url = `/api/google-proxy?place_id=${this.PLACE_ID}&fields=reviews,rating&key=${this.API_KEY}&language=es`;
+
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+
+      if (data.result?.reviews && data.result.reviews.length > 0) {
+        const transformed = data.result.reviews.map((rev: any, index: number) => ({
+          id: 'google-' + index,
+          name: rev.author_name,
+          rating: rev.rating,
+          comment: rev.text,
+          avatar: rev.profile_photo_url
+        }));
+        this.listaReviews.set(transformed);
+      }
+      else {
+        this.loadLocalReviews();
+      }
+
+    } catch (error) {
+      this.loadLocalReviews();
+    }
+  }
+
+  async loadLocalReviews() {
+    this.listaReviews.set(reviewsData);
+  }
 
 }

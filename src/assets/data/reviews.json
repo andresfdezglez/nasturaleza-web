@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Belén",
+    "rating": 5,
+    "comment": "Una experiencia increíble e inolvidable. El avistamiento de osos fue algo único, y el guía, además de cercano, demostró un gran conocimiento de la zona. Nos encantó descubrir el paisaje y aprender sobre las plantas y el entorno de Moal. ¡Totalmente recomendable!",
+    "url": "https://maps.app.goo.gl/Xzn52on5YZrWDWAS6"
+  },
+  {
+    "id": 2,
+    "name": "Jennifer M.",
+    "rating": 5,
+    "comment": "Ha sido una experiencia maravillosa. Diego, el guía, estuvo muy pendiente de todos en todo momento. Nos ayudó a buscar alojamiento. El día de la ruta nos esperó en la puerta del alojamiento y fuimos a ver si podíamos observar algún oso. Por el camino aprendimos mucho. Vimos letrinas de tejones, una madriguera de un posible zorro, heces de lobo con restos de pelo y huesos, nidos de pájaros carpinteros, rebecos, corzos y finalmente un oso que pudimos observar desde dos posiciones diferentes. Estuvimos desde las 7:30 de la mañana hasta las 12:30 y se pasó volando, ya que Diego siempre tenía curiosidades de los animales para contarnos. Para llevar mejor el frío del día, le dejó a mi hijo mayor de 8 años un chaleco calefactable y nos ofreció café. Tanto nosotros como nuestros dos hijos (8 y 5 años) salimos encantados. 100% recomendable.",
+    "url": "https://maps.app.goo.gl/c7XPi3FgDZE6vsbk7"
+  },
+  {
+    "id": 3,
+    "name": "Alba F.",
+    "rating": 5,
+    "comment": "Si buscas profesionalidad, respeto por la naturaleza y gran conocimiento del entorno y experiencia, Diego es el guía que buscas. Además de realizar la actividad de forma segura y responsable, Diego nos facilitó muy buen material óptico. Si a esto añadimos las detalladas explicaciones, el avistamiento se convierte en una gran experiencia. Sin duda, es una actividad que recomendaría a cualquiera que quiera disfrutar de la naturaleza de una forma diferente, personalizada y tranquila. ¡Deseando repetir!",
+    "url": "https://maps.app.goo.gl/YhVaNnTAUZWEhuKi8"
+  }
+]

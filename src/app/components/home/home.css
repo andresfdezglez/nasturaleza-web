@@ -1,63 +1,602 @@
-.home {
-  position: relative;
-  width: 100%;
-  height: 100vh;
+/* Contenedor principal con espaciado entre secciones */
+.main-wrapper {
   display: flex;
+  flex-direction: column;
+  gap: 90px;
+  height: 100%;
+  margin-bottom: 10%;
+  padding-bottom: 10%;
+  width: 100%
+}
+
+h2 {
+  font-family: 'HandelsonTwo';
+  font-size: 4.5rem;
+  color: rgb(46, 82, 46);
+  line-height: 1.5;
+  text-align: center;
+  margin: 0;
+}
+
+.title p {
+  font-size: 1.5rem;
+  opacity: 0.9;
+  margin-bottom: 30px;
+}
+
+/*********** SOBRE MI ********/
+
+.about-me-section.visible .about-text-area {
+  animation-name: fadeLeftTexto;
+  animation-duration: 1.5s;
+  animation-timing-function: ease-out;
+  animation-delay: 0s;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+.about-me-section.visible .svg-importado {
+  animation-name: fadeRightTexto;
+  animation-duration: 1.5s;
+  animation-timing-function: ease-out;
+  animation-delay: 0s;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+.about-me-section {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  min-height: 80vh;
+  /* Le da una altura importante a la sección */
+  margin: 0 auto;
+  box-sizing: border-box;
+  overflow: hidden;
+  background-color: #6F7303;
+  position: relative;
+  z-index: 6;
+  margin-top: -120px;
+  padding-bottom: 10px;
+}
+
+.svg-importado {
+  width: 60%;
+  /* Se expande a todo ese 60% */
+  height: 100%;
+  margin-right: -15%;
+  margin-left: -5%;
+
+  opacity: 0;
+}
+
+.about-text-area {
+  width: 55%;
+  height: 100%;
+  color: white;
+  justify-content: center;
+
+  opacity: 0;
+}
+
+.about-text-area h2 {
+  font-family: 'HandelsonTwo';
+  color: #3a3939;
+}
+
+.about-text-area p.about-description {
+  font-family: "Belleza", sans-serif;
+  font-size: 1rem;
+  font-weight: 200;
+  text-align: justify;
+}
+
+/********************** FIN *****************/
+
+/* Modificamos solo el Grid para ajustar tamaño y separación */
+.grid-layout {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  width: 100%;
+  justify-content: center;
+  justify-items: center;
+}
+
+/* ########## RESEÑAS ############# */
+
+.activities {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
   justify-content: center;
   align-items: center;
-  text-align: center; /* centra texto */
-  padding: 0 10px;    /* evita que se toque el borde en móviles */
+  padding-left: 5%;
 }
 
-.home-content {
-  position: relative;
-  font-family: Agatho, bold;
-  color: white;
-  z-index: 2;
-  max-width: 90%;
-  /* Animación inicial */
-  opacity: 0;
-  transform: translateY(-300px);
-  animation: fadeIn 3s ease-out forwards;
+.reviews-section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  align-items: center;
+  background-color: #f2e8df;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  justify-content: center;
 }
 
-/* Animación para los elementos internos */
-.home-content h1 {
-  font-size: 3rem;
-  margin: 0 0 10px 0;
-  animation-delay: 0.3s;
+.mini-star {
+  font-size: 16px;
+  width: 18px;
+  height: 16px;
+  color: #ffb400;
 }
 
-.home-content p {
-  font-size: 1.2rem;
+.comment-text {
+  color: #555;
+  line-height: 1.4;
+  margin: 8px 0;
+}
+
+/************ FRASE ***********/
+
+.nature-text {
+  width: 100%;
+  display: flex;
+  margin-top: -10%;
+  justify-content: center;
+  align-items: center;
+  background-color: #f2e8df;
+  text-align: center;
+}
+
+.nature-text p {
+  font-family: 'HandelsonTwo', cursive;
+  font-size: 3.5rem;
+  color: #6F7303;
   margin: 0;
-  animation-delay: 0.8s;
+  line-height: 1.4;
 }
 
-/* Keyframes */
-@keyframes fadeIn {
-  to {
+.phrase-part {
+  display: block;
+  width: 100%;
+}
+
+/************ FRASE ***********/
+/* =========================================
+   DISEÑO PARA MÓVILES (Responsive Design)
+   Se activa en pantallas de 800px o menos
+   ========================================= */
+/* Mantenemos tus estilos de escritorio intactos arriba y modificamos el media query */
+
+@media (max-width: 800px) {
+  .main-wrapper {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    /* Crucial: para que el padding no sume altura extra */
+  }
+
+  .about-p {
+    font-size: 0.8rem;
+  }
+
+  h2 {
+    font-size: 3rem;
+  }
+
+
+  /************ FRASE ***********/
+
+  .nature-text {
+    width: 100%;
+    padding: 20px 0px;
+    display: flex;
+    margin-top: -10%;
+    justify-content: center;
+    align-items: center;
+    background-color: #f2e8df;
+    text-align: center;
+  }
+
+  .nature-text p {
+    font-family: 'HandelsonTwo', cursive;
+    font-size: 1.5rem;
+    color: #6F7303;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .phrase-part {
+    display: block;
+    width: 100%;
+  }
+
+  /************ FRASE ***********/
+
+
+  /*********** SOBRE MI ********/
+
+  .about-me-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    width: 100%;
+    min-height: 80vh;
+    margin: 0 auto;
+    overflow: hidden;
+    background-color: #6F7303;
+    position: relative;
+    z-index: 6;
+    margin-top: -100px;
+    padding-bottom: 10px;
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  .svg-importado {
+    width: 100%;
+    height: 100%;
+    margin-left: 5%;
+  }
+
+  /* ÁREA DE TEXTO: El compañero */
+  .about-text-area {
+    width: 100%;
+    height: 100%;
+    color: white;
+    justify-content: center;
+  }
+
+  .about-text-area h2 {
+    font-family: 'HandelsonTwo';
+    color: #3a3939;
+  }
+
+  .about-text-area p.about-description {
+    font-family: "Belleza", sans-serif;
+    font-size: 0.75rem;
+    line-height: 1.5;
+    text-align: justify;
+  }
+
+  /********************** FIN *****************/
+  /******* ACTIVIDADES ****************/
+  .grid-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 0px;
+  }
+
+  /* 2. El enlace debe ser un bloque que ocupe todo el ancho */
+  .activity-link {
+    display: flex;
+    justify-content: center;
+    /* Centra el SVG dentro del enlace */
+    align-items: center;
+    width: 100%;
+    /* Ocupa todo el ancho de la pantalla */
+    margin: 0;
+    /* Limpiamos márgenes */
+    margin-top: -5%;
+    text-decoration: none;
+  }
+
+  /* 3. El SVG con tamaño visible */
+  .svg-boton {
+    /* Usamos un porcentaje del ancho de pantalla (vw) para que sea "grande" */
+    width: 70vw;
+    /* 60% del ancho del móvil */
+    max-width: 250px;
+    /* Que no se pase de frenada en tablets */
+    height: auto;
+    display: block;
+
+    /* Eliminamos cualquier float o alineación extra */
+    float: none;
+    margin: 0 auto;
+    /* Refuerzo de centrado */
+
+    /* Sombra optimizada para móvil */
+    filter: drop-shadow(0px 8px 12px rgba(0, 0, 0, 0.15));
+  }
+
+  .svg-boton:hover {
+    transform: none !important;
+    filter: none !important;
+  }
+
+  .carousel-wrapper {
+    padding: 20px 0 !important;
+    overflow: visible !important;
+    background-color: transparent;
+    display: block;
+  }
+
+  .carousel-container {
+    overflow: visible;
+  }
+
+  /* 2. El track: El motor del scroll */
+  .carousel-track {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    overflow-x: scroll !important;
+    -webkit-overflow-scrolling: touch;
+
+    /* CAMBIO CLAVE: 'manipulation' permite scroll vertical y horizontal sin bloqueos */
+    touch-action: manipulation !important;
+
+    gap: 15px;
+    padding: 30px 30px;
+    margin: 10px;
+    scroll-snap-type: x mandatory;
+    width: auto;
+
+    /* Ocultar la barra de scroll para estética N'asturaleza */
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE/Edge */
+  }
+
+  .carousel-track::-webkit-scrollbar {
+    display: none;
+    /* Chrome/Safari */
+  }
+
+  /* 3. Las cartas */
+  .carousel-item {
+    flex: 0 0 80vw;
+    width: 80vw;
+    min-width: 280px;
+    scroll-snap-align: center;
+    list-style: none;
+
+    /* Reforzamos que la carta no secuestre el scroll vertical */
+    touch-action: manipulation !important;
+  }
+
+  /* 4. Escondemos botones definitivamente */
+  .nav-btn {
+    display: none !important;
+  }
+
+  .main-wrapper {
+    gap: 80px;
+  }
+
+  .mountain-divider-container {
+    height: 100px;
+    margin-top: -60px;
+  }
+}
+
+/********* SVG  ********/
+
+/* --- CONTENEDOR PRINCIPAL DE LOS PICOS --- */
+.mountain-divider-container {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  line-height: 0;
+  margin-top: -100px;
+  z-index: 5;
+}
+
+/* --- ESTILOS COMUNES PARA LAS CAPAS --- */
+.mountain-layer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.mountain-layer svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* --- CAPA 1: PICOS LEJANOS (Detrás) --- */
+.layer-back {
+  fill: #2d5a27;
+  opacity: 0.4;
+  z-index: 1;
+  overflow: hidden;
+  transform: translateX(-5%);
+
+}
+
+/* --- CAPA 2: PICOS FRONTALES (Delante) --- */
+.layer-front {
+  fill: #6F7303;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.mountain-layer svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* --------- ACTIVIDADES --------- */
+
+.activity-link {
+  width: 100%;
+  display: inline-block;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  /* Evitamos que el enlace tenga el subrayado azul por defecto */
+  text-decoration: none;
+  filter: drop-shadow(4px 6px 8px rgba(111, 115, 3, 0.45));
+}
+
+.svg-boton {
+  width: 85%;
+  height: auto;
+  display: block;
+  transition: filter 0.2s ease;
+}
+
+/* EFECTO HOVER: Para que el usuario sepa que es clickeable */
+.svg-boton:hover {
+  transform: scale(1.1) translateY(-5px);
+  filter: drop-shadow(0px 20px 30px rgba(111, 115, 3, 0.4)) brightness(1.1);
+}
+
+
+/* --- CARRUSEL --- */
+
+/* 1. EL MARCO (La caja de arena #f2e8df) */
+.carousel-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  background-color: #f2e8df;
+  padding: 40px 60px;
+  border-radius: 25px;
+  overflow: visible;
+}
+
+/* 2. LA VENTANA (Lo que recorta las 5 reviews) */
+.carousel-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+/* 3. EL CARRIL (Donde viven las 5 reviews en fila) */
+.carousel-track {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 20px;
+  padding: 20px 5px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  border-radius: 20px;
+}
+
+.carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+/* 4. EL TAMAÑO DE LAS CARTAS */
+.carousel-item {
+  flex: 0 0 350px;
+  width: 320px;
+  height: 280px;
+}
+
+
+/* --- BOTONES DE NAVEGACIÓN --- */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  background-color: white !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-btn.left {
+  left: 10px;
+}
+
+.nav-btn.right {
+  right: 10px;
+}
+
+.carousel-item mat-card {
+  width: 100%;
+  height: 100%;
+
+  padding-bottom: 20px;
+}
+
+mat-card-content {
+  text-align: justify;
+  overflow-y: scroll;
+}
+
+.user-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e0e0e0;
+  color: #757575;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.user-avatar mat-icon {
+  font-size: 40px;
+  width: 40px;
+  height: 40px;
+}
+
+.google-link {
+  margin: 0;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.6);
+
+  a {
+    color: #4285F4;
+    text-decoration: none;
+    font-weight: 500;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.comment-text {
+  margin-top: 12px;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+/******************* ANIMACIONES ********************/
+@keyframes fadeLeftTexto {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+
+  100% {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(0);
   }
 }
 
-/* Ajustes para tablets */
-@media (max-width: 992px) {
-  .home-content h1 {
-    font-size: 2.5rem;
+@keyframes fadeRightTexto {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
   }
-  .home-content p {
-    font-size: 1.1rem;
-  }
-}
 
-/* Ajustes para móviles */
-@media (max-width: 600px) {
-  .home-content h1 {
-    font-size: 2rem;
-  }
-  .home-content p {
-    font-size: 1rem;
+  100% {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
