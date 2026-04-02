@@ -87,7 +87,7 @@ export class Home implements OnInit, AfterViewInit {
         this.isMobile.set(result.matches);
       });
     this.putCanonical('https://www.nasturalezaexperiencias.es/');
-    await this.fetchGoogleReviews();
+    await this.loadLocalReviews();
   }
 
   putCanonical(url: string) {
@@ -126,32 +126,6 @@ export class Home implements OnInit, AfterViewInit {
       left: direction === 'left' ? -scrollAmount : scrollAmount,
       behavior: 'smooth'
     });
-  }
-
-  async fetchGoogleReviews() {
-    const url = `/api/google-proxy?place_id=${this.PLACE_ID}&fields=reviews,rating&key=${this.API_KEY}&language=es`;
-
-    try {
-      const response = await fetch(url);
-      const data = await response.json();
-
-      if (data.result?.reviews && data.result.reviews.length > 0) {
-        const transformed = data.result.reviews.map((rev: any, index: number) => ({
-          id: 'google-' + index,
-          name: rev.author_name,
-          rating: rev.rating,
-          comment: rev.text,
-          avatar: rev.profile_photo_url
-        }));
-        this.listaReviews.set(transformed);
-      }
-      else {
-        this.loadLocalReviews();
-      }
-
-    } catch (error) {
-      this.loadLocalReviews();
-    }
   }
 
   async loadLocalReviews() {
