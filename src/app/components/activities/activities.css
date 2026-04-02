@@ -320,19 +320,24 @@ mat-card-title {
 
 .iva-inc {
   padding: 1rem;
+  padding-bottom: 0px;
   font-size: 0.8rem;
   color: #888;
   text-align: center;
   font-style: italic;
 }
 
-.info{
+.info {
   font-family: "Belleza", sans-serif;
-  padding: 1rem;
   font-size: 1rem;
   text-align: justify;
   line-height: 1.5rem;
   color: #504f4f;
+  
+  /* Ajuste de distancias */
+  padding: 0.5rem 1rem; /* 0.5 arriba/abajo, 1 a los lados */
+  margin-top: 0;        /* Quita el margen superior por defecto */
+  margin-bottom: 0.5rem; /* Controla el hueco con el siguiente párrafo */
 }
 
 mat-divider {
@@ -405,21 +410,6 @@ mat-divider {
   right: 10px;
 }
 
-
-/* --- RESPONSIVE PARA PC --- */
-@media (min-width: 900px) {
-
-
-  .carousel-item-foto,
-  .carousel-item-ruta {
-    flex: 0 0 50%;
-    aspect-ratio: 3 / 4;
-  }
-
-  .carousel-wrapper {
-    padding: 0 30px;
-  }
-}
 
 @media(max-width:800px) {
   .tab-description {

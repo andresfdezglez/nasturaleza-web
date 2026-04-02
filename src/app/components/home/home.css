@@ -114,7 +114,7 @@ h2 {
   padding-left: 5%;
 }
 
-.reviews-section {
+.questions-section, .reviews-section {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -125,7 +125,9 @@ h2 {
   padding-top: 5%;
   padding-bottom: 5%;
   justify-content: center;
+  margin-top: -120px;
 }
+
 
 .mini-star {
   font-size: 16px;
@@ -418,9 +420,24 @@ h2 {
 
 }
 
+.layer-back-faq {
+  fill: #593A1E;
+  opacity: 0.4;
+  z-index: 1;
+  overflow: hidden;
+  transform: translateX(-5%);
+
+}
+
 /* --- CAPA 2: PICOS FRONTALES (Delante) --- */
 .layer-front {
   fill: #6F7303;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.layer-front-faq {
+  fill: #f2e8df;
   z-index: 2;
   overflow: hidden;
 }

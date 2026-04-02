@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "pregunta": "¿Tengo que llevar algo el día de la actividad?",
+    "respuesta": "Cualquier actividad en el medio natural debe llevarse a cabo con seguridad y previsión. Para ello, contar con un equipo adecuado es fundamental. El material indispensable para cada jornada se debería componer de: calzado de montaña, ropa térmica, ropa impermeable, agua y comida suficiente para la jornada, crema solar, gorra y prendas de abrigo (guantes, cubre cuello, plumífero). Si además nuestra intención es observar fauna, las prendas deberían ser de colores discretos y en consonancia con el entorno."
+  },
+  {
+    "id": 2,
+    "pregunta": "¿Cómo se realiza el pago de la actividad?",
+    "respuesta": "El método de pago puede ser tanto por medio de Bizum como en efectivo."
+  },
+  {
+    "id": 3,
+    "pregunta": "¿Cuándo se considera 'grupo' para tener precio especial?",
+    "respuesta": "Se considerará 'grupo' cuando un mínimo de 6 personas contraten juntas una misma actividad. A excepción de 'Senderismo interpretativo', para la que el número mínimo será de 10 personas."
+  },
+  {
+    "id": 4,
+    "pregunta": "¿Cuántas personas pueden realizar cada actividad?",
+    "respuesta": "El numero máximo de personas depende del tipo de actividad que se contrate. Para 'Senderismo interpretativo' y 'Fotografía de naturaleza', será un máximo de 15 personas. Mientras que para las actividades de 'Observación de fauna' serán grupos reducidos de 8 personas, para favorecer el correcto desarrollo de la jornada, el respeto por el medio natural y la fauna. No obstante, la situación particular de cada avistamiento podrá modificar estas ratios a la baja cuando el guía lo considere necesario."
+  },
+  {
+    "id": 5,
+    "pregunta": "¿Qué pasa si el tiempo no es favorable el día de la actividad?",
+    "respuesta": "Los cambios meteorológicos en el norte de España y más concretamente en Asturias son más que conocidos popularmente. Por lo que, en ocasiones, lo que parecía una previsión favorable puede verse truncada horas antes. La experiencia durante años saliendo al monte nos ha permitido saber interpretar los datos de forma bastante fiable y os asesoraremos en consonancia. Ofreciendo opciones de posponer la actividad para otra jornada. Sin embargo, si la climatología al iniciar la actividad no impide su desarrollo, ésta se realizará con normalidad."
+  },
+  {
+    "id": 6,
+    "pregunta": "¿Puedo llevar mi vehículo?",
+    "respuesta": "Si. Todas las actividades están diseñadas para acceder a ellas por tus propios medios. Nosotros te guiaremos hasta el último lugar donde acceda el coche y, desde ahí, iniciaremos la actividad."
+  },
+  {
+    "id": 7,
+    "pregunta": "¿Veremos al animal que buscamos?",
+    "respuesta": "La observación de fauna salvaje es una experiencia única, pero es importante tener en cuenta que no puede garantizarse el avistamiento de las especies al 100%. Al tratarse de animales en libertad, su presencia y comportamiento dependen de múltiples factores naturales como el clima, la disponibilidad de alimento o su propio ritmo biológico. No obstante, todas nuestras actividades están diseñadas y guiadas por profesionales especializados, que dedican numerosas horas de trabajo de campo al seguimiento de las especies y al conocimiento profundo de sus hábitats. Gracias a esta labor, se seleccionan cuidadosamente los lugares y momentos más adecuados para maximizar las probabilidades de observación."
+  },
+  {
+    "id": 8,
+    "pregunta": "¿Y si no lo vemos, se nos devolverá el dinero?",
+    "respuesta": "No. Es fundamental tener en cuenta que se está pagando por un servicio que no incluye exclusivamente la observación. Gastos de empresa como seguros, material óptico y las horas de trabajo del guía dedicadas en sus explicaciones y mantener la seguridad de las personas a su cargo, constituyen el coste de la actividad."
+  },
+  {
+    "id": 9,
+    "pregunta": "¿Qué duración tienen las actividades?",
+    "respuesta": "Cada actividad de MEDIO DÍA tiene una duración aproximada de unas 4-5 horas. Se puede escoger entre amanecer o atardecer. También existe la posibilidad de contratar DÍA COMPLETO (8-9 horas) dividido en dos salidas y éste contará con un precio especial a consultar."
+  }
+]

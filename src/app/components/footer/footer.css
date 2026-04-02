@@ -14,7 +14,7 @@
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 40px;
   border-bottom: 1px solid rgba(242, 232, 223, 0.1);
-  padding-bottom: 40px;
+  padding-bottom: 20px;
 }
 
 .footer-section h4 {
@@ -61,7 +61,6 @@
   color: #bc9d5d;
 }
 
-/* Iconos Sociales */
 .social-icons {
   display: flex;
   gap: 15px;
@@ -86,7 +85,7 @@
 /* Parte Inferior (Copyright) */
 .footer-bottom {
   max-width: 1100px;
-  margin: 20px auto 0;
+  margin: 10px auto 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -94,7 +93,6 @@
   font-size: 0.85rem;
   opacity: 0.6;
 }
-
 .legal-links a {
   color: #f2e8df;
   text-decoration: none;
@@ -108,15 +106,25 @@ h3 {
 }
 
 .logo {
-  width: 30%;
-  height: 50%;
+  width: 180px;               
+  height: auto;            
+  margin-left: -20%;         /* TRUCO: Si el logo tiene aire a la izquierda, muévelo con margen negativo */
+  display: block;
+  filter: brightness(1.2);    /* Opcional: por si quieres que resalte más sobre el verde oscuro */
+
+}
+
+.logo:hover {
+  opacity: 1;
 }
 
 /* --- RESPONSIVE --- */
 @media (max-width: 768px) {
   .footer-container {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
     text-align: center;
+    gap: 10px;
   }
 
   .social-icons {
@@ -125,11 +133,20 @@ h3 {
 
   .footer-bottom {
     flex-direction: column;
-    gap: 15px;
     text-align: center;
   }
 
-  .legal-links a {
-    margin: 0 10px;
+  .footer-section links{
+
+  }
+
+  .footer-section.brand {
+    align-items: center; /* Centra el logo en móviles */
+  }
+  
+  .logo {
+    width: 100%;
+    margin-left: 4%;
+    margin-top: -20%;
   }
 }
