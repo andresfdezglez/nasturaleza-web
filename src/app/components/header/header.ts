@@ -12,7 +12,7 @@ export class Header {
     title = input.required<string>()
     claseAnimacion = input.required<string>()
     isVideo = input<boolean>(true);
-
+    poster = input<string>()
     private animService = inject(AnimationService);
 
   // Signal para la animación extra
