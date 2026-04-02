@@ -8,12 +8,12 @@ html, body {
 }
 
 .sidenav-container {
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .sidenav-content {
   position: relative;
-  height: 100vh;
+  height: 100dvh;
   -webkit-overflow-scrolling: touch; /* Suave en iOS */
 }
 
@@ -110,7 +110,7 @@ mat-icon{
   position: relative;
   z-index: 1;
   padding: 62px 0px 0px 0px; /* Padding top para no quedar bajo la toolbar */
-  min-height: 90vh;
+  min-height: 100dvh;
 }
 
 /* ----------------------------------------------------------- */
