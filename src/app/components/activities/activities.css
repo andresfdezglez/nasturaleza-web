@@ -116,7 +116,8 @@ mat-icon {
   width: 20px;
   height: 20px;
 
-  vertical-align: middle; margin-bottom: 5px;
+  vertical-align: middle;
+  margin-bottom: 5px;
 }
 
 :host ::ng-deep .mat-mdc-tab .mat-ripple-element {
@@ -179,7 +180,7 @@ mat-icon {
 
 /* --- CADA FOTO (ITEM) --- */
 .carousel-item-ruta {
-  flex: 0 0 90%;
+  flex: 0 0 40%;
   scroll-snap-align: center;
   aspect-ratio: 4 / 5;
   border-radius: 10px;
@@ -193,7 +194,7 @@ mat-icon {
 }
 
 .carousel-item-foto {
-  flex: 0 0 90%;
+  flex: 0 0 50%;
   scroll-snap-align: center;
   aspect-ratio: 3 / 2;
   border-radius: 10px;
@@ -333,11 +334,14 @@ mat-card-title {
   text-align: justify;
   line-height: 1.5rem;
   color: #504f4f;
-  
+
   /* Ajuste de distancias */
-  padding: 0.5rem 1rem; /* 0.5 arriba/abajo, 1 a los lados */
-  margin-top: 0;        /* Quita el margen superior por defecto */
-  margin-bottom: 0.5rem; /* Controla el hueco con el siguiente párrafo */
+  padding: 0.5rem 1rem;
+  /* 0.5 arriba/abajo, 1 a los lados */
+  margin-top: 0;
+  /* Quita el margen superior por defecto */
+  margin-bottom: 0.5rem;
+  /* Controla el hueco con el siguiente párrafo */
 }
 
 mat-divider {
@@ -418,10 +422,12 @@ mat-divider {
     line-height: 1.5;
     text-align: justify;
   }
-  .info{
-  font-size: 0.75rem;
 
-}
+  .info {
+    font-size: 0.75rem;
+
+  }
+
   /************* CARRUSEL ************/
 
   .carousel-wrapper {
@@ -431,7 +437,6 @@ mat-divider {
     background-color: transparent;
     display: block;
     /* Cambiamos flex por block para evitar estiramientos raros */
-    margin-top: -40px;
   }
 
   .carousel-container {
@@ -439,7 +444,7 @@ mat-divider {
     /* Liberamos la ventana en móvil */
   }
 
-    /* 2. El track: El motor del scroll */
+  /* 2. El track: El motor del scroll */
   .carousel-track {
     display: flex !important;
     flex-direction: row !important;
@@ -461,6 +466,11 @@ mat-divider {
     /* Firefox */
     -ms-overflow-style: none;
     /* IE/Edge */
+  }
+
+  .carousel-item-foto,
+  .carousel-item-ruta {
+    flex: 0 0 90%;
   }
 
   .nav-btn {
