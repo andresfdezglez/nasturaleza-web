@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
 import reviewsData from '../../../assets/data/reviews.json';
+import questionsData from '../../../assets/data/questions.json';
 
 @Component({
   selector: 'app-home',
@@ -33,7 +34,8 @@ import reviewsData from '../../../assets/data/reviews.json';
 export class Home implements OnInit, AfterViewInit {
 
   @ViewChild('seccionSobreMi') seccion!: ElementRef;
-  @ViewChild('carouselTrack', { static: false }) carouselTrack?: ElementRef<HTMLElement>;
+  @ViewChild('carouselTrackReviews', { static: false }) carouselTrackReviews?: ElementRef<HTMLElement>;
+  @ViewChild('carouselTrackQuestions', { static: false }) carouselTrackQuestions?: ElementRef<HTMLElement>;
   isVisible = signal(false);
   private platformId = inject(PLATFORM_ID);
   private breakpointObserver = inject(BreakpointObserver);
@@ -42,6 +44,7 @@ export class Home implements OnInit, AfterViewInit {
 
   isMobile = signal<boolean>(false);
   listaReviews = signal<any[]>([]);
+  listaQuestions = signal<any[]>(questionsData);
 
   constructor(private title: Title, private meta: Meta, @Inject(DOCUMENT) private document: Document) {
 
@@ -73,7 +76,7 @@ export class Home implements OnInit, AfterViewInit {
   }
 
   async ngOnInit(): Promise<void> {
-    this.title.setTitle("Inicio | Nasturaleza")
+    this.title.setTitle("N'asturaleza")
     this.meta.updateTag({
       name: 'description',
       content: 'Experiencias de turismo activo en Asturias: Observación de fauna, rutas interpretativas y fotografía de naturaleza en Asturias. ¿Te animas?'
@@ -97,12 +100,26 @@ export class Home implements OnInit, AfterViewInit {
   }
 
 
-  scroll(direction: 'left' | 'right') {
-    if (!this.carouselTrack || !this.carouselTrack.nativeElement) {
+  scrollReviews(direction: 'left' | 'right') {
+    if (!this.carouselTrackReviews || !this.carouselTrackReviews.nativeElement) {
       return;
     }
 
-    const track = this.carouselTrack.nativeElement;
+    const track = this.carouselTrackReviews.nativeElement;
+    const scrollAmount = track.offsetWidth * 0.8;
+
+    track.scrollBy({
+      left: direction === 'left' ? -scrollAmount : scrollAmount,
+      behavior: 'smooth'
+    });
+  }
+
+    scrollQuestions(direction: 'left' | 'right') {
+    if (!this.carouselTrackQuestions || !this.carouselTrackQuestions.nativeElement) {
+      return;
+    }
+
+    const track = this.carouselTrackQuestions.nativeElement;
     const scrollAmount = track.offsetWidth * 0.8;
 
     track.scrollBy({
@@ -140,5 +157,4 @@ export class Home implements OnInit, AfterViewInit {
   async loadLocalReviews() {
     this.listaReviews.set(reviewsData);
   }
-
 }
