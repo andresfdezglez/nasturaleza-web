@@ -13,8 +13,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { Meta, Title } from '@angular/platform-browser';
 import { AnimationService } from '../../services/animation-service';
 
-interface Animal { id: string; name: string; title: string; video: string; poster: string; desc: string; }
-interface Seccion { id: string; imagen: string; titulo: string; imagenes: string[]; descripcion: string; }
+interface Animal { id: string; name: string; title: string; video: string; poster: string; desc: string; adulto:string;nino:string;privada:string;grupos:string}
+interface Seccion { id: string; imagen: string; titulo: string; imagenes: string[]; descripcion: string; adulto:string,nino:string;privada:string;grupos:string}
 
 @Component({
   selector: 'app-servicios-fauna',
@@ -32,69 +32,72 @@ export class Activities implements OnInit, AfterViewInit {
       name: 'Oso Pardo',
       title: 'Avistamiento de Oso Pardo Cantábrico',
       video: 'assets/videos/oso.mp4',
-      poster: 'assets/images/1765627550958.webp',
+      poster: 'assets/videos/frame_oso.webp',
       desc: `Descubre la magia del bosque y adéntrate en el fascinante mundo del oso pardo con nuestra experiencia de avistamiento responsable. Durante esta actividad realizaremos esperas en puntos estratégicos del hábitat natural de la especie, siempre desde la máxima discreción y respeto, con el objetivo de intentar observar a este emblemático animal en libertad.
 
 A lo largo de la jornada, nuestros guías especializados te acercarán a la etología del oso pardo: conoceremos sus hábitos, comportamiento, alimentación y su papel clave en el equilibrio del ecosistema. Esta interpretación del entorno nos permitirá comprender mejor la importancia de su conservación y el delicado equilibrio en el que vive.
 
 La actividad pone un énfasis especial en la educación ambiental como herramienta fundamental para la protección de la biodiversidad. Creemos que solo a través del conocimiento y el respeto podemos fomentar una convivencia sostenible entre las personas y la fauna salvaje.
 
-Una experiencia única que combina emoción, aprendizaje y compromiso con la naturaleza.`
+Una experiencia única que combina emoción, aprendizaje y compromiso con la naturaleza.`,
+      adulto:"50 €", nino:"25€", privada:"100€", grupos:"Consultar"
     },
     {
       id: 'lobo',
       name: 'Lobo Ibérico',
       title: 'Tras la huella del Lobo Ibérico',
       video: 'assets/videos/lobos.mp4',
-      poster: 'assets/images/1765627550958.webp',
+      poster: 'assets/videos/frame_lobos.webp',
       desc: `Sumérgete en el territorio del lobo ibérico y vive una experiencia única de observación en plena naturaleza. A través de esperas cuidadosamente planificadas en enclaves estratégicos, trataremos de detectar la presencia de uno de los depredadores más emblemáticos de la península, siempre desde el respeto y sin interferir en su comportamiento natural.
 
 Durante la actividad, nuestro guía te introducirá en la etología del lobo ibérico, desvelando aspectos clave de su conducta, organización social, técnicas de caza y su papel esencial como regulador de los ecosistemas. Comprender su biología y su relación con el entorno nos permitirá derribar mitos y valorar su verdadera importancia en la naturaleza.
 
 Esta experiencia pone especial énfasis en la educación ambiental como base para la conservación de la especie. A través del conocimiento, buscamos fomentar una mirada más consciente y respetuosa hacia la fauna salvaje, promoviendo su protección y la convivencia con el medio rural.
 
-Una actividad emocionante y enriquecedora que te conectará con la esencia más salvaje del paisaje.`
+Una actividad emocionante y enriquecedora que te conectará con la esencia más salvaje del paisaje.`,
+        adulto:"70 €", nino:"Consultar", privada:"130€", grupos:"Consultar"
     },
+    
     {
       id: 'berrea',
       name: 'Berrea',
       title: 'La Berrea del Ciervo',
       video: 'assets/videos/berrea.mp4',
-      poster: 'assets/images/1765627550958.webp',
+      poster: 'assets/videos/frame_berrea.webp',
       desc: `Vive uno de los espectáculos naturales más sobrecogedores del otoño: la berrea del ciervo en los paisajes salvajes de Asturias. Durante esta experiencia nos adentraremos en su hábitat al amanecer o al atardecer, realizando esperas en puntos estratégicos para escuchar y, con suerte, observar a los grandes machos en pleno periodo de celo.
 
 A lo largo de la actividad, nuestro guía interpretará este fascinante comportamiento, explicando la etología del ciervo durante la berrea: sus potentes bramidos, las disputas entre machos, la formación de harenes y la importancia de este momento clave en su ciclo vital.
 
 Además, profundizaremos en el papel del ciervo dentro del ecosistema y en la riqueza natural de Asturias, destacando la importancia de la educación ambiental como herramienta fundamental para la conservación de la fauna y sus hábitats. Entender estos procesos naturales nos ayuda a valorar y respetar el equilibrio del entorno.
 
-Una experiencia sensorial única, donde sonido, paisaje y emoción se combinan para acercarte a la naturaleza en estado puro.`
+Una experiencia sensorial única, donde sonido, paisaje y emoción se combinan para acercarte a la naturaleza en estado puro.`,
+adulto:"40 €", nino:"20€", privada:"80€", grupos:"Consultar"
     }
   ];
 
   readonly rutas: Seccion = {
     id: 'rutas-montaña',
-    titulo: 'Rutas interpretativas del medio natural',
-    imagen: 'assets/images/rutas/ruta6.jpg',
+    titulo: 'Senderismo interpretativo',
+    imagen: 'assets/images/rutas/ruta6.webp',
     imagenes: [
-      'assets/images/rutas/ruta1.webp', 'assets/images/rutas/ruta2.webp', 'assets/images/rutas/ruta3.webp',
-      'assets/images/rutas/ruta4.webp', 'assets/images/rutas/ruta5.webp', 'assets/images/rutas/ruta6.jpg'
-    ],
+      'assets/images/rutas/ruta1.webp', 'assets/images/rutas/ruta7.webp', 'assets/images/rutas/ruta8.webp', 'assets/images/rutas/ruta2.webp', 'assets/images/rutas/ruta3.webp',
+      'assets/images/rutas/ruta4.webp', 'assets/images/rutas/ruta5.webp', 'assets/images/rutas/ruta6.webp'],
     descripcion: `Descubre Asturias a pie a través de rutas de senderismo interpretativo diseñadas para conectar con la naturaleza de una forma cercana, didáctica y enriquecedora. A lo largo del recorrido, exploraremos la diversidad del paisaje asturiano mientras interpretamos su geología, su flora y la fauna que habita estos entornos privilegiados.
-Cada paso se convierte en una oportunidad para aprender: identificaremos especies, entenderemos las dinámicas del ecosistema y descubriremos las historias que esconde el territorio. Todo ello acompañado por un guía titulado que, además, es maestro de educación primaria, lo que aporta un enfoque pedagógico único, adaptado especialmente a familias y niños.
+Cada paso se convierte en una oportunidad para aprender: identificaremos especies, entenderemos las dinámicas del ecosistema y descubriremos las historias que esconde el territorio. Todo ello acompañado por un guía titulado que, además, es maestro de educación primaria, lo que aporta un enfoque pedagógico único, adaptado especialmente a familias y ninos.
 Gracias a esta experiencia, los más pequeños no solo disfrutan del entorno, sino que aprenden de forma activa y divertida, despertando su curiosidad y fomentando el respeto por la naturaleza desde edades tempranas.
 Ponemos un especial énfasis en la educación ambiental como base para la conservación, promoviendo valores de respeto, sostenibilidad y conexión con el medio natural.
 Una actividad perfecta para disfrutar en familia, aprender juntos y vivir la naturaleza de una manera diferente.
-`
+`,adulto:"35 €", nino:"20€", privada:"60€", grupos:"Consultar"
   };
 
   readonly fotografia: Seccion = {
     id: 'foto-natura',
     titulo: 'Fotografía de Naturaleza',
-    imagen: 'assets/images/fotos/foto8.JPG',
+    imagen: 'assets/images/fotos/foto9.webp',
     imagenes: [
-      'assets/images/fotos/foto1.jpg', 'assets/images/fotos/foto2.jpg', 'assets/images/fotos/foto3.jpg',
-      'assets/images/fotos/foto4.jpg', 'assets/images/fotos/foto5.jpg', 'assets/images/fotos/foto6.jpg',
-      'assets/images/fotos/foto7.jpg', 'assets/images/fotos/foto8.JPG'
+      'assets/images/fotos/foto10.webp', 'assets/images/fotos/foto5.webp', 'assets/images/fotos/foto2.webp',
+      'assets/images/fotos/foto4.webp', 'assets/images/fotos/foto8.webp', 'assets/images/fotos/foto1.webp', 'assets/images/fotos/foto6.webp',
+      'assets/images/fotos/foto7.webp', 'assets/images/fotos/foto3.webp'
     ],
     descripcion: `Descubre Asturias a través del objetivo en una experiencia de fotografía de naturaleza diseñada para inspirar y aprender en pleno entorno natural. Durante la actividad, recorreremos distintos paisajes en busca de la mejor luz y de escenas únicas, combinando la observación de fauna y flora con la captura de rincones de gran belleza.
 
@@ -105,7 +108,7 @@ Una actividad perfecta para disfrutar en familia, aprender juntos y vivir la nat
     Además, la actividad pone especial énfasis en la adaptación al medio natural, fomentando una fotografía ética y consciente, donde el respeto por el entorno y sus habitantes es siempre la prioridad.
 Una experiencia perfecta tanto para iniciarse como para mejorar en la fotografía de naturaleza, combinando aprendizaje, creatividad y conexión con el paisaje asturiano.
 
-`
+`,adulto:"60 €", nino:"Consultar", privada:"100€", grupos:"Consultar"
   };
 
   info_seo: any = {
