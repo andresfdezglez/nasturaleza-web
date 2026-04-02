@@ -93,11 +93,11 @@ Una actividad perfecta para disfrutar en familia, aprender juntos y vivir la nat
   readonly fotografia: Seccion = {
     id: 'foto-natura',
     titulo: 'Fotografía de Naturaleza',
-    imagen: 'assets/images/fotos/foto9.webp',
+    imagen: 'assets/images/fotos/foto10.webp',
     imagenes: [
-      'assets/images/fotos/foto10.webp', 'assets/images/fotos/foto5.webp', 'assets/images/fotos/foto2.webp',
-      'assets/images/fotos/foto4.webp', 'assets/images/fotos/foto8.webp', 'assets/images/fotos/foto1.webp', 'assets/images/fotos/foto6.webp',
-      'assets/images/fotos/foto7.webp', 'assets/images/fotos/foto3.webp'
+      'assets/images/fotos/foto9.webp', 'assets/images/fotos/foto5.webp', 'assets/images/fotos/foto2.webp',
+      'assets/images/fotos/foto4.webp', 'assets/images/fotos/foto10.webp', 'assets/images/fotos/foto1.webp', 'assets/images/fotos/foto6.webp',
+      'assets/images/fotos/foto7.webp', 'assets/images/fotos/foto8.webp'
     ],
     descripcion: `Descubre Asturias a través del objetivo en una experiencia de fotografía de naturaleza diseñada para inspirar y aprender en pleno entorno natural. Durante la actividad, recorreremos distintos paisajes en busca de la mejor luz y de escenas únicas, combinando la observación de fauna y flora con la captura de rincones de gran belleza.
 
@@ -124,6 +124,7 @@ Una experiencia perfecta tanto para iniciarse como para mejorar en la fotografí
   selectedFauna = signal<Animal>(this.fauna[0]);
 
   @ViewChild('carouselTrack') carouselTrack!: ElementRef;
+  @ViewChild('carouselTrackFoto') carouselTrackFoto!: ElementRef;
 
   // Mapeo de nombres de URL a índices
   tabMap: { [key: string]: number } = {
@@ -240,6 +241,16 @@ Una experiencia perfecta tanto para iniciarse como para mejorar en la fotografí
 
   scroll(direction: 'left' | 'right') {
     const track = this.carouselTrack.nativeElement;
+    const scrollAmount = track.offsetWidth * 0.8;
+
+    track.scrollBy({
+      left: direction === 'left' ? -scrollAmount : scrollAmount,
+      behavior: 'smooth'
+    });
+  }
+
+  scrollFoto(direction: 'left' | 'right') {
+    const track = this.carouselTrackFoto.nativeElement;
     const scrollAmount = track.offsetWidth * 0.8;
 
     track.scrollBy({

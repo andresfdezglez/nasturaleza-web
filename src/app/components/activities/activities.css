@@ -411,21 +411,6 @@ mat-divider {
 }
 
 
-/* --- RESPONSIVE PARA PC --- */
-@media (min-width: 900px) {
-
-
-  .carousel-item-foto,
-  .carousel-item-ruta {
-    flex: 0 0 50%;
-    aspect-ratio: 3 / 4;
-  }
-
-  .carousel-wrapper {
-    padding: 0 30px;
-  }
-}
-
 @media(max-width:800px) {
   .tab-description {
     font-family: "Belleza", sans-serif;
