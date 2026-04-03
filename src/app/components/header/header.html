@@ -1,7 +1,7 @@
 <section class="header-content">
   <div class="header-image-container">
      @if (isVideo()) {
-      <video playsinline autoplay loop muted preload="none" class="main-featured-img" [poster]="poster()" [src]="srcVideo()"></video>
+      <video playsinline autoplay loop muted preload="metadata" class="main-featured-img" [poster]="poster()" [src]="srcVideo()"></video>
       
     }@else{
       <img [src]="srcVideo()" class="main-featured-img">
