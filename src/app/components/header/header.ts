@@ -1,4 +1,4 @@
-import { Component, inject, input, signal } from '@angular/core';
+import { Component, inject, input, signal , Inject} from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { AnimationService } from '../../services/animation-service';
 
