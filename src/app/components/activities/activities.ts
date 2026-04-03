@@ -258,7 +258,7 @@ const video = this.document.querySelector('video');
       video.muted = true;
       video.play();
     });
-}
+}}
   scroll(direction: 'left' | 'right') {
     const track = this.carouselTrack.nativeElement;
     const scrollAmount = track.offsetWidth * 0.8;
