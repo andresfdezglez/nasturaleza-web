@@ -1,5 +1,5 @@
 import { AfterViewInit, Component,  ElementRef, Inject, inject, OnInit, PLATFORM_ID, signal, ViewChild } from '@angular/core';
-import { CommonModule, isPlatformBrowser, isPlatformServer DOCUMENT} from '@angular/common';
+import { CommonModule, isPlatformBrowser, isPlatformServer ,DOCUMENT} from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
 import { MatRippleModule } from '@angular/material/core';
@@ -248,7 +248,7 @@ const video = this.document.querySelector('video');
       video.play();
     });
   }
-
+}
   scroll(direction: 'left' | 'right') {
     const track = this.carouselTrack.nativeElement;
     const scrollAmount = track.offsetWidth * 0.8;
