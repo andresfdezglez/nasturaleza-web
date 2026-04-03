@@ -31,13 +31,13 @@ constructor(@Inject(DOCUMENT) private document: Document) {}
   }
 
   reiniciarTodo() {
-    this.isVisible.set(false); // 1. Borramos el h1 del mapa
-    this.esAnimacionRapida.set(true); // 2. Preparamos la clase sin delay
+    this.isVisible.set(false); 
+    this.esAnimacionRapida.set(true); 
 const video = this.document.querySelector('video');
   if (video) {
     video.play().catch(error => {
       console.log("Instagram bloqueó el autoplay, reintentando...");
-      // Intentamos mutearlo de nuevo por si acaso
+      
       video.muted = true;
       video.play();
     });
