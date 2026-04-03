@@ -157,6 +157,7 @@ Una experiencia perfecta tanto para iniciarse como para mejorar en la fotografí
     ).subscribe(() => this.scrollToTop());
 
     this.scrollToTop();
+
   }
 
     ngAfterViewInit() {
@@ -181,7 +182,15 @@ Una experiencia perfecta tanto para iniciarse como para mejorar en la fotografí
     if (index === 0) {
       const animalEncontrado = this.fauna.find(a => a.id === animalSlug) || this.fauna[0];
       this.selectedFauna.set(animalEncontrado);
-
+       const video = this.document.querySelector('video');
+  if (video) {
+    video.play().catch(error => {
+      console.log("Instagram bloqueó el autoplay, reintentando...");
+      // Intentamos mutearlo de nuevo por si acaso
+      video.muted = true;
+      video.play();
+    });
+  }
       this.title.setTitle(`${animalEncontrado.title} | N'asturaleza`);
       this.meta.updateTag({ name: 'description', content: animalEncontrado.desc.substring(0, 160) });
       this.updateCanonical(tabSlug);
@@ -239,15 +248,7 @@ Una experiencia perfecta tanto para iniciarse como para mejorar en la fotografí
   selectAnimal(animal: Animal) {
     this.animService.disparar();
     this.router.navigate(['/activities/avistamiento', animal.id]);
-const video = this.document.querySelector('video');
-  if (video) {
-    video.play().catch(error => {
-      console.log("Instagram bloqueó el autoplay, reintentando...");
-      // Intentamos mutearlo de nuevo por si acaso
-      video.muted = true;
-      video.play();
-    });
-  }
+
 }
   scroll(direction: 'left' | 'right') {
     const track = this.carouselTrack.nativeElement;
