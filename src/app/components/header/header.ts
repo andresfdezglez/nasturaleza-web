@@ -1,4 +1,5 @@
 import { Component, inject, input, signal } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 import { AnimationService } from '../../services/animation-service';
 
 @Component({
@@ -15,6 +16,8 @@ export class Header {
     poster = input<string>()
     private animService = inject(AnimationService);
 
+constructor(@Inject(DOCUMENT) private document: Document) {}
+
   // Signal para la animación extra
   extraAnim = signal(false);
 
@@ -30,6 +33,16 @@ export class Header {
   reiniciarTodo() {
     this.isVisible.set(false); // 1. Borramos el h1 del mapa
     this.esAnimacionRapida.set(true); // 2. Preparamos la clase sin delay
+const video = this.document.querySelector('video');
+  if (video) {
+    video.play().catch(error => {
+      console.log("Instagram bloqueó el autoplay, reintentando...");
+      // Intentamos mutearlo de nuevo por si acaso
+      video.muted = true;
+      video.play();
+    });
+}
+
     setTimeout(() => this.isVisible.set(true), 10);
   }
 }
