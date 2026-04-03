@@ -237,7 +237,7 @@ Una experiencia perfecta tanto para iniciarse como para mejorar en la fotografí
       // Intentamos mutearlo de nuevo por si acaso
       video.muted = true;
       video.play();
-    });
+    });}
     if (isPlatformBrowser(this.platformId)) {
       window.scrollTo(0, 0);
       const mainContent = document.querySelector('.mat-sidenav-content');
