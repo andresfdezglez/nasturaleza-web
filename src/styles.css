@@ -14,7 +14,8 @@ background-clip: content-box;
 }
 @font-face {
   font-family: 'HandelsonTwo';
-  src: url('assets/fonts/handelson-two.otf') format('opentype');
+  src: url('assets/fonts/Handelson-Two.woff2') format('woff2'),
+       url('assets/fonts/Handelson-Two.woff') format('woff');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -22,7 +23,8 @@ background-clip: content-box;
 
 @font-face {
   font-family: 'Belleza';
-  src: url('assets/fonts/Belleza.ttf') format('opentype');
+  src: url('assets/fonts/Belleza-Regular.woff2') format('woff2'),
+       url('assets/fonts/Belleza-Regular.woff') format('woff');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -30,7 +32,8 @@ background-clip: content-box;
 
 @font-face {
   font-family: 'Cormorant Garamond';
-  src: url('assets/fonts/CormorantGaramond-VariableFont_wght.ttf') format('opentype');
+  src: url('assets/fonts/CormorantGaramond-Light.woff2') format('woff2'),
+       url('assets/fonts/CormorantGaramond-Light.woff') format('woff');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
