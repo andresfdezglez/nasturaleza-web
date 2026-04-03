@@ -182,8 +182,6 @@ Una experiencia perfecta tanto para iniciarse como para mejorar en la fotografí
     if (index === 0) {
       const animalEncontrado = this.fauna.find(a => a.id === animalSlug) || this.fauna[0];
       this.selectedFauna.set(animalEncontrado);
-       
-  }
       this.title.setTitle(`${animalEncontrado.title} | N'asturaleza`);
       this.meta.updateTag({ name: 'description', content: animalEncontrado.desc.substring(0, 160) });
       this.updateCanonical(tabSlug);
