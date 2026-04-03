@@ -60,6 +60,17 @@ h2 {
   padding-bottom: 10px;
 }
 
+.review-link{
+  font-size: 1rem;
+  color: #888;
+  text-align: center;
+  font-style: italic;
+}
+
+.review-link:hover{
+  color: #4285F4;
+}
+
 .svg-importado {
   width: 60%;
   /* Se expande a todo ese 60% */
