@@ -248,16 +248,7 @@ Una experiencia perfecta tanto para iniciarse como para mejorar en la fotografí
     this.animService.disparar();
     this.router.navigate(['/activities/avistamiento', animal.id]);
 
-const video = this.document.querySelector('video');
-  if (video) {
-    video.play().catch(error => {
-      console.log("Instagram bloqueó el autoplay, reintentando...");
-      // Intentamos mutearlo de nuevo por si acaso
-      video.muted = true;
-      video.play();
-    });
-}}
-  scroll(direction: 'left' | 'right') {
+}  scroll(direction: 'left' | 'right') {
     const track = this.carouselTrack.nativeElement;
     const scrollAmount = track.offsetWidth * 0.8;
 
