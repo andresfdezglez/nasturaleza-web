@@ -25,6 +25,8 @@ interface Seccion { id: string; imagen: string; titulo: string; imagenes: string
 })
 export class Activities implements OnInit, AfterViewInit {
 
+  
+
   // 1. LISTA COMPLETA DE DATOS (FAUNA)
   readonly fauna: Animal[] = [
     {
@@ -237,6 +239,14 @@ Una experiencia perfecta tanto para iniciarse como para mejorar en la fotografí
   selectAnimal(animal: Animal) {
     this.animService.disparar();
     this.router.navigate(['/activities/avistamiento', animal.id]);
+const video = document.querySelector('video');
+  if (video) {
+    video.play().catch(error => {
+      console.log("Instagram bloqueó el autoplay, reintentando...");
+      // Intentamos mutearlo de nuevo por si acaso
+      video.muted = true;
+      video.play();
+    });
   }
 
   scroll(direction: 'left' | 'right') {
