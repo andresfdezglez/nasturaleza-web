@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, DOCUMENT, ElementRef, Inject, inject, OnInit, PLATFORM_ID, signal, ViewChild } from '@angular/core';
-import { CommonModule, isPlatformBrowser, isPlatformServer } from '@angular/common';
+import { AfterViewInit, Component,  ElementRef, Inject, inject, OnInit, PLATFORM_ID, signal, ViewChild } from '@angular/core';
+import { CommonModule, isPlatformBrowser, isPlatformServer DOCUMENT} from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
 import { MatRippleModule } from '@angular/material/core';
