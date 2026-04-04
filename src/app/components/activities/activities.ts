@@ -1,5 +1,5 @@
-import { AfterViewInit, Component,  ElementRef, Inject, inject, OnInit, PLATFORM_ID, signal, ViewChild } from '@angular/core';
-import { CommonModule, isPlatformBrowser, isPlatformServer ,DOCUMENT} from '@angular/common';
+import { AfterViewInit, Component, ElementRef, Inject, inject, OnInit, PLATFORM_ID, signal, ViewChild } from '@angular/core';
+import { CommonModule, isPlatformBrowser, DOCUMENT } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
 import { MatRippleModule } from '@angular/material/core';
@@ -13,8 +13,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { Meta, Title } from '@angular/platform-browser';
 import { AnimationService } from '../../services/animation-service';
 
-interface Animal { id: string; name: string; title: string; video: string; poster: string; desc: string; adulto:string;nino:string;privada:string;grupos:string}
-interface Seccion { id: string; imagen: string; titulo: string; imagenes: string[]; descripcion: string; adulto:string,nino:string;privada:string;grupos:string}
+interface Animal { id: string; name: string; title: string; videoMobile: string; videoDesktop: string; poster: string; desc: string; adulto: string; nino: string; privada: string; grupos: string }
+interface Seccion { id: string; imagen: string; titulo: string; imagenes: string[]; descripcion: string; adulto: string, nino: string; privada: string; grupos: string }
 
 @Component({
   selector: 'app-servicios-fauna',
@@ -25,7 +25,7 @@ interface Seccion { id: string; imagen: string; titulo: string; imagenes: string
 })
 export class Activities implements OnInit, AfterViewInit {
 
-  
+
 
   // 1. LISTA COMPLETA DE DATOS (FAUNA)
   readonly fauna: Animal[] = [
@@ -33,7 +33,8 @@ export class Activities implements OnInit, AfterViewInit {
       id: 'oso',
       name: 'Oso Pardo',
       title: 'Avistamiento de Oso Pardo Cantábrico',
-      video: 'assets/videos/oso.mp4',
+      videoDesktop: 'assets/videos/oso.webm',
+      videoMobile: 'assets/videos/oso_movil.webm',
       poster: 'assets/videos/frame_oso.webp',
       desc: `Descubre la magia del bosque y adéntrate en el fascinante mundo del oso pardo con nuestra experiencia de avistamiento responsable. Durante esta actividad realizaremos esperas en puntos estratégicos del hábitat natural de la especie, siempre desde la máxima discreción y respeto, con el objetivo de intentar observar a este emblemático animal en libertad.
 
@@ -42,13 +43,14 @@ A lo largo de la jornada, nuestros guías especializados te acercarán a la etol
 La actividad pone un énfasis especial en la educación ambiental como herramienta fundamental para la protección de la biodiversidad. Creemos que solo a través del conocimiento y el respeto podemos fomentar una convivencia sostenible entre las personas y la fauna salvaje.
 
 Una experiencia única que combina emoción, aprendizaje y compromiso con la naturaleza.`,
-      adulto:"50 €", nino:"25€", privada:"100€", grupos:"Consultar"
+      adulto: "50 €", nino: "25€", privada: "100€", grupos: "Consultar"
     },
     {
       id: 'lobo',
       name: 'Lobo Ibérico',
       title: 'Tras la huella del Lobo Ibérico',
-      video: 'assets/videos/lobos.mp4',
+      videoDesktop: 'assets/videos/lobos.webm',
+      videoMobile: 'assets/videos/lobos_movil.webm',
       poster: 'assets/videos/frame_lobos.webp',
       desc: `Sumérgete en el territorio del lobo ibérico y vive una experiencia única de observación en plena naturaleza. A través de esperas cuidadosamente planificadas en enclaves estratégicos, trataremos de detectar la presencia de uno de los depredadores más emblemáticos de la península, siempre desde el respeto y sin interferir en su comportamiento natural.
 
@@ -57,14 +59,15 @@ Durante la actividad, nuestro guía te introducirá en la etología del lobo ib�
 Esta experiencia pone especial énfasis en la educación ambiental como base para la conservación de la especie. A través del conocimiento, buscamos fomentar una mirada más consciente y respetuosa hacia la fauna salvaje, promoviendo su protección y la convivencia con el medio rural.
 
 Una actividad emocionante y enriquecedora que te conectará con la esencia más salvaje del paisaje.`,
-        adulto:"70 €", nino:"Consultar", privada:"130€", grupos:"Consultar"
+      adulto: "70 €", nino: "Consultar", privada: "130€", grupos: "Consultar"
     },
-    
+
     {
       id: 'berrea',
       name: 'Berrea',
       title: 'La Berrea del Ciervo',
-      video: 'assets/videos/berrea.mp4',
+      videoDesktop: 'assets/videos/berrea.webm',
+      videoMobile: 'assets/videos/berrea_movil.webm',
       poster: 'assets/videos/frame_berrea.webp',
       desc: `Vive uno de los espectáculos naturales más sobrecogedores del otoño: la berrea del ciervo en los paisajes salvajes de Asturias. Durante esta experiencia nos adentraremos en su hábitat al amanecer o al atardecer, realizando esperas en puntos estratégicos para escuchar y, con suerte, observar a los grandes machos en pleno periodo de celo.
 
@@ -73,7 +76,7 @@ A lo largo de la actividad, nuestro guía interpretará este fascinante comporta
 Además, profundizaremos en el papel del ciervo dentro del ecosistema y en la riqueza natural de Asturias, destacando la importancia de la educación ambiental como herramienta fundamental para la conservación de la fauna y sus hábitats. Entender estos procesos naturales nos ayuda a valorar y respetar el equilibrio del entorno.
 
 Una experiencia sensorial única, donde sonido, paisaje y emoción se combinan para acercarte a la naturaleza en estado puro.`,
-adulto:"40 €", nino:"20€", privada:"80€", grupos:"Consultar"
+      adulto: "40 €", nino: "20€", privada: "80€", grupos: "Consultar"
     }
   ];
 
@@ -89,7 +92,7 @@ Cada paso se convierte en una oportunidad para aprender: identificaremos especie
 Gracias a esta experiencia, los más pequeños no solo disfrutan del entorno, sino que aprenden de forma activa y divertida, despertando su curiosidad y fomentando el respeto por la naturaleza desde edades tempranas.
 Ponemos un especial énfasis en la educación ambiental como base para la conservación, promoviendo valores de respeto, sostenibilidad y conexión con el medio natural.
 Una actividad perfecta para disfrutar en familia, aprender juntos y vivir la naturaleza de una manera diferente.
-`,adulto:"35 €", nino:"20€", privada:"60€", grupos:"Consultar"
+`, adulto: "35 €", nino: "20€", privada: "60€", grupos: "Consultar"
   };
 
   readonly fotografia: Seccion = {
@@ -110,7 +113,7 @@ Una actividad perfecta para disfrutar en familia, aprender juntos y vivir la nat
     Además, la actividad pone especial énfasis en la adaptación al medio natural, fomentando una fotografía ética y consciente, donde el respeto por el entorno y sus habitantes es siempre la prioridad.
 Una experiencia perfecta tanto para iniciarse como para mejorar en la fotografía de naturaleza, combinando aprendizaje, creatividad y conexión con el paisaje asturiano.
 
-`,adulto:"60 €", nino:"Consultar", privada:"100€", grupos:"Consultar"
+`, adulto: "60 €", nino: "Consultar", privada: "100€", grupos: "Consultar"
   };
 
   info_seo: any = {
@@ -127,6 +130,11 @@ Una experiencia perfecta tanto para iniciarse como para mejorar en la fotografí
 
   @ViewChild('carouselTrack') carouselTrack!: ElementRef;
   @ViewChild('carouselTrackFoto') carouselTrackFoto!: ElementRef;
+  @ViewChild('videoElem') videoRef!: ElementRef<HTMLVideoElement>;
+    // Signal para la animación extra
+  extraAnim = signal(false);
+
+  isVisible = signal(true); // Controla si el h1 existe en el DOM
 
   // Mapeo de nombres de URL a índices
   tabMap: { [key: string]: number } = {
@@ -146,21 +154,30 @@ Una experiencia perfecta tanto para iniciarse como para mejorar en la fotografí
     this.sincronizarEstado(url);
   }
 
+    reiniciarTodo() {
+    this.isVisible.set(false);
+    setTimeout(() => {
+      this.isVisible.set(true), 10
+    });
+  }
+
+
   ngOnInit() {
     // Escuchamos los parámetros de la ruta (Ej: /activities/rutas)
     this.route.url.subscribe(() => {
       this.sincronizarEstado(this.router.url);
     });
-
+    this.animService.trigger$.subscribe(() => {
+      this.reiniciarTodo();
+    });
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
-    ).subscribe(() => this.scrollToTop());
+    ).subscribe(() => { this.scrollToTop() });
 
     this.scrollToTop();
-
   }
 
-    ngAfterViewInit() {
+  ngAfterViewInit() {
     this.animService.disparar();
   }
 
@@ -185,6 +202,7 @@ Una experiencia perfecta tanto para iniciarse como para mejorar en la fotografí
       this.title.setTitle(`${animalEncontrado.title} | N'asturaleza`);
       this.meta.updateTag({ name: 'description', content: animalEncontrado.desc.substring(0, 160) });
       this.updateCanonical(tabSlug);
+      this.playVideo()
     } else {
       // SEO normal para Rutas y Fotografía
       const data = this.info_seo[index];
@@ -228,14 +246,6 @@ Una experiencia perfecta tanto para iniciarse como para mejorar en la fotografí
   }
 
   private scrollToTop() {
-    const video = this.document.querySelector('video');
-  if (video) {
-    video.play().catch(error => {
-      console.log("Instagram bloqueó el autoplay, reintentando...");
-      // Intentamos mutearlo de nuevo por si acaso
-      video.muted = true;
-      video.play();
-    });}
     if (isPlatformBrowser(this.platformId)) {
       window.scrollTo(0, 0);
       const mainContent = document.querySelector('.mat-sidenav-content');
@@ -248,7 +258,7 @@ Una experiencia perfecta tanto para iniciarse como para mejorar en la fotografí
     this.animService.disparar();
     this.router.navigate(['/activities/avistamiento', animal.id]);
 
-}  scroll(direction: 'left' | 'right') {
+  } scroll(direction: 'left' | 'right') {
     const track = this.carouselTrack.nativeElement;
     const scrollAmount = track.offsetWidth * 0.8;
 
@@ -266,5 +276,25 @@ Una experiencia perfecta tanto para iniciarse como para mejorar en la fotografí
       left: direction === 'left' ? -scrollAmount : scrollAmount,
       behavior: 'smooth'
     });
+  }
+
+  playVideo() {
+    let id: string;
+
+    if (this.selectedFauna().id === this.fauna[0].id) id = this.fauna[0].id;
+    else if (this.selectedFauna().id === this.fauna[1].id) id = this.fauna[1].id;
+    else id = this.fauna[2].id;
+    setTimeout(() => {
+      const video = this.document.getElementById(id) as HTMLVideoElement | null;
+
+      if (video) {
+        video.load();
+        video.play().catch(err => {
+          video.muted = true;
+          video.play();
+        });
+      }
+    }, 100)
+
   }
 }

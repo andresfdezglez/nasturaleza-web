@@ -1,20 +1,26 @@
 <section class="header-content">
   <div class="header-image-container">
-     @if (isVideo()) {
-      <video playsinline autoplay loop muted preload="metadata" class="main-featured-img" [poster]="poster()" [src]="srcVideo()"></video>
-      
+    @if (isVideo()) {
+    <video #videoElem playsinline autoplay loop muted preload="metadata" class="main-featured-img" [poster]="poster()">
+      <!-- Móvil -->
+      <source [src]="srcVideoMobile()" type="video/webm" media="(max-width: 768px)" />
+
+      <!-- Escritorio -->
+      <source [src]="srcVideoDesktop()" type="video/webm" media="(min-width: 769px)" />
+    </video>
+
     }@else{
-      <img [src]="srcVideo()" class="main-featured-img">
+    <img [src]="srcImagen()" class="main-featured-img">
     }
-    
+
   </div>
   <div class="video-overlay-content">
     <header class="title">
-    @if (isVisible()) {
+      @if (isVisible()) {
       <h1 [class]="claseAnimacion()">
         {{ title() }}
       </h1>
-    }
-  </header>
+      }
+    </header>
   </div>
 </section>

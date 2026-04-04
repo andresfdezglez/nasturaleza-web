@@ -10,9 +10,55 @@
       }
     </div>
 
-    <app-header [isVideo]="true" [poster]="selectedFauna().poster" claseAnimacion="animacion-rapida"
-      [srcVideo]="selectedFauna().video" [title]="selectedFauna().title"></app-header>
+    <section class="header-content">
+      <div class="header-image-container">
+        @if(selectedFauna() == fauna[0]){
+        <video [id]="fauna[0].id" playsinline autoplay loop muted preload="metadata" class="main-featured-img"
+          [poster]="fauna[0].poster">
+          <!-- Móvil -->
+          <source [src]="fauna[0].videoMobile" type="video/webm" media="(max-width: 768px)" />
 
+          <!-- Escritorio -->
+          <source [src]="fauna[0].videoDesktop" type="video/webm" media="(min-width: 769px)" />
+
+          <source src="assets/video/oso.mp4" type="video/mp4" />
+        </video>
+        }
+        @if(selectedFauna() == fauna[1]){
+        <video [id]="fauna[1].id" playsinline autoplay loop muted preload="metadata" class="main-featured-img"
+          [poster]="fauna[1].poster">
+          <!-- Móvil -->
+          <source [src]="fauna[1].videoMobile" type="video/webm" media="(max-width: 768px)" />
+
+          <!-- Escritorio -->
+          <source [src]="fauna[1].videoDesktop" type="video/webm" media="(min-width: 769px)" />
+
+          <source src="assets/video/lobos.mp4" type="video/mp4" />
+        </video>
+        }
+        @if(selectedFauna() == fauna[2]){
+        <video [id]="fauna[2].id" playsinline autoplay loop muted preload="metadata" class="main-featured-img"
+          [poster]="fauna[2].poster">
+          <!-- Móvil -->
+          <source [src]="fauna[2].videoMobile" type="video/webm" media="(max-width: 768px)" />
+
+          <!-- Escritorio -->
+          <source [src]="fauna[2].videoDesktop" type="video/webm" media="(min-width: 769px)" />
+
+          <source src="assets/video/berrea.mp4" type="video/mp4" />
+        </video>
+        }
+      </div>
+      <div class="video-overlay-content">
+        <header class="title">
+          @if (isVisible()) {
+          <h1 class="animacion-rapida">
+            {{ selectedFauna().title }}
+          </h1>
+          }
+        </header>
+      </div>
+    </section>
 
     <div class="mountain-divider-container">
 
@@ -82,7 +128,7 @@
               </div>
               <div class="info-value highlight">{{selectedFauna().grupos}}</div>
             </div>
-            </div>
+          </div>
         </mat-card-content>
 
         <mat-card-footer>
@@ -116,11 +162,11 @@
         </mat-card-content>
 
       </mat-card>
-      </div>
+    </div>
   </mat-tab>
 
   <mat-tab label="Rutas">
-    <app-header [isVideo]="false" claseAnimacion="animacion-rapida" srcVideo={{rutas.imagen}} title={{rutas.titulo}}>
+    <app-header [isVideo]="false" claseAnimacion="animacion-rapida" srcImagen={{rutas.imagen}} title={{rutas.titulo}}>
     </app-header>
     <div class="mountain-divider-container">
 
@@ -145,7 +191,7 @@
 
       <p class="tab-description">{{ rutas.descripcion }}</p>
 
-     <mat-card class="ficha-actividad">
+      <mat-card class="ficha-actividad">
         <mat-card-header>
           <mat-card-title>PRECIOS</mat-card-title>
           <mat-card-subtitle class="iva-inc">(Por persona/medio día + IVA incluido)</mat-card-subtitle>
@@ -188,7 +234,7 @@
               </div>
               <div class="info-value highlight">{{rutas.grupos}}</div>
             </div>
-            </div>
+          </div>
         </mat-card-content>
 
         <mat-card-footer>
@@ -230,7 +276,7 @@
 
   </mat-tab>
   <mat-tab label="Fotografía">
-    <app-header [isVideo]="false" claseAnimacion="animacion-rapida" srcVideo={{fotografia.imagen}}
+    <app-header [isVideo]="false" claseAnimacion="animacion-rapida" srcImagen={{fotografia.imagen}}
       title={{fotografia.titulo}}> </app-header>
 
     <div class="mountain-divider-container">
@@ -297,7 +343,7 @@
               </div>
               <div class="info-value highlight">{{fotografia.grupos}}</div>
             </div>
-            </div>
+          </div>
         </mat-card-content>
 
         <mat-card-footer>
