@@ -1,7 +1,7 @@
 <section class="header-content">
   <div class="header-image-container">
     @if (isVideo()) {
-    <video #videoElem playsinline autoplay loop muted preload="metadata" class="main-featured-img" [poster]="poster()">
+    <video #videoElem playsinline autoplay loop muted preload="none" class="main-featured-img" [poster]="poster()">
       <!-- Móvil -->
       <source [src]="srcVideoMobile()" type="video/webm" media="(max-width: 768px)" />
 
