@@ -1,28 +1,29 @@
-
 <!doctype html>
 <html lang="es">
 
 <head>
   <meta charset="utf-8">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-
-  <title>N'asturaleza</title>
   <meta property="og:title" content="N'asturaleza | Experiencias salvajes">
   <meta property="og:description"
     content="Observación de fauna salvaje, rutas interpretativas y fotografía en Asturias.">
   <meta property="og:image" content="https://www.nasturalezaexperiencias.es/assets/images/logo_grande.webp">
   <meta property="og:type" content="website">
-  <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>N'asturaleza</title>
+  <base href="/">
+
+
   <link rel="icon" type="image/x-icon" href="https://www.nasturalezaexperiencias.es/favicon-v1.ico">
   <link rel="preload" as="image" type="image/webp" href="assets/images/logo_grande.webp" fetchpriority="high">
 
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap" rel="stylesheet">
+
   <link rel="preload" href="assets/fonts/Handelson-Two.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/Belleza-Regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/CormorantGaramond-Light.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/bootstrap-icons.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/MaterialIcons-Regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" as="image" href="assets/videos/frame_inicio.webp" fetchpriority="high">
-  
+
   <style>
     @font-face {
       font-family: 'HandelsonTwo';
@@ -31,20 +32,83 @@
       font-style: normal;
       font-display: swap;
     }
-@font-face {
-  font-family: 'Cormorant Garamond';
-  src: url('assets/fonts/CormorantGaramond-Light.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Belleza';
-  src: url('assets/fonts/Belleza-Regular.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
+
+    @font-face {
+      font-family: 'Cormorant Garamond';
+      src: url('assets/fonts/CormorantGaramond-Light.woff2') format('woff2');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Belleza';
+      src: url('assets/fonts/Belleza-Regular.woff2') format('woff2');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Material Icons';
+      src: url('assets/fonts/MaterialIcons-Regular.woff2') format('woff2');
+      font-display: block;
+    }
+
+    @font-face {
+      font-family: "bootstrap-icons";
+      src: url("assets/fonts/bootstrap-icons.woff2") format("woff2");
+      font-display: block;
+    }
+
+    .bi::before,
+    [class^="bi-"]::before,
+    [class*=" bi-"]::before {
+      display: inline-block;
+      font-family: "bootstrap-icons" !important;
+      font-style: normal;
+      font-weight: normal !important;
+      line-height: 1;
+      vertical-align: -.125em;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* 2. Tus 3 iconos específicos (CAMBIA LOS CÓDIGOS POR LOS TUYOS) */
+    .bi-instagram::before {
+      content: "\f437";
+    }
+
+    /* Ejemplo: Check */
+    .bi-facebook::before {
+      content: "\f344";
+    }
+
+    /* Ejemplo: Teléfono */
+    .bi-whatsapp::before {
+      content: "\f618";
+    }
+
+    /* 2. Define la clase que usa Angular Material */
+    .material-icons {
+      font-family: 'Material Icons';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 24px;
+      /* Tamaño estándar */
+      display: inline-block;
+      line-height: 1;
+      text-transform: none;
+      letter-spacing: normal;
+      word-wrap: normal;
+      white-space: nowrap;
+      direction: ltr;
+      -webkit-font-smoothing: antialiased;
+      /* Para que se vean nítidos */
+      text-rendering: optimizeLegibility;
+      -moz-osx-font-smoothing: grayscale;
+      font-feature-settings: 'liga';
+      /* ESTO ES LO QUE CREA EL ICONO */
+    }
   </style>
 </head>
 

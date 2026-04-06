@@ -72,11 +72,12 @@ h2 {
 }
 
 .svg-importado {
-  width: 60%;
+  width: 105%;
   /* Se expande a todo ese 60% */
   height: 100%;
   margin-right: -15%;
-  margin-left: -5%;
+  margin-left: -35%;
+  margin-top: -5%;
 
   opacity: 0;
 }
@@ -86,7 +87,7 @@ h2 {
   height: 100%;
   color: white;
   justify-content: center;
-
+  margin-left: -15%;
   opacity: 0;
 }
 
@@ -255,12 +256,14 @@ h2 {
     width: 100%;
     height: 100%;
     margin-left: 5%;
+    margin-top: 0;
   }
 
   /* ÁREA DE TEXTO: El compañero */
   .about-text-area {
     width: 100%;
     height: 100%;
+    margin: 0;
     color: white;
     justify-content: center;
   }
